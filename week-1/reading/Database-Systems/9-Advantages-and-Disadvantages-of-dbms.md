@@ -55,7 +55,7 @@
 
 ### Improved Data Accessibility and Responsiveness 
 
-- Similar positives to Economy of scale, in that integration allows data to cross departmental boundaries. 
+- Similar positives to Sharing data, in that integration allows data to cross departmental boundaries. 
 - Many DBMSs provide query languages or report writers that allow sophisticated users to ask ad hoc questions and to obtain the required information almost immediately at their terminal. 
 
 ### Increased Productivity 
@@ -64,4 +64,49 @@
 
 ### Improved Maintenance Through Data Independence 
 
-- 
+- Due to the descriptions of the data and logic for accessing said data not being built into each application program, the data is independent in a database system, as opposed to a file-based system. 
+  - This means that data structures can be manipulated without breaking any application that the client uses to interact with the DBMS/ database. 
+
+### Increased Concurrency
+
+- In some file-based system, if two or more users are allowed to access the same file simultaneously, it is possible that he accesses will interfere with each other, resulting in loss of information or even loss of integrity. 
+  - Many DBMSs manage concurrent database access and ensure that such problems cannot occur. 
+
+### Improved backup and recovery Services
+
+- Modern DBMSs provide facilities to minimize the amount of processing that is lost following a failure. 
+- In file-based system, this responsibility was on the user to make sure necessary protocols were in place to ensure the back up of data. 
+
+## Disadvantages 
+
+### Complexity
+
+- The provision of the functionality that we expect of a good DBMS makes the DBMS an extremely complex piece of software. Database designers and developers, data, and database administrators, and end-users must understand this functionality to take full advantage. 
+
+### Size
+
+The DBMS is an extremely large piece of software occupying a large amount of disk space and substantial amounts of memory to run effectively. 
+
+### Cost of DBMSs
+
+The cost of a DBMS varies significantly depending on the environment and functionality provided. 
+  - Single User DBMS for a personal computer may only cost $100. However, large mainframe multi-user DBMS servicing hundreds of users can be extremely expensive, reaching costing thousands to hundreds of thousands to millions depending on your organizations use-case. 
+
+### Additional Hardware Costs
+
+To achieve the performance required from a good DBMS you may have to upgrade your machine to a better one, which can be costly.
+
+### Cost of Conversion
+
+Converting existing applications to use the new DBMS and database can be time consuming and costly. Converting these systems results in a need for extra staff to aid this conversion and training for these staff 
+
+The term legacy system is sometimes used to refer to an older and usually inferior system. 
+
+### Performance
+
+Typically, a file-based-system is written for a specific application such as invoicing. As a result performance is generally very good. However, an application that consumes a DBMS is written to be more general, to cater for many applications rather than just one. The result is that some applications may not run as fast as they used to.
+
+### Greater Impact of Failure
+
+Due to the centralization of the organizations data, if system failure is not accounted for correctly, in the event of a failure a business/organization could lose all data. 
+
