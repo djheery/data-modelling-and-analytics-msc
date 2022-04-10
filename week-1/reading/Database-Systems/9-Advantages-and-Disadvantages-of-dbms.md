@@ -15,3 +15,6 @@ Advantages:
     -With the integration from of the operational data, it may be possible for the organization to derive additional information from the same data.
   
   ## Sharing Data
+    - A centralized database allows data from different departments to be shared, improving business operation.
+  
+  ## 
