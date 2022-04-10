@@ -1,0 +1,44 @@
+=================
+Database Approach
+=================
+
+All the limitations of the File-Based Approach can be attributed to two factors 
+  - The definition of the data is embedded in the application programs, rather than being stored separately and independently 
+  - There is no control over the access and manipulation of data beyond that imposed by the application programs 
+
+This is where the database and Database Management System emerged. 
+
+Database 
+  - A shared collection of logically related data and its description, designed to meet the information needs of an organization.
+
+A database is a single, usually large reporistory of data
+  - Can be used simultaneously by many departments. 
+  - Minimum amount of duplication 
+  -Holds not only the organizations operational data but also a descripton of this data 
+
+A database is also defined as: 
+  - A self-describing collection of intergrated records. 
+
+- Description of data known as the 
+  - System catalog 
+  - Data Dictionary 
+  - Meta data 
+    - "Data about data"
+
+The approach to data definition is similar to the approach taken in modern software development 
+  - External definition of an object and a separate external definition are provded. 
+  - Users only see the external definition and have the schematic of the object abstracted away from them 
+    - Known as Data abstraction. 
+    - This is why we can cahnge the structure of data without the user needing to know about it. 
+    - If new data structures are added or existing data structures modified, then the application programs are unnafected. However, if we remove a field from a file that an application uses then that application is affected by thsi change and must be modified. 
+  
+Logically Related 
+  - When we analyze the information needs of an organization we attempt to identify entities, attributes and relationships 
+    - Entity 
+      - A destinct object in the organization that is to be represented 
+    - Attribute 
+      - Property that describes some aspect of teh object that we wish to record
+    - Relationship 
+      - Association between entities. 
+
+The 
