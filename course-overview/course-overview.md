@@ -110,7 +110,7 @@ Seminars:
 ## Teaching Calendar 
 
 | Week No. | Topic                                                         | Special Activity                                     |
------------------------------------------------------------------------------------------------------------------------------------
+|----------|---------------------------------------------------------------|------------------------------------------------------|
 | 1        | Introduction to databases and entity relationship   modelling |                                                      |
 | 2        | Conceptual and logical database design                        |                                                      |
 | 3        | Normalization                                                 | Paired set to discuss ERDs                           |
