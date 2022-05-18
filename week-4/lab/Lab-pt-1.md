@@ -41,3 +41,15 @@ There are a precise set of rules governing the syntax (grammar) of SQL.
   - This requires you to specify 
     - the precision (p) : Number of significant figures 
     - the scale (s) : number of decimal places 
+
+# Part 2
+
+What candidate key(s) can you identify for: 
+1. The EMP table
+  - EMP_NO
+2. The DEPT table
+  - DEPT_NO
+  - DEPT_NAME 
+  - MANAGER_NO 
+3. The PROJ table.
+  - PROJ_NO
