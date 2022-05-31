@@ -28,3 +28,38 @@ Real Time and Active database technology techniques are being applied to the web
     - Also known as the universe of discourse (UoD)
   - Logically coherent collection of data with some inherent meaning
   - Designed, built and populated with data for a specific purpose
+
+### Database Management System
+
+- A DBMS is a computerized system that enables users to create and maintain a database. 
+  - A general purpose software that facilitates the process of CRUD actions. 
+- Defining a database involves specifying the data types, structures and constraints of the data to be stored in the database. 
+- Descriptive information about the data is known as meta data 
+- Constructing is the process of storing the data in some storage medium that is controlled by the DBMS 
+- Manipulating a database includes functions such as querying the database to retrive specific data 
+  - Updating the data 
+  - Generating reports based on the data. 
+- Sharing a database allows multiple users and programs to access the database concurrently 
+
+### Application Program 
+
+An application program accesses the database by sending queries or requests for data to the DBMS then will often display the results 
+
+### Protection 
+
+Database Management Systems often include functionality to protect the database and maintain it over long periods of time. 
+Protection includes: 
+  - Protection against hardware malfunction 
+  - Protection against unauthorized users/ malicious access. 
+
+
+### Designing an Application 
+
+Design of a new application for an existing database or design of a brand new database starts off with a phase called **requirements specification and analysis**
+  - These requirements are documented in detail and transformed into **Conceptual Design**
+
+This is then transformed into a **logical design** that can be expressed in the data model implemented in a commercial DBMS 
+
+Then finally **Physical Design**. This is where further specifications are provided for storing and accessing the database. 
+  - The database design is implemented, populated with actual data, and continuously maintained to reflect the state of the Universe of Discourse
+
