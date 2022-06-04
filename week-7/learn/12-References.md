@@ -49,7 +49,7 @@ CREATE TYPE Movie_Ref_Type AS OBJECT (
 CREATE TYPE Movie_Set_Type AS TABLE 
 OF Movie_Ref_Type;
 
-CREATE TABLE Star (
+CREATE TABLE Star (a
   Name VARCHAR(15),
   .....
   .....
@@ -62,4 +62,90 @@ NESTED TABLE Movies STORE AS Star_Movie
 - The attribute Movies in the Star tabble is a nested table taht contains references to Movie Objects.
 - When populating data to the Star table you will need to load any literal data first (any normal attributes)
   - The movies attribute is very human unfriendly as it is a nested table of Logical Object IDs which cannot be typed due to being long and complex. 
-  - Yo
+
+## How to populate a nested table of references
+
+To populate a nested table of references, the objects on both sides of the relationship should already exist in the database. 
+
+Consider the insert statement below: 
+
+INSERT INTO TABLE (
+  SELECT o1.ntclm FROM otbl1 o1
+  WHERE c1
+  )
+  SELECT REF(o2) FROM otbl2 o2 
+  WHERE c2;
+
+Map: 
+
+- otbl1 (o1) = Object table 1
+- otbl2 (o2) = Object table 2
+- ntclm = Nested table column 
+- c1 = Refers to a condition that would be specified to find the target row to insert into
+
+Given the above statement:
+
+You use the INSERT INTO TABLE syntax to tell SQL that you want to insert into a type of table then define the table/ record you want to insert into within the brackets.
+
+In this case you want to insert into the Nested Table column  (o1.ntclm) WHERE condition 1 (c1) is met. 
+
+The second SELECT statements returns references to the objects using the REF function. These are then INSERTED into the table returned by the first select statement.
+
+REF(o2) returns a reference to the table otbl2 where a specific condition is met (c2)
+
+Applying this to the movie table we could have something like this:
+
+INSERT INTO TABLE (
+  SELECT S.Movies
+  FROM Stars S
+  WHERE S.name = 'Hamil')
+SELECT REF(m)
+FROM Movie_Table m
+WHERE m.Title IN ('Star Wars', 'Empire', 'War on Terror')
+
+Given the above statement and applying the rules discussed above the statement we can see that we are inserting movie references into the Stars.Movies nested table by establising: 
+
+- The condition for the the nested column to target within the relations row (who are we assigning the movies too)
+- The condition for which movies should be referenced in the chosen row
+
+## How to Query a Nested Table of References using DEREF
+
+The SQL function DREF returns the object that corresponds to the reference we have targeted.
+
+DREF works the opposite way to REF and will return objects rather than returning references. 
+
+The DREF function can be invoked either in the SELECT or the WHERE clause. 
+
+An example query: 
+
+SELECT S.Name, DREF(M.MovieRef)
+FROM Star S, TABLE(S.Movies) M 
+WHERE S.Name = 'Fisher';
+
+## How to Query a Table of References using a Cursor Expression: 
+
+Consider the Syntax below: 
+
+SELECT S.Name,
+  CURSOR (SELECT DREF(MovieRef))
+    FROM TABLE(S.Movies))
+  FROM Star S
+WHERE S.Name = 'Fisher';
+
+The CURSOR expression returns a nested cursor, which evaluates the expression and implicitly processes the data. 
+
+For example, the above query returns the name of the star Fisher and associated movie objects from the nested table Using the movie expression.
+
+## How to Query a Nested Table of References using Unnesting
+
+The SQL function TABLE(col) turns a collection into a table.
+
+Consider the query below: 
+
+SELECT S.Name, S.MovieRef.Title "Title"
+       M.MovieRef.Year "Year", M.MovieRef.Length "Length"
+FROM Star S, TABLE (S.Movies) M
+WHERE S.Name = 'Fisher'
+
+The above statement will return unnest the MovieRef nested table for all items that match the condition and display it in a more readable format by displaying the table names as the ones specified in quotations such as "Title"
+
