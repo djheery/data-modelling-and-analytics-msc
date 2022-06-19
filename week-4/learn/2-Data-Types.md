@@ -21,7 +21,7 @@ For example, consider the table below
 | E51             | X47/35            | A                   | 500                             |
 
 Text(2) indicates that the data should be text and composed of 2 characters at most. 
-Therefore E51 should be dissallowed as it is too long for the specific data type 
+Therefore E51 should be disallowed as it is too long for the specific data type 
 
 Text means any alphanumeric characters. Attribute values can be among a set of specific characters such as 'M' or 'S'
 This means A should be disallowed from the 2nd row 3rd column 
