@@ -10,31 +10,43 @@
 -- :: add room size to Prop_rooms table 
 -- :: Review all constraints 
 -- :: Does the viewing table need branch, or property owner (could these be found via the property)
+-- Add estate agents to branches
 
-DROP TABLE CUSTOMER CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
-DROP TABLE PAYROLL_DETAILS CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
-DROP TABLE STAFF CASCADE CONSTRAINTS PURGE;
 
 CREATE TABLE CUSTOMER (
   cust_id CHAR(2), 
-  c_full_name VARCHAR(30),
-  gender char(1), 
-  email VARCHAR(30),
-  dob DATE,
+  cust_full_name VARCHAR(30) NOT NULL,
+  cust_gender char(1) NOT NULL, 
+  cust_dob DATE NOT NULL,
   CONSTRAINT CUST_PKEY PRIMARY KEY (cust_id),
-  CONSTRAINT CUST_GENDER check(gender IN ('M', 'F', 'O'))
+  CONSTRAINT CUST_GENDER_CHECK check(cust_gender IN ('M', 'F', 'O'))
+);
+
+CREATE TABLE CUSTOMER_CONTACT (
+  cust_id CHAR(2),
+  cust_email VARCHAR(30),
+  cust_primary_tel VARCHAR(12),
+  cust_other_tel NUMBER(12),
+  CONSTRAINT CUST_CONTACT FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
+  CONSTRAINT CUST_CONTACT_UNIQUE UNIQUE (cust_id),
+  CONSTRAINT CUST_EMAIL_UNIQ UNIQUE (cust_email),
+  CONSTRAINT CUST_TEL_UNIQ UNIQUE (cust_primary_tel)
 );
 
 CREATE TABLE STAFF (
   staff_id CHAR(2),
-  s_full_name VARCHAR(30),
-  email VARCHAR(30),
+  branch_id CHAR(2) NOT NULL,
+  s_full_name VARCHAR(30) NOT NULL,
   CONSTRAINT STAFF_PKEY PRIMARY KEY (staff_id)
+);
+
+CREATE TABLE STAFF_CONTACT (
+  staff_id CHAR(2),
+  staff_email VARCHAR(30),
+  staff_primary_tel NUMBER(9),
+  CONSTRAINT STAFF_CONTACT_DETAILS FOREIGN KEY (staff_id) REFERENCES STAFF,
+  CONSTRAINT STAFF_EMAIL_UNIQ UNIQUE (staff_email),
+  CONSTRAINT STAFF_TEL_UNIQ UNIQUE (staff_primary_tel)
 );
 
 CREATE TABLE PAYROLL_DETAILS (
@@ -59,6 +71,12 @@ CREATE TABLE BRANCH (
   CONSTRAINT M_UNIQ UNIQUE (manager)
 );
 
+CREATE TABLE BRANCH_CONTACT (
+  branch_id CHAR(2),
+  branch_email VARCHAR(30),
+  branch_primary_tel NUMBER(9),
+);
+
 CREATE TABLE PROP_OWNER (
   po_id CHAR(2),
   cust_id CHAR(2),
@@ -73,7 +91,7 @@ CREATE TABLE PROPERTIES (
   list_type CHAR(2) check(list_type IN ('FS', 'S', 'FL', 'L')),
   list_date DATE,
   addr VARCHAR(33),
-  prop_type VARCHAR(20) check(list_type IN ('Flat', 
+  prop_type VARCHAR(20) check(prop_type IN ('Flat', 
                                             'Detatched', 
                                             'Semi-Detatched', 
                                             'Terraced')),
@@ -97,6 +115,13 @@ CREATE TABLE SOLD_PROPERTIES (
   CONSTRAINT SP_PKEY PRIMARY KEY (buyer, prop_id)
 );
 
+CREATE TABLE DPS (
+  dps_id char(3),
+  dps_name VARCHAR(20),
+  dps_email VARCHAR(40),
+  CONSTRAINT DPS_PKEY PRIMARY KEY (dps_id)
+);
+
 CREATE TABLE TENNANTS (
   tennant_id CHAR(5),
   prop_id CHAR(5),
@@ -106,15 +131,12 @@ CREATE TABLE TENNANTS (
   t_end_date DATE, 
   commission NUMBER(7),
   dps_id CHAR(2),
-  CONSTRAINT T_PKEY PRIMARY KEY (tennant_id)
+  CONSTRAINT T_PKEY PRIMARY KEY (tennant_id),
+  CONSTRAINT PROP_TENNANT FOREIGN KEY PROPERTIES;
+  CONSTRAINT DPS_TENNANT FOREIGN KEY DPS;
 );
 
-CREATE TABLE DPS (
-  dps_id char(3),
-  dps_name VARCHAR(20),
-  dps_email VARCHAR(40),
-  CONSTRAINT DPS_PKEY PRIMARY KEY (dps_id)
-);
+
 
 CREATE TABLE CITY (
   city_code CHAR(2),
@@ -152,21 +174,27 @@ CREATE TABLE COMMENTS (
 
 CREATE TABLE ESTATE_AGENT (
   ea_id CHAR(3),
-  headquaters CHAR(5),
+  headquaters CHAR(2) NOT NULL,
   website VARCHAR(50),
-  ea_name VARCHAR(50),
+  ea_name VARCHAR(50) NOT NULL,
   CONSTRAINT EA_PKEY PRIMARY KEY (ea_id),
   CONSTRAINT EA_HQ FOREIGN KEY (headquaters) REFERENCES BRANCH,
-  CONSTRAINT WEB_UNIQ UNIQUE website,
-)
+  CONSTRAINT WEB_UNIQ UNIQUE (website)
+);
 
 ALTER TABLE BRANCH 
   ADD CONSTRAINT B_STAFF 
     FOREIGN KEY (manager) REFERENCES STAFF;
 
+ALTER TABLE BRANCH
+  ADD ea_id CHAR(3)
+    CONSTRAINT BRANCH_EA
+      FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
 
 ALTER TABLE STAFF 
   ADD payroll CHAR(9)
     CONSTRAINT STAFF_PAYROLL REFERENCES PAYROLL_DETAILS;
+
+
 
 
