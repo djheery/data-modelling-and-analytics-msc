@@ -12,6 +12,12 @@
 -- :: Add estate agents to branches
 -- :: rework ERD and map
 -- :: Auto Assing Randomn ID
+-- :: Add Commit Statements
+-- :: Consider adding usernames and passwords for staff
+-- :: Add fake hashes for payroll details
+-- :: Add Description, area to Property#
+-- :: Rent amount derived 
+-- :: 
 
 CREATE TABLE COUNTIES (
   county_id CHAR(4),
@@ -149,10 +155,11 @@ CREATE TABLE PROPERTIES (
   po_id CHAR(5) NOT NULL,
   list_price NUMBER(7, 0),
   list_type VARCHAR(2) NOT NULL,
+  prop_type VARCHAR(14) NOT NULL,
   list_date DATE NOT NULL,
   CONSTRAINT PROP_PKEY PRIMARY KEY (prop_id),
   CONSTRAINT PROP_BRANCH FOREIGN KEY (branch_id) REFERENCES BRANCH,
-  CONSTRAINT PROP_OWNER_ATTACH FOREIGN KEY (po_id) REFERENCES PROP_OWNER;
+  CONSTRAINT PROP_OWNER_REF FOREIGN KEY (po_id) REFERENCES PROP_OWNER,
   CONSTRAINT LIST_TYPE_CHECK CHECK (list_type IN ('FS', 'S', 'FL', 'L')),
   CONSTRAINT PROP_TYPE_CHECK CHECK (prop_type IN ('Flat', 
                                                   'Detatched', 
@@ -161,70 +168,74 @@ CREATE TABLE PROPERTIES (
 );
 
 CREATE TABLE PROP_ADDR (
-  prop_id CHAR(2) NOT NULL,
+  prop_id CHAR(5) NOT NULL,
   prop_addr_l1 VARCHAR (40) NOT NULL,
   prop_addr_l2 VARCHAR (40),
   prop_post_code VARCHAR(9) NOT NULL,
-  prop_loc_id CHAR(5) NOT NULL
+  loc_id CHAR(6) NOT NULL,
   CONSTRAINT PROP_ADDR_ID_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
+  CONSTRAINT PROP_LOCATION_REF FOREIGN KEY (loc_id) REFERENCES CITY_LOCATION,
   CONSTRAINT PROP_ID_UNIQ UNIQUE (prop_id),
-  CONSTRAINT PROP_ADDRL1_UNIQ UNIQUE (prop_addr_l1),
-  CONSTRAINT PROP_ADDRL2_UNIQ UNIQUE (prop_addr_l2),
+  CONSTRAINT PROP_ADDRL1_UNIQ UNIQUE (prop_addr_l1)
 );
 
 CREATE TABLE PROP_ROOMS (
-  prop_id CHAR(5),
+  prop_id CHAR(5) NOT NULL,
   room_desc VARCHAR(400),
-  room_type VARCHAR(40) CHECK (room_type IN ('Kitchen', 'Bathroom', 'Bedroom', 'Living Room', 'Other')),
-  CONSTRAINT PR_PKEY PRIMARY KEY (prop_id)
+  room_type VARCHAR(40) NOT NULL,
+  CONSTRAINT PR_PROP_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
+  CONSTRAINT ROOM_TYPE_CHECK CHECK (room_type IN ('Kitchen', 'Bathroom', 'Bedroom', 'Living Room', 'Other'))
 );
 
 CREATE TABLE SOLD_PROPERTIES (
-  buyer CHAR(5),
-  prop_id CHAR(5),
-  sold_price NUMBER(9),
-  commission NUMBER(4), -- Derived?
-  stamp_duty NUMBER(5), -- Derived? 
-  CONSTRAINT SP_PKEY PRIMARY KEY (buyer, prop_id)
+  buyer CHAR(5) NOT NULL,
+  prop_id CHAR(5) NOT NULL,
+  sold_price NUMBER(9) NOT NULL, 
+  CONSTRAINT SP_PKEY PRIMARY KEY (buyer, prop_id),
+  CONSTRAINT SP_BUYER_REF FOREIGN KEY (buyer) REFERENCES CUSTOMER,
+  CONSTRAINT SP_PROP_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES
 );
 
 CREATE TABLE DPS (
-  dps_id char(3),
-  dps_name VARCHAR(20),
+  dps_id char(5),
+  dps_name VARCHAR(30),
   dps_email VARCHAR(40),
-  CONSTRAINT DPS_PKEY PRIMARY KEY (dps_id)
+  CONSTRAINT DPS_PKEY PRIMARY KEY (dps_id),
+  CONSTRAINT DPS_NAME_UNIQ UNIQUE (dps_name),
+  CONSTRAINT DPS_EMAIL_UNIQ UNIQUE (dps_email)
 );
 
+-- Rent amount derived
+-- Commission Derived
+-- Add M:N to ERD
 CREATE TABLE TENNANTS (
-  tennant_id CHAR(5),
-  prop_id CHAR(5),
-  deposit NUMBER(5), -- Dervied?
-  rent_amt NUMBER(7), -- Derived? 
-  t_start_date DATE, -- Date Constraint
-  t_end_date DATE, -- Date Constraint
-  commission NUMBER(7), -- Derived?
-  dps_id CHAR(2),
-  CONSTRAINT T_PKEY PRIMARY KEY (tennant_id),
-  CONSTRAINT PROP_TENNANT FOREIGN KEY PROPERTIES;
-  CONSTRAINT DPS_TENNANT FOREIGN KEY DPS;
+  tennant_id CHAR(5) NOT NULL,
+  prop_id CHAR(5) NOT NULL,
+  deposit NUMBER(5) NOT NULL,
+  t_start_date DATE NOT NULL, -- Date Constraint
+  t_end_date DATE NOT NULL, -- Date Constraint
+  dps_id CHAR(5) NOT NULL,
+  CONSTRAINT T_ID_CUST_REF FOREIGN KEY (tennant_id) REFERENCES CUSTOMER,
+  CONSTRAINT PROP_TENNANT FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
+  CONSTRAINT DPS_TENNANT FOREIGN KEY (dps_id) REFERENCES DPS
 );
 
+-- Removed the Property Owner ID Because it can be found via prop
 
 CREATE TABLE VIEWING (
-  view_id VARCHAR(5),
-  prop_id VARCHAR(5),
-  branch_id VARCHAR(5),
-  cust_id VARCHAR(5),
-  po_id VARCHAR (5),
-  view_date_time DATETIME, -- Review the Output of this
+  view_id CHAR(5),
+  prop_id CHAR(5) NOT NULL,
+  branch_id CHAR(5) NOT NULL,
+  cust_id CHAR(5) NOT NULL,
+  view_date_time TIMESTAMP NOT NULL, 
   CONSTRAINT V_PKEY PRIMARY KEY (view_id),
-  CONSTRAINT VIEW_PROP REFERENCES PROPERTIES,
-  CONSTRAINT VIEW_PO REFERENCES PROP_OWNER,
-  CONSTRAINT VIEW_CUST REFERENCES CUSTOMER,
+  CONSTRAINT VIEW_PROP FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
+  CONSTRAINT VIEW_BRANCH_REF FOREIGN KEY (branch_id) REFERENCES BRANCH,
+  CONSTRAINT VIEW_CUST FOREIGN KEY (cust_id) REFERENCES CUSTOMER
 );
 
 CREATE TABLE COMMENTS (
-  view_id VARCHAR(5),
+  view_id CHAR(5),
   comment_content VARCHAR(500) NOT NULL,
   comment_period VARCHAR(6) NOT NULL,
   CONSTRAINT VIEW_COMMENT_REF FOREIGN KEY (view_id) REFERENCES VIEWING,
@@ -232,8 +243,8 @@ CREATE TABLE COMMENTS (
 );
 
 CREATE TABLE ESTATE_AGENT (
-  ea_id CHAR(3),
-  headquaters CHAR(2) NOT NULL,
+  ea_id CHAR(6),
+  headquaters CHAR(5) NOT NULL,
   website VARCHAR(50),
   ea_name VARCHAR(50) NOT NULL,
   CONSTRAINT EA_PKEY PRIMARY KEY (ea_id),
@@ -241,14 +252,42 @@ CREATE TABLE ESTATE_AGENT (
   CONSTRAINT WEB_UNIQ UNIQUE (website)
 );
 
+COMMIT;
+
 ALTER TABLE BRANCH
-    CONSTRAINT BRANCH_EA_REF
-      FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
+  ADD CONSTRAINT BRANCH_EA_REF
+    FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
 
 ALTER TABLE STAFF 
   ADD CONSTRAINT STAFF_BRANCH_REF
     FOREIGN KEY (branch_id) REFERENCES BRANCH;
 
+COMMIT;
 
+-- Example Auto increment with property id's
 
+CREATE TABLE TEST_TABLE1 (
+  PROP_PREFIX CHAR(2) DEFAULT 'PL',
+  PROP_ID NUMBER GENERATED ALWAYS AS IDENTITY,
+  PROP_NAME VARCHAR(30) NOT NULL,
+  CONSTRAINT PROP_PRIMARY PRIMARY KEY (PROP_PREFIX, PROP_ID)
+);
 
+INSERT INTO TEST_TABLE1 (prop_name)
+  VALUE ('Testing 12');
+INSERT INTO TEST_TABLE1 (prop_name)
+  VALUE ('Testing 123');
+INSERT INTO TEST_TABLE1 (prop_name)
+  VALUE ('Testing 124');
+INSERT INTO TEST_TABLE1 (prop_name)
+  VALUE ('Testing 125');
+
+-- Testing timestamp 
+
+CREATE TABLE TIME_TEST (
+  ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  V_TIME TIMESTAMP NOT NULL
+);
+
+INSERT INTO TIME_TEST (V_TIME) 
+  VALUES ('02-MAY-2022 10:00:00');

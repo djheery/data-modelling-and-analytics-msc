@@ -34,6 +34,16 @@ INSERT INTO CITY_LOCATION
   VALUES('CL0005', 'BN', 'Kemptown');
 INSERT INTO CITY_LOCATION 
   VALUES('CL0006', 'LU', 'Bushmead');
+INSERT INTO CITY_LOCATION 
+  VALUES('CL0007', 'LU', 'Warden Hill');
+INSERT INTO CITY_LOCATION 
+  VALUES ('CL0008', 'LS', 'Meanwood');
+INSERT INTO CITY_LOCATION 
+  VALUES ('CL0009', 'NE', 'Gateshead');
+INSERT INTO CITY_LOCATION 
+  VALUES ('CL0011', 'LS', 'Hyde Park');
+INSERT INTO CITY_LOCATION 
+  VALUES ('CL0012', 'LS', 'City Centre');
 
 -- Customers
 
@@ -172,8 +182,6 @@ INSERT INTO STAFF_CONTACT
   VALUES ('S00004', 'mguiliana@gmail.com', '07931998714');
 INSERT INTO STAFF_CONTACT 
   VALUES ('S00005', 'williestead@gmail.com', '07897183374');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00005', 'williestead@gmail.com', '0789119774');
 INSERT INTO STAFF_CONTACT 
   VALUES ('S00006', 'ahoward@gmail.com', '07897119884');
 INSERT INTO STAFF_CONTACT 
@@ -355,7 +363,7 @@ INSERT INTO BRANCH_ADDR
 INSERT INTO BRANCH_ADDR
   VALUES ('B0003', '30 Elmwood Lane', NULL, 'LS8 2HJ', 'LS');
 INSERT INTO BRANCH_ADDR
-  VALUES ('B0004', ' 21 Dove Tail Road', NULL, 'BN5 6TT', 'BN');
+  VALUES ('B0004', '21 Dove Tail Road', NULL, 'BN5 6TT', 'BN');
 INSERT INTO BRANCH_ADDR
   VALUES ('B0005', '40 Warden Crescent', NULL, 'LU5 2P8', 'LU');
 INSERT INTO BRANCH_ADDR
@@ -392,53 +400,321 @@ INSERT INTO PROP_OWNER
 -- Properties 
 
 INSERT INTO PROPERTIES 
-  VALUES ('P0001', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0001', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched', '01-APR-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0002', 'B0002', 'PO001', 175000, 'S', 'Terraced');
+  VALUES ('P0002', 'B0002', 'PO001', 175000, 'S', 'Terraced', '30-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0003', 'B0005', 'PO004', 225000, 'FS', 'Flat');
+  VALUES ('P0003', 'B0005', 'PO004', 225000, 'FS', 'Flat', '15-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0004', 'B0001', 'PO001', 145000, 'FS', 'Semi-Detatched');
+  VALUES ('P0004', 'B0007', 'PO001', 145000, 'FS', 'Semi-Detatched', '02-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0005', 'B0001', 'PO001', 600200, 'FS', 'Detatched');
+  VALUES ('P0005', 'B0007', 'PO006', 600200, 'FS', 'Detatched', '06-MAR-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0006', 'B0001', 'PO001', 1200, 'FL', 'Semi-Detatched');
+  VALUES ('P0006', 'B0007', 'PO002', 1200, 'FL', 'Semi-Detatched', '25-MAY-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0007', 'B0001', 'PO001', 1800, 'L', 'Semi-Detatched');
+  VALUES ('P0007', 'B0002', 'PO002', 1800, 'L', 'Flat', '22-MAY-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0008', 'B0001', 'PO001', 120000, 'FL', 'Semi-Detatched');
+  VALUES ('P0008', 'B0002', 'PO003', 120000, 'FL', 'Semi-Detatched', '05-MAY-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0009', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0009', 'B0002', 'PO003', 920500, 'FS', 'Detatched', '20-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0010', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0010', 'B0004', 'PO004', 850, 'FL', 'Terraced', '20-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0011', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0011', 'B0003', 'PO001', 500000, 'S', 'Semi-Detatched', '10-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0012', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0012', 'B0006', 'PO005', 145000, 'S', 'Terraced', '30-MAY-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0013', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0013', 'B0007', 'PO002', 1600, 'FL', 'Flat', '06-APR-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0014', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0014', 'B0008', 'PO002', 177500, 'FS', 'Terraced', '05-MAR-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0015', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0015', 'B0008', 'PO003', 3400, 'L', 'Detatched', '13-JUN-2022');
 INSERT INTO PROPERTIES 
-  VALUES ('P0016', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched');
+  VALUES ('P0016', 'B0010', 'PO003', 1400, 'L', 'Flat', '02-JUN-2022');
 
--- Estate Agent 
+-- Property Addresses
 
-INSERT INTO ESTATE_AGENT
-  VALUES ('EA1', 'B2', 'https://mydreamhome.com', 'My Dream Home');
+INSERT INTO PROP_ADDR
+  VALUES('P0001', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
+INSERT INTO PROP_ADDR
+  VALUES('P0002', '15 Knowle Road', 'Flat A', 'LS4 2PJ', 'CL0004');
+INSERT INTO PROP_ADDR
+  VALUES('P0003', '20 Wiseman Close', NULL, 'LU3 12H', 'CL0007');
+INSERT INTO PROP_ADDR
+  VALUES('P0004', '1 Heaton Road', NULL, 'NE3 1HB', 'CL0003');
+INSERT INTO PROP_ADDR
+  VALUES('P0005', '10 Felling Gate', NULL, ' NE10 0AA', 'CL0009');
+INSERT INTO PROP_ADDR
+  VALUES('P0006', '15 Felling Gate', NULL, ' NE10 0AA', 'CL0009');
+INSERT INTO PROP_ADDR
+  VALUES('P0007', '221 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'CL0012');
+INSERT INTO PROP_ADDR
+  VALUES('P0008', '14 Knowle Mount', NULL, 'LS4 2PG', 'CL0004');
+INSERT INTO PROP_ADDR
+  VALUES('P0009', '46 Gordon Terrace', NULL, 'LS6 4HX', 'CL0008');
+INSERT INTO PROP_ADDR
+  VALUES('P0010', '16 College Road', NULL, 'BN6 4HR', 'CL0005');
+INSERT INTO PROP_ADDR
+  VALUES('P0011', '26 Bexton Mount', NULL, 'LS6 2PQ', 'CL0011');
+INSERT INTO PROP_ADDR
+  VALUES('P0012', '16 Stickwell Close', NULL, 'NE15 4FF', 'CL0002');
+INSERT INTO PROP_ADDR
+  VALUES('P0013', '15 Heaton Road', NULL, 'NE3 1HB', 'CL0002');
+INSERT INTO PROP_ADDR
+  VALUES('P0014', '12 Farmbrook', NULL, 'LU2 3FR', 'CL0007');
+INSERT INTO PROP_ADDR
+  VALUES('P0015', '10 Leagrave Road', NULL, 'LU24 4TT', 'CL0006');
+INSERT INTO PROP_ADDR
+  VALUES('P0016', '21 March Road', NULL, 'LU28 4FR', 'CL0007');
 
-SELECT * FROM STAFF, PAYROLL_DETAILS
-INNER JOIN 
-STAFF.payroll ON PAYROLL_DETAILS.ni;
+-- Prop Rooms 
 
-SELECT s.s_full_name AS FullName, 
-       SUBSTR(sc.staff_email, 0, 10) AS Email, 
-       SUBSTR(ba.branch_addr_l1, 0, 10) AS BranchAddress, 
-       c.city_name AS City
-FROM STAFF s, STAFF_CONTACT sc, BRANCH_ADDR ba, CITY c
-WHERE s.staff_id = sc.staff_id
-AND s.branch_id = ba.branch_id
-AND ba.branch_city_code = c.city_code
-AND c.city_name = 'Newcastle-Upon-Tyne';
+INSERT INTO PROP_ROOMS
+  VALUES('P0001', 'A very nice bathroom', 'Bathroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0001', 'A very nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0001', 'A very nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0001', 'A large kitchen', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0001', 'Small Cupboard', 'Other');
+INSERT INTO PROP_ROOMS
+  VALUES('P0002', 'A nice bathroom', 'Bathroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0002', 'A large bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0002', 'A medium size bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0002', 'A kitchen', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0003', 'Large bedroom with ensuit', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0003', 'A medium bathroom', 'Bathroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0003', 'A large light bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0003', 'A medium dark size bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0003', 'A kitchen with island', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0004', 'Small bedroom with ensuit', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0004', 'A small bathroom', 'Bathroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0004', 'A small kitchen', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0005', 'A medium size bedroom with desk', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0005', 'A medium size bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0005', 'A kitchen with all ameneities', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A small study', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A medium size bedroom with ensuit', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A kitchen with all ameneities', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A light airy livingroom', 'Living Room');
+INSERT INTO PROP_ROOMS
+  VALUES('P0006', 'A gym complete with swimming pool', 'Other');
+INSERT INTO PROP_ROOMS
+  VALUES('P0007', 'A medium size bedroom with ensuit', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0007', 'A kitchen with all ameneities', 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0007', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0007', 'A large bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0007', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0008', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0008', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0008', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0008', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0008', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0009', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0009', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0009', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0009', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0010', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0011', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0011', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0011', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0011', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0012', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0012', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0012', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0012', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0012', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0014', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0014', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0014', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0014', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0014', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0015', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0015', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0015', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0015', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0015', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0016', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0016', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0016', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0016', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0016', 'A nice bedroom', 'Bedroom');
+
+-- Sold Property
+
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0001', 'P0002', 177500);
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0002', 'P0011', 650000);
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0003', 'P0012', 185000);
+
+-- Sold Property
+
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0001', 'P0002', 177500);
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0002', 'P0011', 650000);
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0003', 'P0012', 185000);
+
+-- DPS
+
+INSERT INTO DPS
+  VALUES ('DPS01', 'Secure My Deposit', 'info@smd.com');
+INSERT INTO DPS
+  VALUES ('DPS02', 'Deposit Locker', 'info@depositlocker.com');
+INSERT INTO DPS
+  VALUES ('DPS03', 'Saftey Box', 'info@safteybox.com');
+INSERT INTO DPS
+  VALUES ('DPS04', 'National Deposit Security', 'info@nds.com');
+
+-- Tennants 
+
+INSERT INTO TENNANTS 
+  VALUES ('C0002', 'P0007', 2000, '10-MAY-2022', '10-MAY-2023', 'DPS01');
+INSERT INTO TENNANTS 
+  VALUES ('C0003', 'P0007', 2000, '11-MAR-2022', '11-JUL-2023', 'DPS01');
+INSERT INTO TENNANTS 
+  VALUES ('C0005', 'P0015', 800, '12-JAN-2022', '10-MAY-2023', 'DPS02');
+INSERT INTO TENNANTS 
+  VALUES ('C0002', 'P0016', 1250, '01-JUL-2022', '01-JUL-2023', 'DPS03');
+INSERT INTO TENNANTS 
+  VALUES ('C0004', 'P0016', 1250, '01-JUL-2022', '01-JUL-2023', 'DPS03');
+INSERT INTO TENNANTS 
+  VALUES ('C0012', 'P0016', 1250, '01-JUL-2022', '01-JUL-2023', 'DPS03');
+
+-- Viewings 
+
+INSERT INTO VIEWING
+  VALUES ('V0001', 'P0001', 'B0001', 'C0002', '10-MAY-2022 10:00:00');
+INSERT INTO VIEWING
+  VALUES ('V0002', 'P0003', 'B0005', 'C0005', '10-MAY-2022 17:25:00');
+INSERT INTO VIEWING
+  VALUES ('V0003', 'P0014', 'B0008', 'C0006', '11-MAY-2022 14:00:00');
+INSERT INTO VIEWING
+  VALUES ('V0004', 'P0005', 'B0007', 'C0002', '20-APR-2022 11:20:00');
+INSERT INTO VIEWING
+  VALUES ('V0005', 'P0014', 'B0008', 'C0003', '13-MAR-2022 11:20:00');
+INSERT INTO VIEWING
+  VALUES ('V0006', 'P0004', 'B0007', 'C0004', '12-JAN-2022 12:30:00');
+INSERT INTO VIEWING
+  VALUES ('V0007', 'P0004', 'B0007', 'C0004', '10-MAY-2022 14:30:00');
+
+-- Comments 
+
+INSERT INTO COMMENTS 
+  VALUES ('V0001', 'Liked the place, but a little small', 'During');
+INSERT INTO COMMENTS 
+  VALUES ('V0001', 'Has decided not to go ahead due to size', 'After');
+INSERT INTO COMMENTS 
+  VALUES ('V0002', 'At the top of the customers price range', 'Before');
+INSERT INTO COMMENTS 
+  VALUES ('V0002', 'Is going to place an offer', 'After');
+INSERT INTO COMMENTS 
+  VALUES ('V0004', 'Customer does not like the property', 'During');
+INSERT INTO COMMENTS 
+  VALUES ('V0005', 'Property is too small', 'After');
+INSERT INTO COMMENTS 
+  VALUES ('V0006', 'Loves the property, bigger than expected', 'During');
+
+-- Estate Agents 
+
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA001', 'B0001', 'https://property.co.uk', 'Property');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA002', 'B0004', 'https://iliketomoveit.co.uk', 'I Like to Move It');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA003', 'B0005', 'https://helloworld.co.uk', 'Hello World');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA004', 'B0002', 'https://mymove.co.uk', 'My Move');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA005', 'B0007', 'https://newcastlehomes.co.uk', 'Newcastle Homes');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA006', 'B0012', 'https://movemeplease.co.uk', 'Move Me Please');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA007', 'B0009', 'https://homeleyhomes.co.uk', 'Homely Homes');
+INSERT INTO ESTATE_AGENT 
+  VALUES ('EA008', 'B0008', 'https://moveoutofmyway.co.uk', 'Move Out of My Way');
+
+COMMIT;
