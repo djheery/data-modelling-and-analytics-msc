@@ -97,3 +97,21 @@ FROM CUSTOMER c, CUSTOMER_CONTACT cc, PROP_ADDR pa, SOLD_PROPERTIES sp
 WHERE sp.buyer = cc.cust_id
 AND sp.buyer = c.cust_id
 AND sp.prop_id = pa.prop_id;
+
+-- Select Rooms Prop Rooms 
+
+    SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr, l.loc_name 
+    FROM PROP_ROOMS pr, PROP_ADDR pa
+    JOIN CITY_LOCATION l ON l.loc_id = pa.loc_id
+    JOIN CITY c ON c.city_code = l.city_code
+    WHERE pr.prop_id = pa.prop_id
+    AND c.city_code = 'NE'
+    AND l.loc_name = 'Jesmond'
+    AND pr.room_type = 'Bedroom'
+    GROUP BY pa.prop_addr_l1, l.loc_name, c.city_name
+    ORDER BY COUNT(pr.prop_id); 
+
+-- Select * 
+
+SELECT 
+
