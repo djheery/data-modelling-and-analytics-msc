@@ -10,28 +10,39 @@ CREATE OR REPLACE PROCEDURE find_houses_locations
   )
 
   AS LOC_DOES_NOT_EXIST EXCEPTION;
-  PRAGMA_EXCEPTION_INIT(LOC_1_DOES_NOT_EXIST, -20000)
+  PRAGMA EXCEPTION_INIT(LOC_DOES_NOT_EXIST, -20004);
 
   CURSOR PROPS IS 
-  SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr
-         pa.loc_id, l.loc_name
-  FROM PROP_ROOMS pr, PROP_ADDR pa
-  WHERE pr.prop_id = pa.prop_id
-  AND pr.room_type = 'Bedroom'
-  GROUP BY pa.prop_addr_l1
-  ORDER BY COUNT(pr.prop_id); 
+    SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr, l.loc_name, c.city_name
+    FROM PROP_ROOMS pr, PROP_ADDR pa
+    JOIN CITY_LOCATION l ON l.loc_id = pa.loc_id
+    JOIN CITY c ON c.city_code = l.city_code
+    WHERE pr.prop_id = pa.prop_id
+    AND pr.room_type = 'Bedroom'
+    GROUP BY pa.prop_addr_l1, l.loc_name, c.city_name
+    ORDER BY COUNT(pr.prop_id); 
+
 
   BEGIN
     DBMS_OUTPUT.PUT_LINE( 'Searching for houses in: ' ||
                           LOC_1 || ', ' || 
                           LOC_2 || ', ' || 
                           LOC_3 );
-    DBMS_OUTPUT.PUT_LINE('In City' || CITY_CODE );
+    DBMS_OUTPUT.PUT_LINE('In City: ' || CITY_CODE );
+    DBMS_OUTPUT.PUT_LINE('===================================');
 
     FOR prop IN props LOOP
-      IF PROP.room_count >= ROOM_NO
-        SELECT INTO prop
-
+      IF PROP.room_count >= ROOM_NO AND prop.city_name = CITY_CODE 
+        THEN  
+          IF prop.loc_name = LOC_1 OR prop.loc_name = LOC_2 OR prop.loc_name = LOC_3
+            THEN 
+              DBMS_OUTPUT.PUT_LINE('Prop Match: ' || prop.addr );
+              DBMS_OUTPUT.PUT_LINE('Bedroom Count: ' || prop.room_count);
+              DBMS_OUTPUT.PUT_LINE('Location: ' || prop.loc_name);
+              DBMS_OUTPUT.PUT_LINE('City: ' || prop.city_name);
+              DBMS_OUTPUT.PUT_LINE('===================================');
+          END IF;
+      END IF; 
   END LOOP;
   COMMIT;
   EXCEPTION
@@ -136,3 +147,63 @@ CREATE OR REPLACE PROCEDURE FIND_HOUSES_IN_LOCATIONS ( LN IN CHAR,
 
     FOR PROP IN FIND_PROP
       
+--- Varray Tests
+
+CREATE OR REPLACE TYPE LOCATIONS AS VARRAY(3) OF VARCHAR(15);
+/
+
+CREATE OR REPLACE PROCEDURE TEST_VARRAY ( LOC IN LOCATIONS ) AS
+
+  CURSOR varray_test IS 
+  SELECT cl.loc_name as loc_name FROM CITY_LOCATION cl;
+  
+  BEGIN
+     DBMS_OUTPUT.PUT_LINE('===================================');
+     FOR lcat IN varray_test LOOP
+      FOR i IN 1..LOC.count LOOP
+        IF LOC(i) = lcat.loc_name THEN
+          DBMS_OUTPUT.PUT_LINE(lcat.loc_name);
+        END IF;
+      END LOOP;
+    END LOOP;
+  EXCEPTION
+    WHEN OTHERS THEN 
+      DBMS_OUTPUT.PUT_LINE('Operation');
+              DBMS_OUTPUT.PUT_LINE('Operation Failed ' || 'SQLCODE: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('SQL Error Message: ' || SQLERRM);
+      ROLLBACK;
+  END;
+/
+
+
+DECLARE 
+  LOC_VARRAY LOCATIONS;
+BEGIN 
+  LOC_VARRAY := LOCATIONS('Jesmond', 'Heaton', 'Danger');
+  test_varray(LOC_VARRAY);
+END;
+/
+
+-- Inline varray test
+
+DECLARE 
+  TYPE int_varray IS varray(3) of INTEGER;
+  varray_int INT_VARRAY := int_varray (NULL, NULL, NULL);
+
+BEGIN 
+  FOR i IN 1..3 LOOP
+    DBMS_OUTPUT.PUT('INT VARRAY [' || i || ' ]'); 
+    DBMS_OUTPUT.PUT_LINE('[' || varray_int(i) || ' ]');
+  END LOOP;
+
+  varray_int(1) := 98; 
+  varray_int(2) := 99; 
+  varray_int(3) := 100; 
+
+  FOR i IN 1..3 LOOP
+    DBMS_OUTPUT.PUT('INT VARRAY [' || i || ' ]'); 
+    DBMS_OUTPUT.PUT_LINE('[' || varray_int(i) || ' ]');
+  END LOOP;
+END;
+/
+

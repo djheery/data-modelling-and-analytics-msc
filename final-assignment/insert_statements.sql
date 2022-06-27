@@ -1,7 +1,7 @@
 -- Counties
 
 INSERT INTO COUNTIES 
-  VALUES ('CO01', 'Northumberland');
+  VALUES ('CO01', 'Tyne and Wear');
 INSERT INTO COUNTIES 
   VALUES ('CO02', 'Bedfordshire');
 INSERT INTO COUNTIES 
@@ -12,22 +12,26 @@ INSERT INTO COUNTIES
 -- City 
 
 INSERT INTO CITY 
-  VALUES ('NE', 'Newcastle-Upon-Tyne', 'CO01');
+  VALUES ('NE1', 'Newcastle-Upon-Tyne', 'CO01');
 INSERT INTO CITY 
   VALUES ('LU', 'Luton', 'CO02');
 INSERT INTO CITY 
   VALUES ('BN', 'Brighton', 'CO03');
 INSERT INTO CITY 
   VALUES ('LS', 'Leeds', 'CO04');
+INSERT INTO CITY 
+  VALUES ('SR', 'Sunderland', 'CO05');
+INSERT INTO CITY 
+  VALUES ('NE2', 'Gateshead', 'CO06');
 
 -- Location
 
 INSERT INTO CITY_LOCATION 
-  VALUES('CL0001', 'NE', 'Jesmond');
+  VALUES('CL0001', 'NE1', 'Jesmond');
 INSERT INTO CITY_LOCATION 
-  VALUES('CL0002', 'NE', 'Fenham');
+  VALUES('CL0002', 'NE1', 'Fenham');
 INSERT INTO CITY_LOCATION 
-  VALUES('CL0003', 'NE', 'Heaton');
+  VALUES('CL0003', 'NE1', 'Heaton');
 INSERT INTO CITY_LOCATION 
   VALUES('CL0004', 'LS', 'Burley');
 INSERT INTO CITY_LOCATION 
@@ -39,11 +43,13 @@ INSERT INTO CITY_LOCATION
 INSERT INTO CITY_LOCATION 
   VALUES ('CL0008', 'LS', 'Meanwood');
 INSERT INTO CITY_LOCATION 
-  VALUES ('CL0009', 'NE', 'Gateshead');
+  VALUES ('CL0009', 'NE2', 'Felling');
 INSERT INTO CITY_LOCATION 
-  VALUES ('CL0011', 'LS', 'Hyde Park');
+  VALUES ('CL0010', 'LS', 'Hyde Park');
 INSERT INTO CITY_LOCATION 
-  VALUES ('CL0012', 'LS', 'City Centre');
+  VALUES ('CL0011', 'LS', 'City Centre');
+INSERT INTO CITY_LOCATION 
+  VALUES ('CL0012', 'NE2', 'Dunston');
 
 -- Customers
 
@@ -486,7 +492,7 @@ INSERT INTO PROP_ROOMS
 INSERT INTO PROP_ROOMS
   VALUES('P0002', 'A medium size bedroom', 'Bedroom');
 INSERT INTO PROP_ROOMS
-  VALUES('P0002', 'A kitchen', 'Kitchen');
+  VALUES('P0002', 'A medium size bedroom', 'Bedroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0003', 'Large bedroom with ensuit', 'Bedroom');
 INSERT INTO PROP_ROOMS
@@ -623,11 +629,11 @@ INSERT INTO PROP_ROOMS
 -- Sold Property
 
 INSERT INTO SOLD_PROPERTIES
-  VALUES('C0001', 'P0002', 177500);
+  VALUES('C0001', 'P0002', 177500, '10-MAR-2018');
 INSERT INTO SOLD_PROPERTIES
-  VALUES('C0002', 'P0011', 650000);
+  VALUES('C0002', 'P0011', 650000 '20-APR-2019');
 INSERT INTO SOLD_PROPERTIES
-  VALUES('C0003', 'P0012', 185000);
+  VALUES('C0003', 'P0012', 185000 '30-JUN-2020');
 
 -- Sold Property
 

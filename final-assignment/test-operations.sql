@@ -100,7 +100,7 @@ AND sp.prop_id = pa.prop_id;
 
 -- Select Rooms Prop Rooms 
 
-    SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr, l.loc_name 
+    SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr, l.loc_name, c.city_name
     FROM PROP_ROOMS pr, PROP_ADDR pa
     JOIN CITY_LOCATION l ON l.loc_id = pa.loc_id
     JOIN CITY c ON c.city_code = l.city_code
@@ -115,3 +115,17 @@ AND sp.prop_id = pa.prop_id;
 
 SELECT 
 
+execute find_houses_locations('Gateshead', 'Fenham', 'Heaton', 'Newcastle-Upon-Tyne', 2);
+
+
+   SELECT COUNT(PR.prop_id) as Room_count, SUBSTR(PA.prop_addr_l1, 0, 12) as addr, SUBSTR(l.loc_name, 0, 10), c.city_name, p.prop_type, p.list_type 
+    FROM PROP_ROOMS pr, PROP_ADDR pa
+    JOIN CITY_LOCATION l ON l.loc_id = pa.loc_id
+    JOIN CITY c ON c.city_code = l.city_code
+    JOIN PROPERTIES p ON p.prop_id = pa.prop_id
+    WHERE pr.prop_id = pa.prop_id
+    AND pr.room_type = 'Bedroom'
+    AND p.list_type = 'FS'
+    AND c.city_name = 'Newcastle-Upon-Tyne'
+    GROUP BY pa.prop_addr_l1, l.loc_name, c.city_name, p.prop_type, p.list_type
+    ORDER BY COUNT(pr.prop_id); 

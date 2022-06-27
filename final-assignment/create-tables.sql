@@ -1,23 +1,19 @@
 -- THINGS TO DO 
 -- :: Addresses --- Should I break them up into tables? 
 -- :: Add checks to the areas there are comments to add checks 
--- :: Decide on char length for IDs
 -- :: Should Commission be a derrived Attribute
--- :: Add constraints to Properties
--- :: Add TennantID to the Tennant table
 -- :: Should deposit be a derrived attribute?
 -- :: add room size to Prop_rooms table 
 -- :: Review all constraints 
--- :: Does the viewing table need branch, or property owner (could these be found via the property)
--- :: Add estate agents to branches
 -- :: rework ERD and map
 -- :: Auto Assing Randomn ID
 -- :: Add Commit Statements
 -- :: Consider adding usernames and passwords for staff
 -- :: Add fake hashes for payroll details
--- :: Add Description, area to Property#
--- :: Rent amount derived 
--- :: 
+-- :: Add Description, area to Property
+-- :: rewrite the spelling of detached
+-- :: concat / to_char for auto assign
+-- :: Split full name into first and last
 
 CREATE TABLE COUNTIES (
   county_id CHAR(4),
@@ -157,6 +153,8 @@ CREATE TABLE PROPERTIES (
   list_type VARCHAR(2) NOT NULL,
   prop_type VARCHAR(14) NOT NULL,
   list_date DATE NOT NULL,
+  prop_desc VARCHAR(300),
+  prop_area NUMBER(5, 2),
   CONSTRAINT PROP_PKEY PRIMARY KEY (prop_id),
   CONSTRAINT PROP_BRANCH FOREIGN KEY (branch_id) REFERENCES BRANCH,
   CONSTRAINT PROP_OWNER_REF FOREIGN KEY (po_id) REFERENCES PROP_OWNER,
@@ -191,6 +189,7 @@ CREATE TABLE SOLD_PROPERTIES (
   buyer CHAR(5) NOT NULL,
   prop_id CHAR(5) NOT NULL,
   sold_price NUMBER(9) NOT NULL, 
+  sale_date DATE NOT NULL,
   CONSTRAINT SP_PKEY PRIMARY KEY (buyer, prop_id),
   CONSTRAINT SP_BUYER_REF FOREIGN KEY (buyer) REFERENCES CUSTOMER,
   CONSTRAINT SP_PROP_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES
@@ -210,12 +209,14 @@ CREATE TABLE DPS (
 -- Add M:N to ERD
 CREATE TABLE TENNANTS (
   tennant_id CHAR(5) NOT NULL,
+  cust_id CHAR(5) NOT NULL, 
   prop_id CHAR(5) NOT NULL,
   deposit NUMBER(5) NOT NULL,
   t_start_date DATE NOT NULL, -- Date Constraint
   t_end_date DATE NOT NULL, -- Date Constraint
   dps_id CHAR(5) NOT NULL,
-  CONSTRAINT T_ID_CUST_REF FOREIGN KEY (tennant_id) REFERENCES CUSTOMER,
+  CONSTRAINT TENNANT_PKEY PRIMARY KEY (tennant_id),
+  CONSTRAINT T_ID_CUST_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
   CONSTRAINT PROP_TENNANT FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
   CONSTRAINT DPS_TENNANT FOREIGN KEY (dps_id) REFERENCES DPS
 );
