@@ -9,7 +9,7 @@
 
 -- Find Listed Properties
 
-SET SERVEROUPUT ON;
+SET SERVEROUTPUT ON;
 
 
 CREATE OR REPLACE TYPE STR_SEARCH AS VARRAY(3) OF VARCHAR(15);
@@ -29,7 +29,12 @@ CREATE OR REPLACE PROCEDURE find_a_house
   PRAGMA EXCEPTION_INIT(LOC_DOES_NOT_EXIST, -20004);
 
   CURSOR PROPS IS 
-    SELECT COUNT(PR.prop_id) as Room_count, PA.prop_addr_l1 as addr, l.loc_name, c.city_name, p.prop_type, p.list_type 
+    SELECT COUNT(PR.prop_id) AS room_count, 
+            PA.prop_addr_l1 AS addr, 
+            l.loc_name, 
+            c.city_name, 
+            p.prop_type, 
+            p.list_type 
     FROM PROP_ROOMS pr, PROP_ADDR pa
     JOIN CITY_LOCATION l ON l.loc_id = pa.loc_id
     JOIN CITY c ON c.city_code = l.city_code
@@ -77,8 +82,8 @@ DECLARE
   LOC_VARRAY STR_SEARCH;
   PROP_TYPE_VARRAY STR_SEARCH;
 BEGIN 
-  LOC_VARRAY := STR_SEARCH('Jesmond', 'Gateshead', 'Heaton');
-  PROP_TYPE_VARRAY := STR_SEARCH('Semi-Detatched', 'Terraced', 'Detatched');
+  LOC_VARRAY := STR_SEARCH('Gateshead', 'Heaton', 'Fenham');
+  PROP_TYPE_VARRAY := STR_SEARCH('Semi-Detached', 'Terraced', 'Detached');
   find_a_house(LOC_VARRAY,  PROP_TYPE_VARRAY, 'Newcastle-Upon-Tyne', 2, 'FS');
 END;
 /

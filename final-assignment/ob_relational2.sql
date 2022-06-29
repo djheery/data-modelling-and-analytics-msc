@@ -61,10 +61,7 @@ CREATE OR REPLACE TYPE prop_type AS OBJECT (
 /
 
 CREATE OR REPLACE TYPE sold_prop_ref_type AS OBJECT (
-  prop_ref REF prop_type, 
-  sale_date DATE,
-  sale_price NUMBER(7,0),
-  deposit NUMBER (5, 0)
+  prop_ref REF prop_type 
 )
 /
 
@@ -179,16 +176,53 @@ INSERT INTO prop_table
 INSERT INTO prop_table 
   VALUES (
     'P04', 'A very nice property with nice views', 3000,
-    'Semi-Detached', '10-MAR-2021', 850, 'FS'
+    'Semi-Detached', '10-MAR-2021', 850, 'FS',
     addr_type('23 Osbourne Road', NULL, 'NE3 1PR', 'Jesmond', 'NE'),
     prop_rooms_tab(
-      prop_rooms_type('Kitchen', 'Light and Airy Kitchen'),
-      prop_rooms_type('Bedroom', 'Large Bedroom with desk'),
-      prop_rooms_type('Bedroom', 'Medium Bedroom with desk'),
-      prop_rooms_type('Bathroom', 'Medium bathroom with Modern Furnishings'),
+      prop_rooms_type('Light and Airy Kitchen','Kitchen'),
+      prop_rooms_type('Large Bedroom with desk', 'Bedroom'),
+      prop_rooms_type('Medium Bedroom with desk', 'Bedroom'),
+      prop_rooms_type('Medium bathroom with Modern Furnishings', 'Bathroom')
     ),
     cust_ref_table() 
   );
+
+REM Insert Property Refs
+
+INSERT INTO TABLE (
+    SELECT  c.props_owned
+    FROM   cust_table c 
+    WHERE  c.cust_id = 'C01')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('P01', 'P02')
+/
+INSERT INTO TABLE (
+    SELECT  c.props_owned
+    FROM   cust_table c 
+    WHERE  c.cust_id = 'C02')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('P01', 'P04')
+/
+INSERT INTO TABLE (
+    SELECT  c.props_owned
+    FROM   cust_table c 
+    WHERE  c.cust_id = 'C03')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('P03')
+/
+INSERT INTO TABLE (
+    SELECT  c.props_owned
+    FROM   cust_table c 
+    WHERE  c.cust_id = 'C04')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('P02')
+/
+
+REM Insert 
 
 -- Test Query for customers tabble 
 
@@ -206,3 +240,6 @@ SELECT p.prop_addr_tab.post_code "Property Address", p.prop_addr_tab.loc_name "P
        ORDER BY COUNT(pr.room_type) DESC;
 
 -- Test Query for Joins 
+
+SELECT p.prop_addr_tab.post_code "Property Address", p.prop_addr_tab.loc_name "Prop",
+       

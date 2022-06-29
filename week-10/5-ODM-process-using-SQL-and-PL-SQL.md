@@ -5,7 +5,7 @@
 2. Identify Data 
   - This involves identifying what build-data will be used for building the DM model, what test-data will beused for testing the model and what apply-data will be used for applying the model 
 3. Define Model's Attributes 
-  - This involves creating and populating a tabble for setting your target model's attribbutes 
+  - This involves creating and populating a table for setting your target model's attribbutes 
 4. Create Model 
   - This involves creating a DM model using suitable ODM algorithm based on the predefined data build
 5. Test The Model 

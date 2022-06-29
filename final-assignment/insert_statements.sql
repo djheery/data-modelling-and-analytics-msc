@@ -1,4 +1,4 @@
--- Counties
+REM Counties
 
 INSERT INTO COUNTIES 
   VALUES ('CO01', 'Tyne and Wear');
@@ -9,7 +9,7 @@ INSERT INTO COUNTIES
 INSERT INTO COUNTIES 
   VALUES ('CO04', 'West Yorkshire');
 
--- City 
+REM City 
 
 INSERT INTO CITY 
   VALUES ('NE1', 'Newcastle-Upon-Tyne', 'CO01');
@@ -20,11 +20,11 @@ INSERT INTO CITY
 INSERT INTO CITY 
   VALUES ('LS', 'Leeds', 'CO04');
 INSERT INTO CITY 
-  VALUES ('SR', 'Sunderland', 'CO05');
+  VALUES ('SR', 'Sunderland', 'CO01');
 INSERT INTO CITY 
-  VALUES ('NE2', 'Gateshead', 'CO06');
+  VALUES ('NE2', 'Gateshead', 'CO01');
 
--- Location
+REM Location
 
 INSERT INTO CITY_LOCATION 
   VALUES('CL0001', 'NE1', 'Jesmond');
@@ -51,34 +51,34 @@ INSERT INTO CITY_LOCATION
 INSERT INTO CITY_LOCATION 
   VALUES ('CL0012', 'NE2', 'Dunston');
 
--- Customers
+REM Customers
 
 INSERT INTO CUSTOMER
-  VALUES ('C0001', 'Daniel Heery', 'M', '06-APR-1994');
+  VALUES ('C0001', 'Daniel', 'Heery', 'M', '06-APR-1994', 'heery@live.co.uk', '07437519714');
 INSERT INTO CUSTOMER
-  VALUES ('C0002', 'Anna Heery', 'F', '26-JUN-1996');
+  VALUES ('C0002', 'Anna', 'Heery', 'F', '26-JUN-1996', 'annaheery@live.co.uk', '07437419714');
 INSERT INTO CUSTOMER
-  VALUES ('C0003', 'Conn Heery', 'M', '03-DEC-1963');
+  VALUES ('C0003', 'Conn', 'Heery', 'M', '03-DEC-1963',  'connheery@live.co.uk', '07217519714');
 INSERT INTO CUSTOMER
-  VALUES ('C0004', 'Monique Heery', 'F', '13-NOV-1966');
+  VALUES ('C0004', 'Monique', 'Heery', 'F', '13-NOV-1966', 'moniqueheery@live.co.uk', '07431119714');
 INSERT INTO CUSTOMER
-  VALUES ('C0005', 'Ryan Barker', 'M', '16-DEC-1995');
+  VALUES ('C0005', 'Ryan', 'Barker', 'M', '16-DEC-1995', 'ryanbarker@live.co.uk', '07437519774');
 INSERT INTO CUSTOMER
-  VALUES ('C0006', 'Vitoria Savy', 'F', '10-MAY-1950');
+  VALUES ('C0006', 'Vitoria', 'Savy', 'F', '10-MAY-1950', 'vitoriasavy@live.co.uk', '07437512774');
 INSERT INTO CUSTOMER
-  VALUES ('C0007', 'Beatrice Potter', 'F', '28-JUL-1966');
+  VALUES ('C0007', 'Beatrice', 'Potter', 'F', '28-JUL-1966', 'beatriceporter@live.co.uk', '07421519774');
 INSERT INTO CUSTOMER
-  VALUES ('C0008', 'Rafa Benitez', 'M', '16-APR-1960');
+  VALUES ('C0008', 'Rafa', 'Benitez', 'M', '16-APR-1960', 'rafabenitez@live.co.uk', '0743253777');
 INSERT INTO CUSTOMER
-  VALUES ('C0009', 'Emily Clarke', 'F', '20-DEC-1982');
+  VALUES ('C0009', 'Emily', 'Clarke', 'F', '20-DEC-1982', 'emilyclarke@live.co.uk', '07412519774');
 INSERT INTO CUSTOMER
-  VALUES ('C0010', 'Antonio Banderas', 'M', '10-AUG-1960');
+  VALUES ('C0010', 'Antonio', 'Banderas', 'M', '10-AUG-1960', 'abanderas@live.co.uk', '07437239774');
 INSERT INTO CUSTOMER
-  VALUES ('C0011', 'Edmund Dijkstra', 'M', '16-DEC-1995');
+  VALUES ('C0011', 'Edmund', 'Dijkstra', 'M', '16-DEC-1995', 'edijkstra@live.co.uk', '07437436774');
 INSERT INTO CUSTOMER
-  VALUES ('C0012', 'William Shakespeare', 'O', '23-APR-1964');
+  VALUES ('C0012', 'William', 'Shakespeare', 'O', '23-APR-1964',  'willshakespeare@live.co.uk', '07477779774');
 
--- Customer Address
+REM Customer Address
 
 INSERT INTO CUSTOMER_ADDR
   VALUES ('C0001', '48 Wolseley Gardens', NULL, 'NE2 1HR', 'NE');
@@ -105,121 +105,50 @@ INSERT INTO CUSTOMER_ADDR
 INSERT INTO CUSTOMER_ADDR
   VALUES ('C0012', '18 Whitehall Avenue', NULL, 'NE22 2TT', 'NE');
 
--- Customer Contact Details 
-
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0001', 'heery@live.co.uk', '07437519714', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0002', 'annaheery@live.co.uk', '07437419714', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0003', 'connheery@live.co.uk', '07217519714', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0004', 'moniqueheery@live.co.uk', '07431119714', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0005', 'ryanbarker@live.co.uk', '07437519774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0006', 'vitoriasavy@live.co.uk', '07437512774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0007', 'beatriceporter@live.co.uk', '07421519774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0008', 'rafabenitez@live.co.uk', '0743253777', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0009', 'emilyclarke@live.co.uk', '07412519774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0010', 'abanderas@live.co.uk', '07437239774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0011', 'edijkstra@live.co.uk', '07437436774', NULL);
-INSERT INTO CUSTOMER_CONTACT 
-  VALUES ('C0012', 'willshakespeare@live.co.uk', '07477779774', NULL);
-
--- Staff
+REM Staff
 
 INSERT INTO STAFF 
-  VALUES ('S00001', 'B0002', 'Bob Dylan');
+  VALUES ('S00001', 'B0002', 'Bob', 'Dylan', 'bdylan@aol.co.uk', '07437523714');
 INSERT INTO STAFF 
-  VALUES ('S00002', 'B0001', 'Ryan Phillips');
+  VALUES ('S00002', 'B0001', 'Ryan', 'Phillips', 'rphilips@live.co.uk', '07437321971');
 INSERT INTO STAFF 
-  VALUES ('S00003', 'B0003', 'Gretchen Parlato');
+  VALUES ('S00003', 'B0003', 'Gretchen' ,'Parlato', 'gparlato@live.com', '07212319714');
 INSERT INTO STAFF 
-  VALUES ('S00004', 'B0008','Mark Guiliana');
+  VALUES ('S00004', 'B0008','Mark','Guiliana', 'mguiliana@gmail.com', '07931998714');
 INSERT INTO STAFF 
-  VALUES ('S00005', 'B0001', 'Will Stead');
+  VALUES ('S00005', 'B0001', 'Will','Stead',  'williestead@gmail.com', '07897183374');
 INSERT INTO STAFF 
-  VALUES ('S00006', 'B0012', 'Adam Howard');
+  VALUES ('S00006', 'B0012', 'Adam','Howard', 'ahoward@gmail.com', '07897119884');
 INSERT INTO STAFF 
-  VALUES ('S00007', 'B0004', 'Ian Rush');
+  VALUES ('S00007', 'B0004', 'Ian','Rush', 'ianrush@gmail.com', '07897119114');
 INSERT INTO STAFF 
-  VALUES ('S00008', 'B0005', 'Chuck Norris');
+  VALUES ('S00008', 'B0005', 'Chuck','Norris', 'cn@chucknorris.co.uk', '07897119334');
 INSERT INTO STAFF 
-  VALUES ('S00009', 'B0007', 'Conor Magi');
+  VALUES ('S00009', 'B0007', 'Conor','Magi', 'cmagi@gmail.com', '07897119444');
 INSERT INTO STAFF 
-  VALUES ('S00010', 'B0011', 'Avashi Cohen');
+  VALUES ('S00010', 'B0011', 'Avashi','Cohen', 'achoen@gmail.com', '07227119444');
 INSERT INTO STAFF 
-  VALUES ('S00011', 'B0006', 'Tigran Hamassyan');
+  VALUES ('S00011', 'B0006', 'Tigran','Hamassyan', 'tha@gmail.com', '07897119144');
 INSERT INTO STAFF 
-  VALUES ('S00012', 'B0009', 'John Coltrane');
+  VALUES ('S00012', 'B0009', 'John','Coltrane', 'jcoltrane@gmail.com', '07893129444');
 INSERT INTO STAFF 
-  VALUES ('S00013', 'B0010', 'Lauren Woods');
+  VALUES ('S00013', 'B0010', 'Lauren','Woods', 'lwoods@gmail.com', '07897119555');
 INSERT INTO STAFF 
-  VALUES ('S00014', 'B0002', 'Georgina Stakes');
+  VALUES ('S00014', 'B0002', 'Georgina','Stakes', 'gstakes@gmail.com', '07895669444');
 INSERT INTO STAFF 
-  VALUES ('S00015', 'B0003', 'Rebecca Frodsham');
+  VALUES ('S00015', 'B0003', 'Rebecca','Frodsham','rfrodsha@gmail.com', '07897239444');
 INSERT INTO STAFF 
-  VALUES ('S00016', 'B0004', 'Kieron Dyer');
+  VALUES ('S00016', 'B0004', 'Kieron','Dyer', 'kierondyer@gmail.com', '07907119444');
 INSERT INTO STAFF 
-  VALUES ('S00017', 'B0005', 'David Blane');
+  VALUES ('S00017', 'B0005', 'David','Blane', 'davidblane@gmail.com', '07876681040');
 INSERT INTO STAFF 
-  VALUES ('S00018', 'B0006', 'Ciara Miller');
+  VALUES ('S00018', 'B0006', 'Ciara','Miller', 'ciaramiller@gmail.com', '07897788844');
 INSERT INTO STAFF 
-  VALUES ('S00019', 'B0007', 'Julie Andrews');
+  VALUES ('S00019', 'B0007', 'Julie','Andrews', 'jandrews@gmail.com', '07896616444');
 INSERT INTO STAFF 
-  VALUES ('S00020', 'B0008', 'Manny Gambureon');
+  VALUES ('S00020', 'B0008', 'Manny','Gambureon', 'mgambur@gmail.com', '07899119444');
 
-
--- Staff Contact 
-
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00001', 'bdylan@aol.co.uk', '07437523714');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00002', 'rphilips@live.co.uk', '07437321971');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00003', 'gretchenpar@live.com', '07212319714');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00004', 'mguiliana@gmail.com', '07931998714');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00005', 'williestead@gmail.com', '07897183374');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00006', 'ahoward@gmail.com', '07897119884');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00007', 'ianrush@gmail.com', '07897119114');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00008', 'chucknorris@chucknorris.co.uk', '07897119334');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00009', 'cmagi@gmail.com', '07897119444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00010', 'achoen@gmail.com', '07227119444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00011', 'tigranhamssyan@gmail.com', '07897119144');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00012', 'jcoltrane@gmail.com', '07893129444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00013', 'lwoods@gmail.com', '07897119555');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00014', 'gstakes@gmail.com', '07895669444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00015', 'rfrodsham@gmail.com', '07897239444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00016', 'kierondyer@gmail.com', '07907119444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00017', 'davidblane@gmail.com', '07876681040');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00018', 'ciaramiller@gmail.com', '07897788844');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00019', 'julieandrews@gmail.com', '07896616444');
-INSERT INTO STAFF_CONTACT 
-  VALUES ('S00020', 'mgambureon@gmail.com', '07899119444');
-
--- Staff Address
+REM Staff Address
 
 INSERT INTO STAFF_ADDR
   VALUES ('S00001', '17 Grosvenor Gardens', NULL, 'NE2 2HR', 'NE');
@@ -262,7 +191,7 @@ INSERT INTO STAFF_ADDR
 INSERT INTO STAFF_ADDR
   VALUES ('S00020', '66 Bridge Street', NULL, 'LS27 0EZ', 'LS');
 
--- Payroll Details
+REM Payroll Details
 
 INSERT INTO PAYROLL_DETAILS
   VALUES ('S00001', 'HR512563B','018237', '45374893');
@@ -306,61 +235,34 @@ INSERT INTO PAYROLL_DETAILS
   VALUES ('S00020', 'JZ122363B','283420', '12383711');
 
 
--- Branch 
+REM Branch 
 
 INSERT INTO BRANCH 
-  VALUES ('B0001', 'S00005', 'EA001');
+  VALUES ('B0001', 'S00005', 'EA001', 'info@propertynewcastle.co.uk', '07876671020');
 INSERT INTO BRANCH 
-  VALUES ('B0002', 'S00001', 'EA004');
+  VALUES ('B0002', 'S00001', 'EA004', 'info@mymoveleeds.co.uk', '07876671111');
 INSERT INTO BRANCH 
-  VALUES ('B0003', 'S00003', 'EA001');
+  VALUES ('B0003', 'S00003', 'EA001', 'info@propertyleeds.co.uk', '07777771020');
 INSERT INTO BRANCH 
-  VALUES ('B0004', 'S00007', 'EA002');
+  VALUES ('B0004', 'S00007', 'EA002', 'info@iliketomoveitbri.co.uk', '07876634563');
 INSERT INTO BRANCH 
-  VALUES ('B0005', 'S00008', 'EA003');
+  VALUES ('B0005', 'S00008', 'EA003', 'info@helloworldluton.co.uk', '07876667182');
 INSERT INTO BRANCH 
-  VALUES ('B0006', 'S00011', 'EA003');
+  VALUES ('B0006', 'S00011', 'EA003', 'info@helloworldnewcast.co.uk', '07876671634');
 INSERT INTO BRANCH 
-  VALUES ('B0007', 'S00009', 'EA005');
+  VALUES ('B0007', 'S00009', 'EA005', 'info@newcastlehomes.co.uk', '07876098220');
 INSERT INTO BRANCH
-  VALUES ('B0008', 'S00004', 'EA008');
+  VALUES ('B0008', 'S00004', 'EA008', 'info@moveoutofmyway.co.uk', '07878877652');
 INSERT INTO BRANCH 
-  VALUES ('B0009', 'S00012', 'EA007');
+  VALUES ('B0009', 'S00012', 'EA007', 'info@homelyhomesleeds.co.uk', '07832435643');
 INSERT INTO BRANCH 
-  VALUES ('B0010', 'S00013', 'EA007');
+  VALUES ('B0010', 'S00013', 'EA007', 'info@homelyhomesluton.co.uk', '07876887766');
 INSERT INTO BRANCH 
-  VALUES ('B0011', 'S00010', 'EA002');
+  VALUES ('B0011', 'S00010', 'EA002', 'info@iliketomoveitnew.co.uk', '07876091823');
 INSERT INTO BRANCH 
-  VALUES ('B0012', 'S00006', 'EA006');
+  VALUES ('B0012', 'S00006', 'EA006', 'info@movemeplease.co.uk', '07876839201');
 
--- Branch Contact Details
-
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0001', 'info@propertynewcastle.co.uk', '07876671020');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0002', 'info@mymoveleeds.co.uk', '07876671111');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0003', 'info@propertyleeds.co.uk', '07777771020');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0004', 'info@iliketomoveitbrighton.co.uk', '07876634563');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0005', 'info@helloworldluton.co.uk', '07876667182');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0006', 'info@helloworldnewcastle.co.uk', '07876671634');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0007', 'info@newcastlehomes.co.uk', '07876098220');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0008', 'info@moveoutofmyway.co.uk', '07878877652');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0009', 'info@homelyhomesleeds.co.uk', '07832435643');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0010', 'info@homelyhomesluton.co.uk', '07876887766');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0011', 'info@iliketomoveitnewcastle.co.uk', '07876091823');
-INSERT INTO BRANCH_CONTACT
-  VALUES ('B0012', 'info@movemeplease.co.uk', '07876839201');
-
--- Branch Address
+REM Branch Address
 
 INSERT INTO BRANCH_ADDR
   VALUES ('B0001', '123 Heaton Road', NULL, 'NE6 2BB', 'NE');
@@ -388,7 +290,7 @@ INSERT INTO BRANCH_ADDR
   VALUES ('B0012', '80 St Jamess Boulevord', NULL, 'NE1 4BN', 'NE');
 
 
--- Prop Owner
+REM Prop Owner
 
 INSERT INTO PROP_OWNER 
   VALUES('PO001', 'C0004', 'B0009');
@@ -403,42 +305,74 @@ INSERT INTO PROP_OWNER
 INSERT INTO PROP_OWNER 
   VALUES('PO006', 'C0005', 'B0009');
 
--- Properties 
+REM Properties 
 
 INSERT INTO PROPERTIES 
-  VALUES ('P0001', 'B0001', 'PO001', 125000, 'FS', 'Semi-Detatched', '01-APR-2022');
+  VALUES ('P0001', 'B0001', 'PO001', 125000, 
+          'FS', 'Semi-Detached', '01-APR-2022',
+          'Beautiful property with a nice seat', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0002', 'B0002', 'PO001', 175000, 'S', 'Terraced', '30-JUN-2022');
+  VALUES ('P0002', 'B0002', 'PO001', 175000, 
+          'S', 'Terraced', '30-JUN-2022',
+          'Nice house with friendly neighbours', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0003', 'B0005', 'PO004', 225000, 'FS', 'Flat', '15-JUN-2022');
+  VALUES ('P0003', 'B0005', 'PO004', 225000, 
+          'FS', 'Flat', '15-JUN-2022',
+          'Nice flat pet friendly', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0004', 'B0007', 'PO001', 145000, 'FS', 'Semi-Detatched', '02-JUN-2022');
+  VALUES ('P0004', 'B0007', 'PO001', 145000, 
+          'FS', 'Semi-Detached', '02-JUN-2022',
+          'Beautiful semi-detached house with modern furnishings', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0005', 'B0007', 'PO006', 600200, 'FS', 'Detatched', '06-MAR-2022');
+  VALUES ('P0005', 'B0007', 'PO006', 600200, 
+          'FS', 'Detached', '06-MAR-2022',
+          'Large detached house with amazing views and stables', 5500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0006', 'B0007', 'PO002', 1200, 'FL', 'Semi-Detatched', '25-MAY-2022');
+  VALUES ('P0006', 'B0007', 'PO002', 1200, 
+          'FL', 'Semi-Detached', '25-MAY-2022',
+          'Large property with 3 Bedrooms', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0007', 'B0002', 'PO002', 1800, 'L', 'Flat', '22-MAY-2022');
+  VALUES ('P0007', 'B0002', 'PO002', 1800, 
+          'L', 'Flat', '22-MAY-2022',
+          'Great property close to the centre', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0008', 'B0002', 'PO003', 120000, 'FL', 'Semi-Detatched', '05-MAY-2022');
+  VALUES ('P0008', 'B0002', 'PO003', 120000, 
+          'FL', 'Semi-Detached', '05-MAY-2022',
+          'Lovely small semi-detatched house', 1500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0009', 'B0002', 'PO003', 920500, 'FS', 'Detatched', '20-JUN-2022');
+  VALUES ('P0009', 'B0002', 'PO003', 920500, 
+          'FS', 'Detached', '20-JUN-2022', 
+          'Large house with plenty of land', 6000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0010', 'B0004', 'PO004', 850, 'FL', 'Terraced', '20-JUN-2022');
+  VALUES ('P0010', 'B0004', 'PO004', 850, 
+          'FL', 'Terraced', '20-JUN-2022', 
+          'Small terraced house to rent', 1500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0011', 'B0003', 'PO001', 500000, 'S', 'Semi-Detatched', '10-JUN-2022');
+  VALUES ('P0011', 'B0003', 'PO001', 500000, 
+          'S', 'Semi-Detached', '10-JUN-2022', 
+          'Great property, will surely be sold fast', 4500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0012', 'B0006', 'PO005', 145000, 'S', 'Terraced', '30-MAY-2022');
+  VALUES ('P0012', 'B0006', 'PO005', 145000, 
+          'S', 'Terraced', '30-MAY-2022', 
+          'Small terraced house in a good area', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0013', 'B0007', 'PO002', 1600, 'FL', 'Flat', '06-APR-2022');
+  VALUES ('P0013', 'B0007', 'PO002', 1600, 
+          'FL', 'Flat', '06-APR-2022',
+          'Medium size flat for rent, perfect for a couple or for multiple tennants',3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0014', 'B0008', 'PO002', 177500, 'FS', 'Terraced', '05-MAR-2022');
+  VALUES ('P0014', 'B0008', 'PO002', 177500, 
+          'FS', 'Terraced', '05-MAR-2022', 
+          'Terraced house for sale, complete with modern bathroom', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0015', 'B0008', 'PO003', 3400, 'L', 'Detatched', '13-JUN-2022');
+  VALUES ('P0015', 'B0008', 'PO003', 3400, 
+          'L', 'Detached', '13-JUN-2022',
+          'Detached house for sale, beautiful views', 4000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0016', 'B0010', 'PO003', 1400, 'L', 'Flat', '02-JUN-2022');
+  VALUES ('P0016', 'B0010', 'PO003', 
+          1400, 'L', 'Flat', '02-JUN-2022',
+          'Medium size flat for let', 2000);
 
--- Property Addresses
+REM Property Addresses
 
 INSERT INTO PROP_ADDR
   VALUES('P0001', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
@@ -461,19 +395,19 @@ INSERT INTO PROP_ADDR
 INSERT INTO PROP_ADDR
   VALUES('P0010', '16 College Road', NULL, 'BN6 4HR', 'CL0005');
 INSERT INTO PROP_ADDR
-  VALUES('P0011', '26 Bexton Mount', NULL, 'LS6 2PQ', 'CL0011');
+  VALUES('P0011', '26 Bexton Mount', NULL, 'LS6 2PQ', 'CL0010');
 INSERT INTO PROP_ADDR
   VALUES('P0012', '16 Stickwell Close', NULL, 'NE15 4FF', 'CL0002');
 INSERT INTO PROP_ADDR
-  VALUES('P0013', '15 Heaton Road', NULL, 'NE3 1HB', 'CL0002');
+  VALUES('P0013', '15 Heaton Road', NULL, 'NE3 1HB', 'CL0003');
 INSERT INTO PROP_ADDR
   VALUES('P0014', '12 Farmbrook', NULL, 'LU2 3FR', 'CL0007');
 INSERT INTO PROP_ADDR
   VALUES('P0015', '10 Leagrave Road', NULL, 'LU24 4TT', 'CL0006');
 INSERT INTO PROP_ADDR
-  VALUES('P0016', '21 March Road', NULL, 'LU28 4FR', 'CL0007');
+  VALUES('P0016', '21 Marsh Road', NULL, 'LU28 4FR', 'CL0007');
 
--- Prop Rooms 
+REMProp Rooms 
 
 INSERT INTO PROP_ROOMS
   VALUES('P0001', 'A very nice bathroom', 'Bathroom');
@@ -626,25 +560,16 @@ INSERT INTO PROP_ROOMS
 INSERT INTO PROP_ROOMS
   VALUES('P0016', 'A nice bedroom', 'Bedroom');
 
--- Sold Property
+REMSold Property
 
 INSERT INTO SOLD_PROPERTIES
   VALUES('C0001', 'P0002', 177500, '10-MAR-2018');
 INSERT INTO SOLD_PROPERTIES
-  VALUES('C0002', 'P0011', 650000 '20-APR-2019');
+  VALUES('C0002', 'P0011', 650000, '20-APR-2019');
 INSERT INTO SOLD_PROPERTIES
-  VALUES('C0003', 'P0012', 185000 '30-JUN-2020');
+  VALUES('C0003', 'P0012', 185000, '30-JUN-2020');
 
--- Sold Property
-
-INSERT INTO SOLD_PROPERTIES
-  VALUES('C0001', 'P0002', 177500);
-INSERT INTO SOLD_PROPERTIES
-  VALUES('C0002', 'P0011', 650000);
-INSERT INTO SOLD_PROPERTIES
-  VALUES('C0003', 'P0012', 185000);
-
--- DPS
+REMDPS
 
 INSERT INTO DPS
   VALUES ('DPS01', 'Secure My Deposit', 'info@smd.com');
@@ -655,7 +580,7 @@ INSERT INTO DPS
 INSERT INTO DPS
   VALUES ('DPS04', 'National Deposit Security', 'info@nds.com');
 
--- Tennants 
+REMTennants 
 
 INSERT INTO TENNANTS 
   VALUES ('C0002', 'P0007', 2000, '10-MAY-2022', '10-MAY-2023', 'DPS01');
@@ -670,7 +595,7 @@ INSERT INTO TENNANTS
 INSERT INTO TENNANTS 
   VALUES ('C0012', 'P0016', 1250, '01-JUL-2022', '01-JUL-2023', 'DPS03');
 
--- Viewings 
+REMViewings 
 
 INSERT INTO VIEWING
   VALUES ('V0001', 'P0001', 'B0001', 'C0002', '10-MAY-2022 10:00:00');
@@ -687,7 +612,7 @@ INSERT INTO VIEWING
 INSERT INTO VIEWING
   VALUES ('V0007', 'P0004', 'B0007', 'C0004', '10-MAY-2022 14:30:00');
 
--- Comments 
+REMComments 
 
 INSERT INTO COMMENTS 
   VALUES ('V0001', 'Liked the place, but a little small', 'During');
@@ -704,7 +629,7 @@ INSERT INTO COMMENTS
 INSERT INTO COMMENTS 
   VALUES ('V0006', 'Loves the property, bigger than expected', 'During');
 
--- Estate Agents 
+REMEstate Agents 
 
 INSERT INTO ESTATE_AGENT 
   VALUES ('EA001', 'B0001', 'https://property.co.uk', 'Property');

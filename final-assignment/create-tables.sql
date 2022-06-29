@@ -23,7 +23,7 @@ CREATE TABLE COUNTIES (
 );
 
 CREATE TABLE CITY (
-  city_code CHAR(2),
+  city_code VARCHAR(3),
   city_name VARCHAR(20),
   county_id CHAR(4),
   CONSTRAINT CITY_PKEY PRIMARY KEY (city_code),
@@ -32,7 +32,7 @@ CREATE TABLE CITY (
 
 CREATE TABLE CITY_LOCATION (
   loc_id CHAR(6),
-  city_code CHAR(2),
+  city_code VARCHAR(3),
   loc_name VARCHAR(20),
   CONSTRAINT LOC_PKEY PRIMARY KEY (loc_id),
   CONSTRAINT LOC_CITY FOREIGN KEY (city_code) REFERENCES CITY
@@ -40,11 +40,15 @@ CREATE TABLE CITY_LOCATION (
 
 CREATE TABLE CUSTOMER (
   cust_id CHAR(5), 
-  cust_full_name VARCHAR(30) NOT NULL,
+  cust_fname VARCHAR(30) NOT NULL,
+  cust_lname VARCHAR(30) NOT NULL,
   cust_gender char(1) NOT NULL, 
   cust_dob DATE NOT NULL,
+  cust_email VARCHAR(40) NOT NULL,
+  cust_tel VARCHAR(12) NOT NULL,
   CONSTRAINT CUST_PKEY PRIMARY KEY (cust_id),
-  CONSTRAINT CUST_GENDER_CHECK check(cust_gender IN ('M', 'F', 'O'))
+  CONSTRAINT CUST_GENDER_CHECK check(cust_gender IN ('M', 'F', 'O')),
+  CONSTRAINT CUST_EMAIL_UNIQ UNIQUE (cust_email)
 );
 
 CREATE TABLE CUSTOMER_ADDR (
@@ -52,28 +56,21 @@ CREATE TABLE CUSTOMER_ADDR (
   cust_addr_l1 VARCHAR (40) NOT NULL,
   cust_addr_l2 VARCHAR (40),
   cust_post_code VARCHAR(9) NOT NULL,
-  cust_city_code CHAR(2) NOT NULL, -- ref city code
+  cust_city_code VARCHAR(3) NOT NULL, -- ref city code
   CONSTRAINT CUST_ADDR_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
   CONSTRAINT CUST_ADDR_PKEY PRIMARY KEY (cust_id)
 );
 
-CREATE TABLE CUSTOMER_CONTACT (
-  cust_id CHAR(5),
-  cust_email VARCHAR(40),
-  cust_primary_tel VARCHAR(12),
-  cust_other_tel VARCHAR(12),
-  CONSTRAINT CUST_CONTACT FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
-  CONSTRAINT CUST_CONTACT_UNIQUE UNIQUE (cust_id),
-  CONSTRAINT CUST_EMAIL_UNIQ UNIQUE (cust_email),
-  CONSTRAINT CUST_TEL_UNIQ UNIQUE (cust_primary_tel)
-);
-
-
 CREATE TABLE STAFF (
   staff_id CHAR(6),
   branch_id CHAR(5) NOT NULL,
-  s_full_name VARCHAR(30) NOT NULL,
-  CONSTRAINT STAFF_PKEY PRIMARY KEY (staff_id)
+  staff_fname VARCHAR(30) NOT NULL,
+  staff_lname VARCHAR(30) NOT NULL,
+  staff_email VARCHAR(40) NOT NULL,
+  staff_tel VARCHAR(12) NOT NULL,
+  CONSTRAINT STAFF_PKEY PRIMARY KEY (staff_id),
+  CONSTRAINT STAFF_EMAIL_UNIQ UNIQUE (staff_email),
+  CONSTRAINT STAFF_TEL_UNIQ UNIQUE (staff_tel)
 );
 
 CREATE TABLE STAFF_ADDR (
@@ -81,34 +78,21 @@ CREATE TABLE STAFF_ADDR (
   staff_addr_l1 VARCHAR (40) NOT NULL,
   staff_addr_l2 VARCHAR (40),
   staff_post_code VARCHAR(9) NOT NULL,
-  staff_city_code CHAR(2) NOT NULL,
+  staff_city_code VARCHAR(3) NOT NULL,
+  CONSTRAINT STAFF_ADDR_PKEY PRIMARY KEY (staff_id),
   CONSTRAINT STAFF_ADDR_REF FOREIGN KEY (staff_id) REFERENCES STAFF
-);
-
-CREATE TABLE STAFF_CONTACT (
-  staff_id CHAR(6),
-  staff_email VARCHAR(40),
-  staff_primary_tel VARCHAR(12),
-  CONSTRAINT STAFF_CONTACT_DETAILS FOREIGN KEY (staff_id) REFERENCES STAFF,
-  CONSTRAINT STAFF_EMAIL_UNIQ UNIQUE (staff_email),
-  CONSTRAINT STAFF_TEL_UNIQ UNIQUE (staff_primary_tel)
 );
 
 CREATE TABLE BRANCH (
   branch_id CHAR(5),
   branch_manager CHAR(6),  
   ea_id CHAR(5) NOT NULL,
+  branch_email VARCHAR(40) NOT NULL,
+  branch_tel VARCHAR(12) NOT NULL,
   CONSTRAINT BRANCH_PKEY PRIMARY KEY (branch_id),
   CONSTRAINT BRANCH_MANAGER_REF 
     FOREIGN KEY (branch_manager) REFERENCES STAFF (staff_id),
-  CONSTRAINT MANAGER_UNIQ UNIQUE (branch_manager)
-);
-
-CREATE TABLE BRANCH_CONTACT (
-  branch_id CHAR(5) NOT NULL,
-  branch_email VARCHAR(40) NOT NULL,
-  branch_tel VARCHAR(12) NOT NULL,
-  CONSTRAINT BRANCH_ID_REF FOREIGN KEY (branch_id) REFERENCES BRANCH,
+  CONSTRAINT MANAGER_UNIQ UNIQUE (branch_manager),
   CONSTRAINT BRANCH_EMAIL_UNIQ UNIQUE (branch_email),
   CONSTRAINT BRANCH_TEL_UNIQ UNIQUE (branch_tel)
 );
@@ -118,12 +102,10 @@ CREATE TABLE BRANCH_ADDR (
   branch_addr_l1 VARCHAR (40) NOT NULL,
   branch_addr_l2 VARCHAR (40),
   branch_post_code VARCHAR(9) NOT NULL,
-  branch_city_code CHAR(2) NOT NULL,
+  branch_city_code VARCHAR(3) NOT NULL,
   CONSTRAINT BRANCH_ADDR_REF FOREIGN KEY (branch_id) REFERENCES BRANCH,
   CONSTRAINT BRANCH_ADDRL1_UNIQ UNIQUE (branch_addr_l1)
 );
-
-
 
 CREATE TABLE PAYROLL_DETAILS (
   staff_id CHAR(6),
@@ -154,14 +136,14 @@ CREATE TABLE PROPERTIES (
   prop_type VARCHAR(14) NOT NULL,
   list_date DATE NOT NULL,
   prop_desc VARCHAR(300),
-  prop_area NUMBER(5, 2),
+  prop_area NUMBER(5, 0),
   CONSTRAINT PROP_PKEY PRIMARY KEY (prop_id),
   CONSTRAINT PROP_BRANCH FOREIGN KEY (branch_id) REFERENCES BRANCH,
   CONSTRAINT PROP_OWNER_REF FOREIGN KEY (po_id) REFERENCES PROP_OWNER,
   CONSTRAINT LIST_TYPE_CHECK CHECK (list_type IN ('FS', 'S', 'FL', 'L')),
   CONSTRAINT PROP_TYPE_CHECK CHECK (prop_type IN ('Flat', 
-                                                  'Detatched', 
-                                                  'Semi-Detatched', 
+                                                  'Detached', 
+                                                  'Semi-Detached', 
                                                   'Terraced'))
 );
 
@@ -208,17 +190,17 @@ CREATE TABLE DPS (
 -- Commission Derived
 -- Add M:N to ERD
 CREATE TABLE TENNANTS (
-  tennant_id CHAR(5) NOT NULL,
   cust_id CHAR(5) NOT NULL, 
   prop_id CHAR(5) NOT NULL,
   deposit NUMBER(5) NOT NULL,
   t_start_date DATE NOT NULL, -- Date Constraint
   t_end_date DATE NOT NULL, -- Date Constraint
   dps_id CHAR(5) NOT NULL,
-  CONSTRAINT TENNANT_PKEY PRIMARY KEY (tennant_id),
+  CONSTRAINT TENNANT_PKEY PRIMARY KEY (cust_id, prop_id),
   CONSTRAINT T_ID_CUST_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
   CONSTRAINT PROP_TENNANT FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
-  CONSTRAINT DPS_TENNANT FOREIGN KEY (dps_id) REFERENCES DPS
+  CONSTRAINT DPS_TENNANT FOREIGN KEY (dps_id) REFERENCES DPS,
+  CONSTRAINT TENNANCY_START_END CHECK(t_end_date > t_start_date)
 );
 
 -- Removed the Property Owner ID Because it can be found via prop
@@ -246,7 +228,7 @@ CREATE TABLE COMMENTS (
 CREATE TABLE ESTATE_AGENT (
   ea_id CHAR(6),
   headquaters CHAR(5) NOT NULL,
-  website VARCHAR(50),
+  website VARCHAR(50) NOT NULL,
   ea_name VARCHAR(50) NOT NULL,
   CONSTRAINT EA_PKEY PRIMARY KEY (ea_id),
   CONSTRAINT EA_HQ FOREIGN KEY (headquaters) REFERENCES BRANCH,
