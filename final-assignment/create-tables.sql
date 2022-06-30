@@ -301,16 +301,56 @@ INSERT INTO TIME_TEST (V_TIME)
 SELECT SUBSTR(a.addr_l1, 0, 15) "Addr",
        a.post_code,
        SUBSTR(tca.tca_name, 0, 10) "Area",
-       SUBSTR(tc.tc_name , 0, 10) "City",
+       SUBSTR(tc.tc_name , 0, 10) "City"
        p.list_price,
        p.prop_type
 FROM PORTAL_ADDRESSES a, 
      TOWN_CITY_AREA tca, 
-     TOWNS_AND_CITIES tc,
+     TOWNS_AND_CITIES tc
      PROPERTIES p 
 WHERE a.addr_id = p.prop_addr
 AND a.tca_id = tca.tca_id
 AND tca.tc_code = tc.tc_code
-AND tca.tca_name IN ('Heaton', 'Jesmond', 'Burley');
+AND tc.tc_name IN ('Newcastle-Upon-Tyne', 'Leeds', 'Luton');
 
-       
+SELECT SUBSTR(s.staff_fname, 0, 10) "First Name",
+       SUBSTR(s.staff_email, 0, 10) "Email",
+       SUBSTR(a.addr_l1, 0, 15) "Addr",
+       a.post_code,
+       SUBSTR(tca.tca_name, 0, 10) "Area",
+       SUBSTR(tc.tc_name , 0, 10) "City"
+FROM PORTAL_ADDRESSES a, 
+     TOWN_CITY_AREA tca, 
+     TOWNS_AND_CITIES tc,
+     STAFF s
+WHERE a.addr_id = s.staff_addr
+AND a.tca_id = tca.tca_id
+AND tca.tc_code = tc.tc_code;
+
+SELECT SUBSTR(b.branch_email, 0, 15) "Email",
+       SUBSTR(s.staff_email, 0, 10) "Manager",
+       SUBSTR(a.addr_l1, 0, 15) "Addr",
+       a.post_code,
+       SUBSTR(tca.tca_name, 0, 10) "Area",
+       SUBSTR(tc.tc_name , 0, 10) "City"
+FROM PORTAL_ADDRESSES a, 
+     TOWN_CITY_AREA tca, 
+     TOWNS_AND_CITIES tc,
+     STAFF s,
+     BRANCH b
+WHERE a.addr_id = b.branch_addr
+AND b.branch_manager = s.staff_id
+AND a.tca_id = tca.tca_id
+AND tca.tc_code = tc.tc_code;
+
+SELECT SUBSTR(c.cust_fname, 0, 10) "FNAME",
+       SUBSTR(c.cust_email, 0, 15) "Email",
+       p.prop_type,
+       p.list_price,
+       P.list_type,
+       po.po_id,
+       SUBSTR(a.addr_l1, 0, 15) "Addr"
+FROM PROPERTIES p, CUSTOMER c, PORTAL_ADDRESSES a, PROP_OWNER po
+WHERE po.cust_id = c.cust_id
+AND po.po_id = p.po_id 
+AND p.prop_addr = a.addr_id;
