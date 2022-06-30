@@ -1,19 +1,12 @@
 -- THINGS TO DO 
--- :: Addresses --- Should I break them up into tables? 
 -- :: Add checks to the areas there are comments to add checks 
--- :: Should Commission be a derrived Attribute
--- :: Should deposit be a derrived attribute?
--- :: add room size to Prop_rooms table 
+-- :: add room size to Prop_rooms table makes area derived 
 -- :: Review all constraints 
--- :: rework ERD and map
 -- :: Auto Assing Randomn ID
--- :: Add Commit Statements
 -- :: Consider adding usernames and passwords for staff
 -- :: Add fake hashes for payroll details
--- :: Add Description, area to Property
--- :: rewrite the spelling of detached
+-- :: Display Weak entity types in the MAP 
 -- :: concat / to_char for auto assign
--- :: Split full name into first and last
 
 CREATE TABLE COUNTIES (
   county_id CHAR(4),
@@ -30,23 +23,23 @@ CREATE TABLE TOWNS_AND_CITIES (
   CONSTRAINT CITIES_COUNTY FOREIGN KEY (county_id) REFERENCES COUNTIES
 );
 
-CREATE TABLE TOWN_CITY_LOCATION (
-  loc_id CHAR(6),
+CREATE TABLE TOWN_CITY_AREA (
+  tca_id CHAR(6),
   tc_code VARCHAR(3),
-  loc_name VARCHAR(20),
-  CONSTRAINT LOC_PKEY PRIMARY KEY (loc_id),
-  CONSTRAINT LOC_TC FOREIGN KEY (tc_code) REFERENCES CITY
+  tca_name VARCHAR(20),
+  CONSTRAINT TCA_PKEY PRIMARY KEY (tca_id),
+  CONSTRAINT TCA_TC_REF FOREIGN KEY (tc_code) REFERENCES TOWNS_AND_CITIES
 );
 
-CREATE TABLE ADDRESSES (
+CREATE TABLE PORTAL_ADDRESSES (
   addr_id CHAR(5) NOT NULL,
   addr_l1 VARCHAR(40) NOT NULL,
   addr_l2 VARCHAR(40),
   post_code VARCHAR(9) NOT NULL,
-  loc_id CHAR(6) NOT NULL,
+  tca_id CHAR(6) NOT NULL,
   CONSTRAINT ADDRESSES_PKEY PRIMARY KEY (addr_id),
-  CONSTRAINT ADDR_LOC_REF FOREIGN KEY (loc_id) REFERENCES CITY_LOCATION;
-)
+  CONSTRAINT ADDR_TCA_REF FOREIGN KEY (tca_id) REFERENCES TOWN_CITY_AREA
+);
 
 CREATE TABLE CUSTOMER (
   cust_id CHAR(5), 
@@ -60,7 +53,7 @@ CREATE TABLE CUSTOMER (
   CONSTRAINT CUST_PKEY PRIMARY KEY (cust_id),
   CONSTRAINT CUST_GENDER_CHECK check(cust_gender IN ('M', 'F', 'O')),
   CONSTRAINT CUST_EMAIL_UNIQ UNIQUE (cust_email),
-  CONSTRAINT CUST_ADDR_REF FOREIGN KEY (cust_addr) REFERENCES ADDRESSES;
+  CONSTRAINT CUST_ADDR_REF FOREIGN KEY (cust_addr) REFERENCES PORTAL_ADDRESSES
 );
 
 -- CREATE TABLE CUSTOMER_ADDR (
@@ -84,7 +77,7 @@ CREATE TABLE STAFF (
   CONSTRAINT STAFF_PKEY PRIMARY KEY (staff_id),
   CONSTRAINT STAFF_EMAIL_UNIQ UNIQUE (staff_email),
   CONSTRAINT STAFF_TEL_UNIQ UNIQUE (staff_tel),
-  CONSTRAINT STAFF_ADDR_REF FOREIGN KEY (staff_addr) REFERENCES ADDRESSES;
+  CONSTRAINT STAFF_ADDR_REF FOREIGN KEY (staff_addr) REFERENCES PORTAL_ADDRESSES
 );
 
 -- CREATE TABLE STAFF_ADDR (
@@ -106,10 +99,10 @@ CREATE TABLE BRANCH (
   branch_addr CHAR(5) NOT NULL,
   CONSTRAINT BRANCH_PKEY PRIMARY KEY (branch_id),
   CONSTRAINT BRANCH_MANAGER_REF FOREIGN KEY (branch_manager) REFERENCES STAFF (staff_id),
-  CONSTRAINT BRANCH_ADDR_REF FOREIGN KEY (branch_addr) REFERENCES ADDRESSES
+  CONSTRAINT BRANCH_ADDR_REF FOREIGN KEY (branch_addr) REFERENCES PORTAL_ADDRESSES,
   CONSTRAINT MANAGER_UNIQ UNIQUE (branch_manager),
   CONSTRAINT BRANCH_EMAIL_UNIQ UNIQUE (branch_email),
-  CONSTRAINT BRANCH_TEL_UNIQ UNIQUE (branch_tel),
+  CONSTRAINT BRANCH_TEL_UNIQ UNIQUE (branch_tel)
 );
 
 -- CREATE TABLE BRANCH_ADDR (
@@ -133,18 +126,24 @@ CREATE TABLE PAYROLL_DETAILS (
   CONSTRAINT UNIQ_ACNO UNIQUE (staff_acc_no)
 );
 
+
+
+
+
+
 CREATE TABLE PROP_OWNER (
+  po_id CHAR(5),
   cust_id CHAR(5),
   branch_id CHAR(5),
-  CONSTRAINT PO_PKEY PRIMARY KEY (cust_id, branch_id),
-  CONSTRAINT PO_CUST_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
+  CONSTRAINT PO_PKEY PRIMARY KEY (po_id),
+  CONSTRAINT PO_CUST_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER (cust_id),
   CONSTRAINT PO_BRANCH_REF FOREIGN KEY (branch_id) REFERENCES BRANCH
 );
 
 CREATE TABLE PROPERTIES (
   prop_id CHAR(5),
   branch_id CHAR(5) NOT NULL,
-  prop_owner CHAR(5) NOT NULL,
+  po_id CHAR(5) NOT NULL,
   list_price NUMBER(7, 0),
   list_type VARCHAR(2) NOT NULL,
   prop_type VARCHAR(14) NOT NULL,
@@ -154,12 +153,16 @@ CREATE TABLE PROPERTIES (
   prop_addr CHAR(5) NOT NULL,
   CONSTRAINT PROP_PKEY PRIMARY KEY (prop_id),
   CONSTRAINT PROP_BRANCH FOREIGN KEY (branch_id) REFERENCES BRANCH,
-  CONSTRAINT PROP_OWNER_REF FOREIGN KEY (prop_owner, branch_id) REFERENCES PROP_OWNER,
-  CONSTRAINT PROP_ADDR_REF FOREIGN KEY (prop_addr) REFERENCES ADDRESSES,
-  CONSTRAINT LIST_TYPE_CHECK CHECK (list_type IN ('FS', 'S', 'FL', 'L')),
-  CONSTRAINT PROP_TYPE_CHECK CHECK (prop_type IN ('Flat', 
-                                                  'Detached', 
-                                                  'Semi-Detached', 
+  CONSTRAINT PROP_ADDR_REF FOREIGN KEY (prop_addr) REFERENCES PORTAL_ADDRESSES,
+  CONSTRAINT PROP_ADDR_UNIQ UNIQUE (prop_addr),
+  CONSTRAINT PROP_PO_REF FOREIGN KEY (po_id) REFERENCES PROP_OWNER,
+  CONSTRAINT LIST_TYPE_CHECK CHECK (list_type IN ('FS', 
+                                                  'S', 
+                                                  'FL', 
+                                                  'L')),
+  CONSTRAINT PROP_TYPE_CHECK CHECK (prop_type IN ('Semi-Detached', 
+                                                  'Detached',
+                                                  'Flat',
                                                   'Terraced'))
 );
 
@@ -168,9 +171,9 @@ CREATE TABLE PROPERTIES (
 --   prop_addr_l1 VARCHAR (40) NOT NULL,
 --   prop_addr_l2 VARCHAR (40),
 --   prop_post_code VARCHAR(9) NOT NULL,
---   loc_id CHAR(6) NOT NULL,
+--   tca_id CHAR(6) NOT NULL,
 --   CONSTRAINT PROP_ADDR_ID_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
---   CONSTRAINT PROP_LOCATION_REF FOREIGN KEY (loc_id) REFERENCES CITY_LOCATION,
+--   CONSTRAINT PROP_LOCATION_REF FOREIGN KEY (tca_id) REFERENCES CITY_LOCATION,
 --   CONSTRAINT PROP_ID_UNIQ UNIQUE (prop_id),
 --   CONSTRAINT PROP_ADDRL1_UNIQ UNIQUE (prop_addr_l1)
 -- );
@@ -205,21 +208,21 @@ CREATE TABLE DPS (
   CONSTRAINT DPS_EMAIL_UNIQ UNIQUE (dps_email)
 );
 
--- Deposit amount derived
+-- Deposit is derrived 
 -- Commission Derived
 -- Add M:N to ERD
 -- Check Date constraint is valid 
 CREATE TABLE RENTED_PROPERTIES (
-  cust_id CHAR(5) NOT NULL, 
+  tennant_id CHAR(5) NOT NULL, 
   prop_id CHAR(5) NOT NULL,
   rent_amt NUMBER(5) NOT NULL,
   t_start_date DATE NOT NULL, -- Date Constraint
   t_end_date DATE NOT NULL, -- Date Constraint
   dps_id CHAR(5) NOT NULL,
-  CONSTRAINT RP_PKEY PRIMARY KEY (cust_id, prop_id),
-  CONSTRAINT RP_CUST_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
-  CONSTRAINT RP_PROP_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
-  CONSTRAINT RP_DPS_REF FOREIGN KEY (dps_id) REFERENCES DPS,
+  CONSTRAINT TENNANT_PKEY PRIMARY KEY (tennant_id, prop_id),
+  CONSTRAINT T_ID_CUST_REF FOREIGN KEY (tennant_id) REFERENCES CUSTOMER,
+  CONSTRAINT PROP_TENNANT FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
+  CONSTRAINT DPS_TENNANT FOREIGN KEY (dps_id) REFERENCES DPS,
   CONSTRAINT TENNANCY_START_END CHECK(t_end_date > t_start_date)
 );
 
@@ -232,7 +235,6 @@ CREATE TABLE VIEWING (
   cust_id CHAR(5) NOT NULL,
   view_date_time TIMESTAMP NOT NULL, 
   CONSTRAINT V_PKEY PRIMARY KEY (view_id),
-  CONSTRAINT VIEW_PROP FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
   CONSTRAINT VIEW_BRANCH_REF FOREIGN KEY (branch_id) REFERENCES BRANCH,
   CONSTRAINT VIEW_CUST FOREIGN KEY (cust_id) REFERENCES CUSTOMER
 );
@@ -252,20 +254,21 @@ CREATE TABLE ESTATE_AGENT (
   ea_name VARCHAR(50) NOT NULL,
   CONSTRAINT EA_PKEY PRIMARY KEY (ea_id),
   CONSTRAINT EA_HQ FOREIGN KEY (headquaters) REFERENCES BRANCH,
-  CONSTRAINT WEB_UNIQ UNIQUE (website)
+  CONSTRAINT WEB_UNIQ UNIQUE (ea_website)
 );
 
 COMMIT;
+/
 
-ALTER TABLE BRANCH
-  ADD CONSTRAINT BRANCH_EA_REF
-    FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
+-- ALTER TABLE BRANCH
+--   ADD CONSTRAINT BRANCH_EA_REF
+--     FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
 
-ALTER TABLE STAFF 
-  ADD CONSTRAINT STAFF_BRANCH_REF
-    FOREIGN KEY (branch_id) REFERENCES BRANCH;
+-- ALTER TABLE STAFF 
+--   ADD CONSTRAINT STAFF_BRANCH_REF
+--     FOREIGN KEY (branch_id) REFERENCES BRANCH;
 
-COMMIT;
+-- COMMIT;
 
 -- Example Auto increment with property id's
 
@@ -294,3 +297,20 @@ CREATE TABLE TIME_TEST (
 
 INSERT INTO TIME_TEST (V_TIME) 
   VALUES ('02-MAY-2022 10:00:00');
+
+SELECT SUBSTR(a.addr_l1, 0, 15) "Addr",
+       a.post_code,
+       SUBSTR(tca.tca_name, 0, 10) "Area",
+       SUBSTR(tc.tc_name , 0, 10) "City",
+       p.list_price,
+       p.prop_type
+FROM PORTAL_ADDRESSES a, 
+     TOWN_CITY_AREA tca, 
+     TOWNS_AND_CITIES tc,
+     PROPERTIES p 
+WHERE a.addr_id = p.prop_addr
+AND a.tca_id = tca.tca_id
+AND tca.tc_code = tc.tc_code
+AND tca.tca_name IN ('Heaton', 'Jesmond', 'Burley');
+
+       

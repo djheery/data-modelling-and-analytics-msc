@@ -222,8 +222,43 @@ INSERT INTO TABLE (
          WHERE p.prop_id in ('P02')
 /
 
-REM Insert 
+REM Insert Property Owner Refs into prop_table 
 
+INSERT INTO TABLE (
+    SELECT  p.prop_owners
+    FROM   prop_table p 
+    WHERE  p.prop_id = 'P01')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('C01', 'C02');
+/
+
+INSERT INTO TABLE (
+    SELECT  p.prop_owners
+    FROM   prop_table p 
+    WHERE  p.prop_id = 'P02')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('C01', 'C04');
+/
+
+INSERT INTO TABLE (
+    SELECT  p.prop_owners
+    FROM   prop_table p 
+    WHERE  p.prop_id = 'P03')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('C03');
+/
+
+INSERT INTO TABLE (
+    SELECT  p.prop_owners
+    FROM   prop_table p 
+    WHERE  p.prop_id = 'P04')
+  SELECT REF(p)
+         FROM prop_table p
+         WHERE p.prop_id in ('C02');
+/
 -- Test Query for customers tabble 
 
 SELECT c.cust_fname "First Name", c.cust_lname "Last Name",
