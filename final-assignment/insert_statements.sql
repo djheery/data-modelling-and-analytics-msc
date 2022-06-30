@@ -11,185 +11,186 @@ INSERT INTO COUNTIES
 
 REM City 
 
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('NE1', 'Newcastle-Upon-Tyne', 'CO01');
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('LU', 'Luton', 'CO02');
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('BN', 'Brighton', 'CO03');
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('LS', 'Leeds', 'CO04');
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('SR', 'Sunderland', 'CO01');
-INSERT INTO CITY 
+INSERT INTO TOWNS_AND_CITIES 
   VALUES ('NE2', 'Gateshead', 'CO01');
 
 REM Location
 
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0001', 'NE1', 'Jesmond');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0002', 'NE1', 'Fenham');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0003', 'NE1', 'Heaton');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0004', 'LS', 'Burley');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0005', 'BN', 'Kemptown');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0006', 'LU', 'Bushmead');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES('CL0007', 'LU', 'Warden Hill');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0008', 'LS', 'Meanwood');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0009', 'NE2', 'Felling');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0010', 'LS', 'Hyde Park');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0011', 'LS', 'City Centre');
-INSERT INTO CITY_LOCATION 
+INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0012', 'NE2', 'Dunston');
-
-REM Customers
-
-INSERT INTO CUSTOMER
-  VALUES ('C0001', 'Daniel', 'Heery', 'M', '06-APR-1994', 'heery@live.co.uk', '07437519714');
-INSERT INTO CUSTOMER
-  VALUES ('C0002', 'Anna', 'Heery', 'F', '26-JUN-1996', 'annaheery@live.co.uk', '07437419714');
-INSERT INTO CUSTOMER
-  VALUES ('C0003', 'Conn', 'Heery', 'M', '03-DEC-1963',  'connheery@live.co.uk', '07217519714');
-INSERT INTO CUSTOMER
-  VALUES ('C0004', 'Monique', 'Heery', 'F', '13-NOV-1966', 'moniqueheery@live.co.uk', '07431119714');
-INSERT INTO CUSTOMER
-  VALUES ('C0005', 'Ryan', 'Barker', 'M', '16-DEC-1995', 'ryanbarker@live.co.uk', '07437519774');
-INSERT INTO CUSTOMER
-  VALUES ('C0006', 'Vitoria', 'Savy', 'F', '10-MAY-1950', 'vitoriasavy@live.co.uk', '07437512774');
-INSERT INTO CUSTOMER
-  VALUES ('C0007', 'Beatrice', 'Potter', 'F', '28-JUL-1966', 'beatriceporter@live.co.uk', '07421519774');
-INSERT INTO CUSTOMER
-  VALUES ('C0008', 'Rafa', 'Benitez', 'M', '16-APR-1960', 'rafabenitez@live.co.uk', '0743253777');
-INSERT INTO CUSTOMER
-  VALUES ('C0009', 'Emily', 'Clarke', 'F', '20-DEC-1982', 'emilyclarke@live.co.uk', '07412519774');
-INSERT INTO CUSTOMER
-  VALUES ('C0010', 'Antonio', 'Banderas', 'M', '10-AUG-1960', 'abanderas@live.co.uk', '07437239774');
-INSERT INTO CUSTOMER
-  VALUES ('C0011', 'Edmund', 'Dijkstra', 'M', '16-DEC-1995', 'edijkstra@live.co.uk', '07437436774');
-INSERT INTO CUSTOMER
-  VALUES ('C0012', 'William', 'Shakespeare', 'O', '23-APR-1964',  'willshakespeare@live.co.uk', '07477779774');
+INSERT INTO TOWN_CITY_AREA
+  VALUES ('CL0013', 'SR', 'City Centre');
 
 REM Customer Address
 
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0001', '48 Wolseley Gardens', NULL, 'NE2 1HR', 'NE');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0002', '21 Knowle Road', NULL, 'LS4 2PJ', 'LS');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0003', '60 Wychwood Avenue', NULL, 'LU2 7HU', 'LU');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0004', '28 Grosvenor Gardens', NULL, 'NE4 5HT', 'NE');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0005', '77 Sunderland Road', NULL, 'NE15 4PS', 'NE');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0006', '10 Farmbrook close', NULL, 'LU2 7FS', 'LU');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0007', '18 Alphabet Street', NULL, 'BN4 2FA', 'BN');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0008', '21 Poltergeist Avenue', NULL, 'LS5 22F', 'LS');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0009', '12 Gordon Terrace', NULL, 'LS2 2FA', 'LS');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0010', '5 Smokehouse Street', NULL, 'BN42 5FS', 'BN');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0011', '16 Pythagorus Close', NULL, 'LU3 3PJ', 'LU');
-INSERT INTO CUSTOMER_ADDR
-  VALUES ('C0012', '18 Whitehall Avenue', NULL, 'NE22 2TT', 'NE');
+INSERT INTO ADDRESSES
+  VALUES ('A0001', '48 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0002', '21 Knowle Road', NULL, 'LS4 2PJ', 'CL0004');
+INSERT INTO ADDRESSES
+  VALUES ('A0003', '60 Wychwood Avenue', NULL, 'LU2 7HU', 'CL0006');
+INSERT INTO ADDRESSES
+  VALUES ('A0004', '28 Grosvenor Gardens', NULL, 'NE4 5HT', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0005', '77 Sunderland Road', NULL, 'NE15 4PS', 'CL0009');
+INSERT INTO ADDRESSES
+  VALUES ('A0006', '37 Farmbrook close', NULL, 'LU2 7FS', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0007', '18 Alphabet Street', NULL, 'BN4 2FA', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0008', '21 Poltergeist Avenue', NULL, 'LS5 22F', 'CL0011');
+INSERT INTO ADDRESSES
+  VALUES ('A0009', '30 Gordon Terrace', NULL, 'LS2 2FA', 'CL0008');
+INSERT INTO ADDRESSES
+  VALUES ('A0010', '5 Smokehouse Street', NULL, 'BN42 5FS', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0011', '16 Pythagorus Close', NULL, 'LU3 3PJ', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0012', '18 Sunderland Street', NULL, 'SR22 2TT', 'CL0013');
+
+
+REM Insert Customers 
+
+INSERT INTO CUSTOMER
+  VALUES ('C0001', 'Daniel', 'Heery', 'M', '06-APR-1994', 'heery@live.co.uk', '07437519714', 'A0001');
+INSERT INTO CUSTOMER
+  VALUES ('C0002', 'Anna', 'Heery', 'F', '26-JUN-1996', 'annaheery@live.co.uk', '07437419714', 'A0002');
+INSERT INTO CUSTOMER
+  VALUES ('C0003', 'Conn', 'Heery', 'M', '03-DEC-1963',  'connheery@live.co.uk', '07217519714', 'A0003');
+INSERT INTO CUSTOMER
+  VALUES ('C0004', 'Monique', 'Heery', 'F', '13-NOV-1966', 'moniqueheery@live.co.uk', '07431119714', 'A0003');
+INSERT INTO CUSTOMER
+  VALUES ('C0005', 'Ryan', 'Barker', 'M', '16-DEC-1995', 'ryanbarker@live.co.uk', '07437519774', 'A0004');
+INSERT INTO CUSTOMER
+  VALUES ('C0006', 'Vitoria', 'Savy', 'F', '10-MAY-1950', 'vitoriasavy@live.co.uk', '07437512774', 'A0005');
+INSERT INTO CUSTOMER
+  VALUES ('C0007', 'Beatrice', 'Potter', 'F', '28-JUL-1966', 'beatriceporter@live.co.uk', '07421519774', 'A0006');
+INSERT INTO CUSTOMER
+  VALUES ('C0008', 'Rafa', 'Benitez', 'M', '16-APR-1960', 'rafabenitez@live.co.uk', '0743253777', 'A0007');
+INSERT INTO CUSTOMER
+  VALUES ('C0009', 'Emily', 'Clarke', 'F', '20-DEC-1982', 'emilyclarke@live.co.uk', '07412519774', 'A0008');
+INSERT INTO CUSTOMER
+  VALUES ('C0010', 'Antonio', 'Banderas', 'M', '10-AUG-1960', 'abanderas@live.co.uk', '07437239774', 'A0009');
+INSERT INTO CUSTOMER
+  VALUES ('C0011', 'Edmund', 'Dijkstra', 'M', '16-DEC-1995', 'edijkstra@live.co.uk', '07437436774', 'A0010');
+INSERT INTO CUSTOMER
+  VALUES ('C0012', 'William', 'Shakespeare', 'O', '23-APR-1964',  'willshakespeare@live.co.uk', '07477779774', 'A0011');
+
+REM Staff Address
+
+INSERT INTO ADDRESSES
+  VALUES ('A0013', '17 Grosvenor Gardens', NULL, 'NE2 2HR', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0014', '20 Wrangthorn Place', NULL, 'LS2 1HB', 'CL0010');
+INSERT INTO ADDRESSES
+  VALUES ('A0015', '20 Delph Lane', NULL, 'LS24 8HX', 'CL0010');
+INSERT INTO ADDRESSES
+  VALUES ('A0016', '250 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'CL0011');
+INSERT INTO ADDRESSES
+  VALUES ('A0017', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0018', '13 Osbourne Road', NULL, 'NE2 2TD', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0019', '10 Heaton Park Road', NULL, 'NE6 5PR', 'CL0003');
+INSERT INTO ADDRESSES
+  VALUES ('A0020', '38 Sunderland Road', NULL, 'NE8 3HF', 'CL0009');
+INSERT INTO ADDRESSES
+  VALUES ('A0021', '3 Gateway House', '15 North Lane', 'LS6 3HG', 'CL0008');
+INSERT INTO ADDRESSES
+  VALUES ('A0022', '209 Marsh Road', NULL, 'LU3 2RT', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0023', '598 Hitchin Road', NULL, 'LU2 7UG', 'CL0006');
+INSERT INTO ADDRESSES
+  VALUES ('A0024', '160 Hockwell Ring', NULL, 'LU4 9NL', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0025', '16 Hanover Street', NULL, 'BN2 9WD', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0026', '92 DitchlinG Road', NULL, 'BN1 4SE', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0027', '16 Market Street', NULL, 'BN1 1HH', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0028', '65 Church Road', NULL, 'BN3 2BD', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0029', '61 Wilson Avenue', NULL, 'BN2 5PA', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0030', '66 Bridge Street', NULL, 'LS27 0EZ', 'CL0011');
+
 
 REM Staff
 
 INSERT INTO STAFF 
-  VALUES ('S00001', 'B0002', 'Bob', 'Dylan', 'bdylan@aol.co.uk', '07437523714');
+  VALUES ('S00001', 'B0002', 'Bob', 'Dylan', 'bdylan@aol.co.uk', '07437523714', 'A0013');
 INSERT INTO STAFF 
-  VALUES ('S00002', 'B0001', 'Ryan', 'Phillips', 'rphilips@live.co.uk', '07437321971');
+  VALUES ('S00002', 'B0001', 'Ryan', 'Phillips', 'rphilips@live.co.uk', '07437321971', 'A0006');
 INSERT INTO STAFF 
-  VALUES ('S00003', 'B0003', 'Gretchen' ,'Parlato', 'gparlato@live.com', '07212319714');
+  VALUES ('S00003', 'B0003', 'Gretchen' ,'Parlato', 'gparlato@live.com', '07212319714', 'A0009');
 INSERT INTO STAFF 
-  VALUES ('S00004', 'B0008','Mark','Guiliana', 'mguiliana@gmail.com', '07931998714');
+  VALUES ('S00004', 'B0008','Mark','Guiliana', 'mguiliana@gmail.com', '07931998714', 'A0014');
 INSERT INTO STAFF 
-  VALUES ('S00005', 'B0001', 'Will','Stead',  'williestead@gmail.com', '07897183374');
+  VALUES ('S00005', 'B0001', 'Will','Stead',  'williestead@gmail.com', '07897183374', 'A0015');
 INSERT INTO STAFF 
-  VALUES ('S00006', 'B0012', 'Adam','Howard', 'ahoward@gmail.com', '07897119884');
+  VALUES ('S00006', 'B0012', 'Adam','Howard', 'ahoward@gmail.com', '07897119884', 'A0016');
 INSERT INTO STAFF 
-  VALUES ('S00007', 'B0004', 'Ian','Rush', 'ianrush@gmail.com', '07897119114');
+  VALUES ('S00007', 'B0004', 'Ian','Rush', 'ianrush@gmail.com', '07897119114', 'A0017');
 INSERT INTO STAFF 
-  VALUES ('S00008', 'B0005', 'Chuck','Norris', 'cn@chucknorris.co.uk', '07897119334');
+  VALUES ('S00008', 'B0005', 'Chuck','Norris', 'cn@chucknorris.co.uk', '07897119334', 'A0018');
 INSERT INTO STAFF 
-  VALUES ('S00009', 'B0007', 'Conor','Magi', 'cmagi@gmail.com', '07897119444');
+  VALUES ('S00009', 'B0007', 'Conor','Magi', 'cmagi@gmail.com', '07897119444', 'A0019');
 INSERT INTO STAFF 
-  VALUES ('S00010', 'B0011', 'Avashi','Cohen', 'achoen@gmail.com', '07227119444');
+  VALUES ('S00010', 'B0011', 'Avashi','Cohen', 'achoen@gmail.com', '07227119444', 'A0020');
 INSERT INTO STAFF 
-  VALUES ('S00011', 'B0006', 'Tigran','Hamassyan', 'tha@gmail.com', '07897119144');
+  VALUES ('S00011', 'B0006', 'Tigran','Hamassyan', 'tha@gmail.com', '07897119144', 'A0021');
 INSERT INTO STAFF 
-  VALUES ('S00012', 'B0009', 'John','Coltrane', 'jcoltrane@gmail.com', '07893129444');
+  VALUES ('S00012', 'B0009', 'John','Coltrane', 'jcoltrane@gmail.com', '07893129444', 'A0022');
 INSERT INTO STAFF 
-  VALUES ('S00013', 'B0010', 'Lauren','Woods', 'lwoods@gmail.com', '07897119555');
+  VALUES ('S00013', 'B0010', 'Lauren','Woods', 'lwoods@gmail.com', '07897119555', 'A0023');
 INSERT INTO STAFF 
-  VALUES ('S00014', 'B0002', 'Georgina','Stakes', 'gstakes@gmail.com', '07895669444');
+  VALUES ('S00014', 'B0002', 'Georgina','Stakes', 'gstakes@gmail.com', '07895669444', 'A0024');
 INSERT INTO STAFF 
-  VALUES ('S00015', 'B0003', 'Rebecca','Frodsham','rfrodsha@gmail.com', '07897239444');
+  VALUES ('S00015', 'B0003', 'Rebecca','Frodsham','rfrodsha@gmail.com', '07897239444', 'A0025');
 INSERT INTO STAFF 
-  VALUES ('S00016', 'B0004', 'Kieron','Dyer', 'kierondyer@gmail.com', '07907119444');
+  VALUES ('S00016', 'B0004', 'Kieron','Dyer', 'kierondyer@gmail.com', '07907119444', 'A0026');
 INSERT INTO STAFF 
-  VALUES ('S00017', 'B0005', 'David','Blane', 'davidblane@gmail.com', '07876681040');
+  VALUES ('S00017', 'B0005', 'David','Blane', 'davidblane@gmail.com', '07876681040', 'A0027');
 INSERT INTO STAFF 
-  VALUES ('S00018', 'B0006', 'Ciara','Miller', 'ciaramiller@gmail.com', '07897788844');
+  VALUES ('S00018', 'B0006', 'Ciara','Miller', 'ciaramiller@gmail.com', '07897788844', 'A0028');
 INSERT INTO STAFF 
-  VALUES ('S00019', 'B0007', 'Julie','Andrews', 'jandrews@gmail.com', '07896616444');
+  VALUES ('S00019', 'B0007', 'Julie','Andrews', 'jandrews@gmail.com', '07896616444', 'A0029');
 INSERT INTO STAFF 
-  VALUES ('S00020', 'B0008', 'Manny','Gambureon', 'mgambur@gmail.com', '07899119444');
+  VALUES ('S00020', 'B0008', 'Manny','Gambureon', 'mgambur@gmail.com', '07899119444', 'A0030');
 
-REM Staff Address
-
-INSERT INTO STAFF_ADDR
-  VALUES ('S00001', '17 Grosvenor Gardens', NULL, 'NE2 2HR', 'NE');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00002', '37 Farmbrook', NULL, 'LU4 2J1', 'LU');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00003', '30 Gordon Terrace', NULL, 'LS6 4HX', 'LS');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00004', '20 Wrangthorn Place', NULL, 'LS2 1HB', 'LS');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00005', '20 Delph Lane', NULL, 'LS24 8HX', 'LS');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00006', '250 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'LS');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00007', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'NE');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00008', '13 Osbourne Road', NULL, 'NE2 2TD', 'NE');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00009', '10 Heaton Park Road', NULL, 'NE6 5PR', 'NE');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00010', '38 Sunderland Road', NULL, 'NE8 3HF', 'NE');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00011', '3 Gateway House', '15 North Lane', 'LS6 3HG', 'LS');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00012', '209 Marsh Road', NULL, 'LU3 2RT', 'LU');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00013', '598 Hitchin Road', NULL, 'LU2 7UG', 'LU');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00014', '160 Hockwell Ring', NULL, 'LU4 9NL', 'LU');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00015', '16 Hanover Street', NULL, 'BN2 9WD', 'BN');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00016', '92 DitchlinG Road', NULL, 'BN1 4SE', 'BN');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00017', '16 Market Street', NULL, 'BN1 1HH', 'BN');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00018', '65 Church Road', NULL, 'BN3 2BD', 'BN');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00019', '61 Wilson Avenue', NULL, 'BN2 5PA', 'BN');
-INSERT INTO STAFF_ADDR
-  VALUES ('S00020', '66 Bridge Street', NULL, 'LS27 0EZ', 'LS');
 
 REM Payroll Details
 
@@ -235,6 +236,34 @@ INSERT INTO PAYROLL_DETAILS
   VALUES ('S00020', 'JZ122363B','283420', '12383711');
 
 
+
+REM Branch Address
+
+INSERT INTO ADDRESSES
+  VALUES ('A0031', '123 Heaton Road', NULL, 'NE6 2BB', 'CL0003');
+INSERT INTO ADDRESSES
+  VALUES ('A0032', '28 Gordon Terrace', NULL, 'LS6 4HX', 'CL0008');
+INSERT INTO ADDRESSES
+  VALUES ('A0033', '30 Elmwood Lane', NULL, 'LS8 2HJ', 'CL0011');
+INSERT INTO ADDRESSES
+  VALUES ('A0034', '21 Dove Tail Road', NULL, 'BN5 6TT', 'CL0005');
+INSERT INTO ADDRESSES
+  VALUES ('A0035', '40 Warden Crescent', NULL, 'LU5 2P8', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0036', '20 Osbourne Road', NULL, 'NE4 5FR', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0037', '13 Sunderland Road', NULL, 'NE4 5FR', 'CL0012');
+INSERT INTO ADDRESSES
+  VALUES ('A0038', '20 Hockwel Ring', NULL, 'LU23 4HR', 'CL0006');
+INSERT INTO ADDRESSES
+  VALUES ('A0039', '12 Briggate Street', NULL, 'LS10 1FB', 'CL0011');
+INSERT INTO ADDRESSES
+  VALUES ('A0040', '37 Wiseman Close', NULL, 'LU3 25S', 'CL0007');
+INSERT INTO ADDRESSES
+  VALUES ('A0041', '89 St Georges Terrace', NULL, 'NE7 2DN', 'CL0001');
+INSERT INTO ADDRESSES
+  VALUES ('A0042', '80 St James Boulevord', NULL, 'NE1 4BN', 'CL0003');
+
 REM Branch 
 
 INSERT INTO BRANCH 
@@ -262,32 +291,7 @@ INSERT INTO BRANCH
 INSERT INTO BRANCH 
   VALUES ('B0012', 'S00006', 'EA006', 'info@movemeplease.co.uk', '07876839201');
 
-REM Branch Address
 
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0001', '123 Heaton Road', NULL, 'NE6 2BB', 'NE');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0002', '28 Gordon Terrace', NULL, 'LS6 4HX', 'LS');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0003', '30 Elmwood Lane', NULL, 'LS8 2HJ', 'LS');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0004', '21 Dove Tail Road', NULL, 'BN5 6TT', 'BN');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0005', '40 Warden Crescent', NULL, 'LU5 2P8', 'LU');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0006', '20 Osbourne Road', NULL, 'NE4 5FR', 'NE');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0007', '13 Sunderland Road', NULL, 'NE4 5FR', 'NE');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0008', '20 Hockwel Ring', NULL, 'LU23 4HR', 'LU');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0009', '12 Briggate Street', NULL, 'LS10 1FB', 'LS');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0010', '37 Wiseman Close', NULL, 'LU3 25S', 'LU');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0011', '89 St Georges Terrace', NULL, 'NE7 2DN', 'NE');
-INSERT INTO BRANCH_ADDR
-  VALUES ('B0012', '80 St Jamess Boulevord', NULL, 'NE1 4BN', 'NE');
 
 
 REM Prop Owner

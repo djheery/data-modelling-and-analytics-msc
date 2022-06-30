@@ -100,3 +100,4 @@ WHERE p.prop_id = pa.prop_id
 AND pa.loc_id = l.loc_id 
 AND l.city_code = c.city_code 
 AND c.city_name = 'Newcastle-Upon-Tyne';
+
