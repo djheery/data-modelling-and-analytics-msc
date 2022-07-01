@@ -3,6 +3,7 @@
 -- :: add room size to Prop_rooms table makes area derived 
 -- :: Review all constraints 
 -- :: Auto Assing Randomn ID
+-- :: Add commission_amt to branch 
 -- :: Consider adding usernames and passwords for staff
 -- :: Add fake hashes for payroll details
 -- :: Display Weak entity types in the MAP 
@@ -56,16 +57,6 @@ CREATE TABLE CUSTOMER (
   CONSTRAINT CUST_ADDR_REF FOREIGN KEY (cust_addr) REFERENCES PORTAL_ADDRESSES
 );
 
--- CREATE TABLE CUSTOMER_ADDR (
---   cust_id CHAR(5) NOT NULL,
---   cust_addr_l1 VARCHAR (40) NOT NULL,
---   cust_addr_l2 VARCHAR (40),
---   cust_post_code VARCHAR(9) NOT NULL,
---   cust_city_code VARCHAR(3) NOT NULL, -- ref city code
---   CONSTRAINT CUST_ADDR_REF FOREIGN KEY (cust_id) REFERENCES CUSTOMER,
---   CONSTRAINT CUST_ADDR_PKEY PRIMARY KEY (cust_id)
--- );
-
 CREATE TABLE STAFF (
   staff_id CHAR(6),
   branch_id CHAR(5) NOT NULL,
@@ -79,16 +70,6 @@ CREATE TABLE STAFF (
   CONSTRAINT STAFF_TEL_UNIQ UNIQUE (staff_tel),
   CONSTRAINT STAFF_ADDR_REF FOREIGN KEY (staff_addr) REFERENCES PORTAL_ADDRESSES
 );
-
--- CREATE TABLE STAFF_ADDR (
---   staff_id CHAR(6) NOT NULL,
---   staff_addr_l1 VARCHAR (40) NOT NULL,
---   staff_addr_l2 VARCHAR (40),
---   staff_post_code VARCHAR(9) NOT NULL,
---   staff_city_code VARCHAR(3) NOT NULL,
---   CONSTRAINT STAFF_ADDR_PKEY PRIMARY KEY (staff_id),
---   CONSTRAINT STAFF_ADDR_REF FOREIGN KEY (staff_id) REFERENCES STAFF
--- );
 
 CREATE TABLE BRANCH (
   branch_id CHAR(5),
@@ -105,15 +86,6 @@ CREATE TABLE BRANCH (
   CONSTRAINT BRANCH_TEL_UNIQ UNIQUE (branch_tel)
 );
 
--- CREATE TABLE BRANCH_ADDR (
---   branch_id CHAR(5) NOT NULL,
---   branch_addr_l1 VARCHAR (40) NOT NULL,
---   branch_addr_l2 VARCHAR (40),
---   branch_post_code VARCHAR(9) NOT NULL,
---   branch_city_code VARCHAR(3) NOT NULL,
---   CONSTRAINT BRANCH_ADDR_REF FOREIGN KEY (branch_id) REFERENCES BRANCH,
---   CONSTRAINT BRANCH_ADDRL1_UNIQ UNIQUE (branch_addr_l1)
--- );
 
 CREATE TABLE PAYROLL_DETAILS (
   staff_id CHAR(6),
@@ -125,10 +97,6 @@ CREATE TABLE PAYROLL_DETAILS (
   CONSTRAINT UNIQ_SC UNIQUE (staff_sort_code),
   CONSTRAINT UNIQ_ACNO UNIQUE (staff_acc_no)
 );
-
-
-
-
 
 
 CREATE TABLE PROP_OWNER (
@@ -165,18 +133,6 @@ CREATE TABLE PROPERTIES (
                                                   'Flat',
                                                   'Terraced'))
 );
-
--- CREATE TABLE PROP_ADDR (
---   prop_id CHAR(5) NOT NULL,
---   prop_addr_l1 VARCHAR (40) NOT NULL,
---   prop_addr_l2 VARCHAR (40),
---   prop_post_code VARCHAR(9) NOT NULL,
---   tca_id CHAR(6) NOT NULL,
---   CONSTRAINT PROP_ADDR_ID_REF FOREIGN KEY (prop_id) REFERENCES PROPERTIES,
---   CONSTRAINT PROP_LOCATION_REF FOREIGN KEY (tca_id) REFERENCES CITY_LOCATION,
---   CONSTRAINT PROP_ID_UNIQ UNIQUE (prop_id),
---   CONSTRAINT PROP_ADDRL1_UNIQ UNIQUE (prop_addr_l1)
--- );
 
 CREATE TABLE PROP_ROOMS (
   prop_id CHAR(5) NOT NULL,
@@ -260,6 +216,8 @@ CREATE TABLE ESTATE_AGENT (
 COMMIT;
 /
 
+-- Alter the tables after the data hase been inserted  
+
 -- ALTER TABLE BRANCH
 --   ADD CONSTRAINT BRANCH_EA_REF
 --     FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT;
@@ -272,85 +230,3 @@ COMMIT;
 
 -- Example Auto increment with property id's
 
-CREATE TABLE TEST_TABLE1 (
-  PROP_PREFIX CHAR(2) DEFAULT 'PL',
-  PROP_ID NUMBER GENERATED ALWAYS AS IDENTITY,
-  PROP_NAME VARCHAR(30) NOT NULL,
-  CONSTRAINT PROP_PRIMARY PRIMARY KEY (PROP_PREFIX, PROP_ID)
-);
-
-INSERT INTO TEST_TABLE1 (prop_name)
-  VALUE ('Testing 12');
-INSERT INTO TEST_TABLE1 (prop_name)
-  VALUE ('Testing 123');
-INSERT INTO TEST_TABLE1 (prop_name)
-  VALUE ('Testing 124');
-INSERT INTO TEST_TABLE1 (prop_name)
-  VALUE ('Testing 125');
-
--- Testing timestamp 
-
-CREATE TABLE TIME_TEST (
-  ID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  V_TIME TIMESTAMP NOT NULL
-);
-
-INSERT INTO TIME_TEST (V_TIME) 
-  VALUES ('02-MAY-2022 10:00:00');
-
-SELECT SUBSTR(a.addr_l1, 0, 15) "Addr",
-       a.post_code,
-       SUBSTR(tca.tca_name, 0, 10) "Area",
-       SUBSTR(tc.tc_name , 0, 10) "City"
-       p.list_price,
-       p.prop_type
-FROM PORTAL_ADDRESSES a, 
-     TOWN_CITY_AREA tca, 
-     TOWNS_AND_CITIES tc
-     PROPERTIES p 
-WHERE a.addr_id = p.prop_addr
-AND a.tca_id = tca.tca_id
-AND tca.tc_code = tc.tc_code
-AND tc.tc_name IN ('Newcastle-Upon-Tyne', 'Leeds', 'Luton');
-
-SELECT SUBSTR(s.staff_fname, 0, 10) "First Name",
-       SUBSTR(s.staff_email, 0, 10) "Email",
-       SUBSTR(a.addr_l1, 0, 15) "Addr",
-       a.post_code,
-       SUBSTR(tca.tca_name, 0, 10) "Area",
-       SUBSTR(tc.tc_name , 0, 10) "City"
-FROM PORTAL_ADDRESSES a, 
-     TOWN_CITY_AREA tca, 
-     TOWNS_AND_CITIES tc,
-     STAFF s
-WHERE a.addr_id = s.staff_addr
-AND a.tca_id = tca.tca_id
-AND tca.tc_code = tc.tc_code;
-
-SELECT SUBSTR(b.branch_email, 0, 15) "Email",
-       SUBSTR(s.staff_email, 0, 10) "Manager",
-       SUBSTR(a.addr_l1, 0, 15) "Addr",
-       a.post_code,
-       SUBSTR(tca.tca_name, 0, 10) "Area",
-       SUBSTR(tc.tc_name , 0, 10) "City"
-FROM PORTAL_ADDRESSES a, 
-     TOWN_CITY_AREA tca, 
-     TOWNS_AND_CITIES tc,
-     STAFF s,
-     BRANCH b
-WHERE a.addr_id = b.branch_addr
-AND b.branch_manager = s.staff_id
-AND a.tca_id = tca.tca_id
-AND tca.tc_code = tc.tc_code;
-
-SELECT SUBSTR(c.cust_fname, 0, 10) "FNAME",
-       SUBSTR(c.cust_email, 0, 15) "Email",
-       p.prop_type,
-       p.list_price,
-       P.list_type,
-       po.po_id,
-       SUBSTR(a.addr_l1, 0, 15) "Addr"
-FROM PROPERTIES p, CUSTOMER c, PORTAL_ADDRESSES a, PROP_OWNER po
-WHERE po.cust_id = c.cust_id
-AND po.po_id = p.po_id 
-AND p.prop_addr = a.addr_id;

@@ -14,6 +14,7 @@ DROP TYPE sold_prop_ref_table FORCE;
 DROP TABLE prop_table CASCADE CONSTRAINTS PURGE; 
 DROP TABLE cust_table CASCADE CONSTRAINTS PURGE; 
 
+
 CREATE OR REPLACE TYPE cust_type
 /
 
@@ -228,36 +229,36 @@ INSERT INTO TABLE (
     SELECT  p.prop_owners
     FROM   prop_table p 
     WHERE  p.prop_id = 'P01')
-  SELECT REF(p)
-         FROM prop_table p
-         WHERE p.prop_id in ('C01', 'C02');
+  SELECT REF(c)
+         FROM cust_table c
+         WHERE c.cust_id in ('C01', 'C02');
 /
 
 INSERT INTO TABLE (
     SELECT  p.prop_owners
     FROM   prop_table p 
     WHERE  p.prop_id = 'P02')
-  SELECT REF(p)
-         FROM prop_table p
-         WHERE p.prop_id in ('C01', 'C04');
+  SELECT REF(c)
+         FROM cust_table c
+         WHERE c.cust_id in ('C01', 'C04');
 /
 
 INSERT INTO TABLE (
     SELECT  p.prop_owners
     FROM   prop_table p 
     WHERE  p.prop_id = 'P03')
-  SELECT REF(p)
-         FROM prop_table p
-         WHERE p.prop_id in ('C03');
+  SELECT REF(c)
+         FROM cust_table c
+         WHERE c.cust_id in ('C03');
 /
 
 INSERT INTO TABLE (
     SELECT  p.prop_owners
     FROM   prop_table p 
     WHERE  p.prop_id = 'P04')
-  SELECT REF(p)
-         FROM prop_table p
-         WHERE p.prop_id in ('C02');
+  SELECT REF(c)
+         FROM cust_table c
+         WHERE c.cust_id in ('C02');
 /
 -- Test Query for customers tabble 
 
@@ -276,5 +277,11 @@ SELECT p.prop_addr_tab.post_code "Property Address", p.prop_addr_tab.loc_name "P
 
 -- Test Query for Joins 
 
-SELECT p.prop_addr_tab.post_code "Property Address", p.prop_addr_tab.loc_name "Prop",
+SELECT p.prop_id,
+		   p.prop_addr_tab.addr_l1,
+       po.cust_ref.cust_email "id"
+FROM   prop_table p, TABLE(p.prop_owners) po
+WHERE  p.prop_id = 'P01';
+
+SELECT * FROM PROP_TABLE;
        

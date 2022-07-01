@@ -81,7 +81,7 @@ COLUMN YEAR FORMAT 9999
 COLUMN NAME FORMAT A10
 COLUMN ADDRESS FORMAT A35
 
-SELECT   S.Name, S.BirthDate, S.Address, M.Title "Title",  M.Year "Year"
+SELECT   S.Name, S.BirthDate, M.Title "Title",  M.Year "Year"
 FROM   Star S, TABLE (S.Movies) M
 /
 

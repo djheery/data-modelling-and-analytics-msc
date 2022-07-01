@@ -23,6 +23,8 @@ INSERT INTO TOWNS_AND_CITIES
   VALUES ('SR', 'Sunderland', 'CO01');
 INSERT INTO TOWNS_AND_CITIES 
   VALUES ('NE2', 'Gateshead', 'CO01');
+INSERT INTO TOWNS_AND_CITIES 
+  VALUES ('NE3', 'Cramlington', 'CO01');
 
 REM Location
 
@@ -52,6 +54,10 @@ INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0012', 'NE2', 'Dunston');
 INSERT INTO TOWN_CITY_AREA
   VALUES ('CL0013', 'SR', 'City Centre');
+INSERT INTO TOWN_CITY_AREA
+  VALUES ('CL0014', 'SR', 'Seaburn');
+INSERT INTO TOWN_CITY_AREA
+  VALUES ('CL0015', 'NE3', 'Stannington Vale');
 
 REM Customer Address
 
@@ -325,6 +331,20 @@ INSERT INTO PORTAL_ADDRESSES
   VALUES('A0057', '10 Leagrave Road', NULL, 'LU24 4TT', 'CL0006');
 INSERT INTO PORTAL_ADDRESSES
   VALUES('A0058', '21 Marsh Road', NULL, 'LU28 4FR', 'CL0007');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0059', '10 Stick Well Close', NULL, 'NE15 4FF', 'CL0002');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0060', '27 Heaton Road', NULL, 'NE15 4FF', 'CL0003');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0061', '27 Fenham Road', NULL, 'NE15 32P', 'CL0002');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0062', '15 Aldern Tower', 'Flat 4', 'SR3 3AT', 'CL0013');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0063', '10 Aldelaide Close', NULL, 'SR1 2JN', 'CL0014');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0064', '27 Stannington Vale', NULL, 'NE15 32P', 'CL0015');
+INSERT INTO PORTAL_ADDRESSES
+  VALUES('A0065', '28 Sunderland Road', NULL, 'NE15 32P', 'CL0009');
 
 
 REM Prop Owner
@@ -341,6 +361,7 @@ INSERT INTO PROP_OWNER
   VALUES('PO005','C0002', 'B0009');
 INSERT INTO PROP_OWNER 
   VALUES('PO006','C0005', 'B0009');
+
 REM Properties 
 
 INSERT INTO PROPERTIES 
@@ -404,8 +425,8 @@ INSERT INTO PROPERTIES
           'Small terraced house in a good area', 2000,
           'A0054');
 INSERT INTO PROPERTIES 
-  VALUES ('P0013', 'B0007', 'PO002', 1600, 
-          'FL', 'Flat', '06-APR-2022',
+  VALUES ('P0013', 'B0007', 'PO002', 250000, 
+          'FS', 'Detached', '30-JUN-2022',
           'Medium size flat for rent, perfect for a couple or for multiple tennants',3000, 
           'A0055');
 INSERT INTO PROPERTIES 
@@ -420,6 +441,41 @@ INSERT INTO PROPERTIES
   VALUES ('P0016', 'B0010', 'PO003', 
           1400, 'L', 'Flat', '02-JUN-2022',
           'Medium size flat for let', 2000, 'A0058');
+INSERT INTO PROPERTIES 
+  VALUES ('P0017', 'B0006', 'PO005', 330000, 
+          'FS', 'Semi-Detached', '01-JUL-2022', 
+          'Small terraced house in a good area', 2000,
+          'A0059');
+INSERT INTO PROPERTIES 
+  VALUES ('P0018', 'B0006', 'PO001', 324000, 
+          'FS', 'Detached', '01-JUL-2022', 
+          'Large Detached house in a good area', 3000,
+          'A0060');
+INSERT INTO PROPERTIES 
+  VALUES ('P0019', 'B0006', 'PO002', 220000, 
+          'FS', 'Semi-Detached', '30-JUN-2022', 
+          'Large Detached house in a good area', 3000,
+          'A0061');
+INSERT INTO PROPERTIES 
+  VALUES ('P0020', 'B0006', 'PO004', 210000, 
+          'S', 'Flat', '30-JUN-2022', 
+          'Large flat close to the centre', 2000,
+          'A0062');
+INSERT INTO PROPERTIES 
+  VALUES ('P0021', 'B0006', 'PO004', 195000, 
+          'S', 'Terraced', '30-JUN-2019', 
+          'Medium sized terraced house', 3000,
+          'A0063');
+INSERT INTO PROPERTIES 
+  VALUES ('P0022', 'B0006', 'PO004', 320000, 
+          'S', 'Semi-Detached', '30-JUN-2019', 
+          'Large Detached house', 5000,
+          'A0064');
+INSERT INTO PROPERTIES 
+  VALUES ('P0023', 'B0006', 'PO002', 300000, 
+          'S', 'Semi-Detached', '30-JUN-2018', 
+          'Large Semi-Detached house', 3000,
+          'A0065');
 
 
 
@@ -540,11 +596,17 @@ INSERT INTO PROP_ROOMS
 INSERT INTO PROP_ROOMS
   VALUES('P0013', NULL, 'Kitchen');
 INSERT INTO PROP_ROOMS
-  VALUES('P0013', 'A Small bedroom', 'Bedroom');
+  VALUES('P0013', 'A Small bathroom', 'Bathroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0013', NULL, 'Bedroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0013', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A bathroom', 'Bathroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0013', 'A large bedroom', 'Bedroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0014', 'A nice bedroom', 'Bedroom');
 INSERT INTO PROP_ROOMS
@@ -575,6 +637,78 @@ INSERT INTO PROP_ROOMS
   VALUES('P0016', NULL, 'Bedroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0016', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0017', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0018', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0019', NULL, 'Kitchen');
+INSERT INTO PROP_ROOMS
+  VALUES('P0019', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0019', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0019', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0019', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0020', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0020', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0020', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0020', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0021', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0021', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0022', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0023', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0023', 'A nice bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0023', 'A Small bedroom', 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0023', NULL, 'Bedroom');
+INSERT INTO PROP_ROOMS
+  VALUES('P0023', 'A nice bedroom', 'Bedroom');
 
 REM Sold Property
 
@@ -584,6 +718,14 @@ INSERT INTO SOLD_PROPERTIES
   VALUES('C0002', 'P0011', 650000, '20-APR-2019');
 INSERT INTO SOLD_PROPERTIES
   VALUES('C0003', 'P0012', 185000, '30-JUN-2020');
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0001', 'P0020', 230000, '10-MAR-2018');
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0004', 'P0021', 210000, '20-APR-2019');
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0005', 'P0022', 300000, '30-JUN-2020');
+INSERT INTO SOLD_PROPERTIES
+  VALUES('C0006', 'P0023', 312000, '10-MAR-2018');
 
 REM DPS
 

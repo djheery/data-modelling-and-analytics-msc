@@ -1,0 +1,10 @@
+The relations that I have chosen for the object relational implementation of my database are of the following
+
+- Property Owner
+- Properties 
+
+I have chosen these relations as they offer a chance for an alternative design to the database. This is because it will allow multiple customers to own one property and many properties to be owned by one customer which admittedly is an oversight in my original database design. 
+
+The design is as follows 
+
+PropertyOwner(po_fname, po_lname, po_email, po_tel, po_dob, po_ge)
