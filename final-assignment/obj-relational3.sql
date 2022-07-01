@@ -1,3 +1,5 @@
+-- Exceptions for the procedure
+
 SET ECHO ON 
 SET VERIFY ON 
 
@@ -67,6 +69,8 @@ CREATE TABLE branch_table OF branch_type (
   FOREIGN KEY (ea_id) REFERENCES ESTATE_AGENT)
   NESTED TABLE branch_staff STORE AS branch_staff_ref 
 /
+
+COMMIT; 
 
 REM Staff Table Inserts 
 
@@ -315,6 +319,14 @@ CREATE OR REPLACE PROCEDURE ea_branch_staff (
         DBMS_OUTPUT.PUT_LINE(bs.branch_id); 
         v_count := v_count + 1;
     END LOOP; 
+    DBMS_OUTPUT.PUT_LINE(v_count || ' Staff members found at estate agent: ' || EA_IDENTIFIER);
+    COMMIT;
+    EXCEPTION
+      WHEN OTHERS 
+      DBMS_OUTPUT.PUT_LINE('Operation');
+      DBMS_OUTPUT.PUT_LINE('Operation Failed ' || 'SQLCODE: ' || SQLCODE);
+      DBMS_OUTPUT.PUT_LINE('SQL Error Message: ' || SQLERRM);
+      ROLLBACK;
   END;
 /
 

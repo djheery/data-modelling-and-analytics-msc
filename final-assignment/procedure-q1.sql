@@ -135,8 +135,10 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
   EXCEPTION
     WHEN NO_RESULTS_FOUND THEN 
       DBMS_OUTPUT.PUT_LINE('We could not find a match for your search');
+      ROLLBACK;
     WHEN ROOM_NUM_LOW THEN 
       DBMS_OUTPUT.PUT_LINE('Please enter a room amount of 1 or above');
+      ROLLBACK;
     WHEN LIST_TYPE_DOES_NOT_EXIST THEN 
       DBMS_OUTPUT.PUT_LINE('The list type you entered does not exist');
       DBMS_OUTPUT.PUT_LINE('The following list types are allowed: ');
@@ -146,11 +148,13 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
       DBMS_OUTPUT.PUT_LINE('"L" ::: Let');
       DBMS_OUTPUT.PUT_LINE('-----------------');
       DBMS_OUTPUT.PUT_LINE('You entered: ' || L_TYPE);
+      ROLLBACK;
     WHEN TC_DOES_NOT_EXIST THEN
        DBMS_OUTPUT.PUT_LINE('The town or city code you entered does not exist');
        DBMS_OUTPUT.PUT_LINE('Below is a list of known places with along with their codes: ');
        print_cities_and_codes();
        DBMS_OUTPUT.PUT_LINE('The town or city code you entered was: ' || TOC_CODE);
+       ROLLBACK;
     WHEN OTHERS THEN 
       DBMS_OUTPUT.PUT_LINE('Operation');
       DBMS_OUTPUT.PUT_LINE('Operation Failed ' || 'SQLCODE: ' || SQLCODE);
