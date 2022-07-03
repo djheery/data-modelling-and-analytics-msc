@@ -19,12 +19,12 @@ CREATE OR REPLACE TYPE addr_type AS OBJECT (
   addr_l1 VARCHAR(20), 
   addr_l2 VARCHAR(20),
   post_code VARCHAR(8),
-  tca_code CHAR(6)
+  area_code CHAR(5)
 )
 /
 
 CREATE OR REPLACE TYPE staff_type AS OBJECT (
-  staff_id CHAR(6),
+  staff_id CHAR(5),
   staff_fname VARCHAR(20),
   staff_lname VARCHAR(20),
   staff_email VARCHAR(40),
@@ -46,7 +46,7 @@ CREATE OR REPLACE TYPE staff_ref_table AS TABLE OF staff_ref_type
 
 CREATE OR REPLACE TYPE branch_type AS OBJECT (
   branch_id CHAR(5),
-  ea_id CHAR(6),
+  ea_id CHAR(5),
   branch_email VARCHAR(40),
   branch_tel VARCHAR(14),
   branch_addr addr_type,
@@ -60,7 +60,12 @@ CREATE TABLE staff_table OF staff_type (
   UNIQUE (staff_email),
   UNIQUE (staff_tel),
   CHECK (staff_gender IN ('M', 'F', 'O')),
-  CHECK (staff_dob > '01-JAN-1930')
+  CHECK (staff_dob > '01-JAN-1930'),
+  CHECK(REGEXP_LIKE(staff_id, '^S[0-9]{4}')),
+  CHECK(staff_email LIKE '%@%.%' 
+                    AND staff_email NOT LIKE '@%' 
+                    AND staff_email NOT LIKE '%@%@%' 
+                    AND staff_email NOT LIKE '%.@%')
 ) 
 /
 
@@ -75,73 +80,73 @@ COMMIT;
 REM Staff Table Inserts 
 
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00001', 'Daniel', 'Heery', 'heery@live.co.uk',
+  VALUES ('S0001', 'Daniel', 'Heery', 'heery@live.co.uk',
           '07437519714', '06-APR-1994', 'M', 
-           addr_type ('48 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001'),
+           addr_type ('48 Wolseley Gardens', NULL, 'NE2 1HR', 'AR001'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00002','Elizabeth', 'Jones', 'ejones@live.co.uk',
+  VALUES ('S0002','Elizabeth', 'Jones', 'ejones@live.co.uk',
            '07437555714', '16-DEC-1995', 'F',
-            addr_type ('54 Heaton Mount', NULL, 'NE3 2PJ', 'CL0003'),
+            addr_type ('54 Heaton Mount', NULL, 'NE3 2PJ', 'AR003'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00003', 'Steven', 'Gerrard', 'sgerrard@live.co.uk',
+  VALUES ('S0003', 'Steven', 'Gerrard', 'sgerrard@live.co.uk',
           '07437535714', '30-MAY-1980', 'M',
-            addr_type ('30 Gordon Terrace', NULL, 'LS6 4HX','CL0008'),
+            addr_type ('30 Gordon Terrace', NULL, 'LS6 4HX','AR008'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00004',  'Ben', 'Stiller', 'bstiller@live.co.uk',
+  VALUES ('S0004',  'Ben', 'Stiller', 'bstiller@live.co.uk',
           '07437550714', '16-JAN-1961', 'M',
-           addr_type('50 Heaton Road', NULL, 'NE7 2PJ', 'CL0003'),
+           addr_type('50 Heaton Road', NULL, 'NE7 2PJ', 'AR003'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00005',  'Julie', 'Andrews', 'jandrews@live.co.uk',
+  VALUES ('S0005',  'Julie', 'Andrews', 'jandrews@live.co.uk',
           '07437520714', '20-JUN-1949', 'M',
-           addr_type('20 Lost Lane', NULL, 'NE3 2AJ', 'CL0003'),
+           addr_type('20 Lost Lane', NULL, 'NE3 2AJ', 'AR003'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00006',  'John','Coltrane', 'jcoltrane@gmail.com', '07893129444',
+  VALUES ('S0006',  'John','Coltrane', 'jcoltrane@gmail.com', '07893129444',
           '23-SEP-1966', 'M',
-           addr_type('38 Sunderland Road', NULL, 'NE8 3HF', 'CL0009'),
+           addr_type('38 Sunderland Road', NULL, 'NE8 3HF', 'AR009'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00007',  'Rafa', 'Benitez', 'rafabenitez@live.co.uk',
+  VALUES ('S0007',  'Rafa', 'Benitez', 'rafabenitez@live.co.uk',
           '0743253777', '16-APR-1960', 'M',
-           addr_type('5 Smokehouse Street', NULL, 'BN42 5FS', 'CL0005'),
+           addr_type('5 Smokehouse Street', NULL, 'BN42 5FS', 'AR005'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00008',  'Beatrice', 'Potter', 'beatriceporter@live.co.uk', 
+  VALUES ('S0008',  'Beatrice', 'Potter', 'beatriceporter@live.co.uk', 
           '07421519774', '18-APR-1967', 'F',
-           addr_type( '16 Pythagorus Close', NULL, 'LU3 3PJ', 'CL0006'),
+           addr_type( '16 Pythagorus Close', NULL, 'LU3 3PJ', 'AR006'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00009' , 'Ryan', 'Barker', 'ryanbarker@live.co.uk', 
+  VALUES ('S0009' , 'Ryan', 'Barker', 'ryanbarker@live.co.uk', 
           '07437519774', '20-SEP-1987', 'M',
-           addr_type('18 Sunderland Street', NULL, 'SR22 2TT', 'CL0014'),
+           addr_type('18 Sunderland Street', NULL, 'SR22 2TT', 'AR014'),
            NULL);
 INSERT INTO STAFF_TABLE 
-  VALUES ('S00010', 'Edmund', 'Dijkstra', 'edijkstra@live.co.uk', 
+  VALUES ('S0010', 'Edmund', 'Dijkstra', 'edijkstra@live.co.uk', 
            '07437436774', '16-DEC-1930', 'M',
-           addr_type('28 Grosvenor Gardens', NULL, 'NE4 5HT', 'CL0001'),
+           addr_type('28 Grosvenor Gardens', NULL, 'NE4 5HT', 'AR001'),
            NULL);
 
 REM Branch Table Inserts 
 
 INSERT INTO BRANCH_TABLE 
   VALUES('B0001', 'EA001', 'branch1@estateagent1.co.uk', '0191323588',
-         addr_type('28 Gordon Terrace', NULL, 'LS6 4HX', 'CL0008'),
+         addr_type('28 Gordon Terrace', NULL, 'LS6 4HX', 'AR008'),
          NULL, staff_ref_table());
 INSERT INTO BRANCH_TABLE 
   VALUES('B0002', 'EA002', 'branch2@estateagent2.co.uk', '0191353588',
-         addr_type('123 Heaton Road', NULL, 'NE6 2BB', 'CL0003'),
+         addr_type('123 Heaton Road', NULL, 'NE6 2BB', 'AR003'),
          NULL, staff_ref_table());
 INSERT INTO BRANCH_TABLE 
   VALUES('B0003', 'EA001', 'branch3@estateagent1.co.uk', '0191229332',
-         addr_type('18 Jesmond Lane', NULL, 'NE6 2BB', 'CL0001'),
+         addr_type('18 Jesmond Lane', NULL, 'NE6 2BB', 'AR001'),
          NULL, staff_ref_table());
 INSERT INTO BRANCH_TABLE 
   VALUES('B0004', 'EA002', 'branch4@estateagent4.co.uk', '0191323588',
-         addr_type('12 Briggate Street', NULL, 'LS10 1FB', 'CL0011'),
+         addr_type('12 Briggate Street', NULL, 'LS10 1FB', 'AR011'),
          NULL, staff_ref_table());
 
 REM branch_manager => staff refs 
@@ -149,46 +154,46 @@ REM branch_manager => staff refs
 UPDATE BRANCH_TABLE 
   SET branch_manager = (
       SELECT REF(s) FROM STAFF_TABLE s
-      WHERE s.staff_id = 'S00009'
+      WHERE s.staff_id = 'S0009'
     )
     WHERE branch_id = 'B0001';
 
 UPDATE BRANCH_TABLE 
   SET branch_manager = (
       SELECT REF(s) FROM STAFF_TABLE s
-      WHERE s.staff_id = 'S00010'
+      WHERE s.staff_id = 'S0010'
     )
     WHERE branch_id = 'B0002';
 
 UPDATE BRANCH_TABLE 
   SET branch_manager = (
       SELECT REF(s) FROM STAFF_TABLE s
-      WHERE s.staff_id = 'S00002'
+      WHERE s.staff_id = 'S0002'
     )
     WHERE branch_id = 'B0003';
 
 UPDATE BRANCH_TABLE 
   SET branch_manager = (
       SELECT REF(s) FROM STAFF_TABLE s
-      WHERE s.staff_id = 'S00001'
+      WHERE s.staff_id = 'S0001'
     )
     WHERE branch_id = 'B0004';
 
 REM staff_branch => branch refs  
 
 UPDATE STAFF_TABLE 
-  SET branch = (
+  SET staff_branch = (
       SELECT REF(b) FROM BRANCH_TABLE b 
       WHERE b.branch_id = 'B0001'
     )
-  WHERE staff_id IN ('S00003', 'S00009', 'S00005');
+  WHERE staff_id IN ('S0003', 'S0009', 'S0005');
 
 UPDATE STAFF_TABLE 
   SET staff_branch = (
       SELECT REF(b) FROM BRANCH_TABLE b 
       WHERE b.branch_id = 'B0002'
     )
-  WHERE staff_id IN ('S00010', 'S00006', 'S00004');
+  WHERE staff_id IN ('S0010', 'S0006', 'S0004');
 
 
 UPDATE STAFF_TABLE 
@@ -196,14 +201,14 @@ UPDATE STAFF_TABLE
       SELECT REF(b) FROM BRANCH_TABLE b 
       WHERE b.branch_id = 'B0002'
     )
-  WHERE staff_id = 'S00002';
+  WHERE staff_id = 'S0002';
 
 UPDATE STAFF_TABLE 
   SET staff_branch = (
       SELECT REF(b) FROM BRANCH_TABLE b 
       WHERE b.branch_id = 'B0002'
     )
-  WHERE staff_id IN ('S00001', 'S00007', 'S00008');
+  WHERE staff_id IN ('S0001', 'S0007', 'S0008');
 
 REM branch_staff_table => staff refs 
 
@@ -214,7 +219,7 @@ INSERT INTO TABLE (
   ) 
   SELECT REF(s)
     FROM STAFF_TABLE s  
-    WHERE s.staff_id IN ('S00003', 'S00009', 'S00005');
+    WHERE s.staff_id IN ('S0003', 'S0009', 'S0005');
 /
 
 INSERT INTO TABLE (
@@ -224,7 +229,7 @@ INSERT INTO TABLE (
   ) 
   SELECT REF(s)
     FROM STAFF_TABLE s 
-    WHERE s.staff_id IN ('S00010', 'S00006', 'S00004');
+    WHERE s.staff_id IN ('S0010', 'S0006', 'S0004');
 /
 
 INSERT INTO TABLE (
@@ -234,7 +239,7 @@ INSERT INTO TABLE (
   ) 
   SELECT REF(s)
     FROM STAFF_TABLE s 
-    WHERE s.staff_id = 'S00003';
+    WHERE s.staff_id = 'S0003';
 /
 
 INSERT INTO TABLE (
@@ -244,7 +249,7 @@ INSERT INTO TABLE (
   ) 
   SELECT REF(s)
     FROM STAFF_TABLE s 
-    WHERE s.staff_id IN ('S00001', 'S00007', 'S00008');
+    WHERE s.staff_id IN ('S0001', 'S0007', 'S0008');
 /
 
 COMMIT; 
@@ -316,13 +321,13 @@ CREATE OR REPLACE PROCEDURE ea_branch_staff (
         DBMS_OUTPUT.PUT_LINE('Staff Email: ' || bs.staff_email); 
         DBMS_OUTPUT.PUT_LINE('Staff Tel: ' || bs.staff_tel); 
         DBMS_OUTPUT.PUT_LINE('Staff Address: ' || bs.staff_addr); 
-        DBMS_OUTPUT.PUT_LINE(bs.branch_id); 
+        DBMS_OUTPUT.PUT_LINE('Staff Branch: ' || bs.branch_id); 
         v_count := v_count + 1;
     END LOOP; 
     DBMS_OUTPUT.PUT_LINE(v_count || ' Staff members found at estate agent: ' || EA_IDENTIFIER);
     COMMIT;
     EXCEPTION
-      WHEN OTHERS 
+      WHEN OTHERS THEN
       DBMS_OUTPUT.PUT_LINE('Operation');
       DBMS_OUTPUT.PUT_LINE('Operation Failed ' || 'SQLCODE: ' || SQLCODE);
       DBMS_OUTPUT.PUT_LINE('SQL Error Message: ' || SQLERRM);
@@ -330,14 +335,5 @@ CREATE OR REPLACE PROCEDURE ea_branch_staff (
   END;
 /
 
-
- 
-SELECT DISTINCT SUBSTR(ea.ea_name, 0, 15) "EA Name", 
-       b.branch_id "Branch ID",
-       SUBSTR(b.branch_email, 0, 15) "Branch Email",
-       SUBSTR(s.staff_ref.staff_fname, 0, 10) "Staff Name",
-       SUBSTR(s.staff_ref.staff_addr.addr_l1, 0, 15) "Staff Addr",
-       SUBSTR(s.staff_ref.staff_email, 0, 10) "Staff Email"
-       FROM BRANCH_TABLE b, ESTATE_AGENT ea, TABLE(b.branch_staff) s  
-       WHERE ea.ea_id = b.ea_id
-       AND ea.ea_id = 'EA001';
+execute ea_branch_staff('EA001');
+execute ea_branch_staff('EA002');

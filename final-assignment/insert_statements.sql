@@ -284,19 +284,19 @@ INSERT INTO PROPERTIES
           'FS', 'Semi-Detached', '30-JUN-2022', 
           'Large Detached house in a good area', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0020', 'B0006', 210000, 
+  VALUES ('P0020', 'B0001', 210000, 
           'S', 'Flat', '30-JUN-2022', 
           'Large flat close to the centre', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0021', 'B0006', 195000, 
+  VALUES ('P0021', 'B0001', 195000, 
           'S', 'Terraced', '30-JUN-2019', 
           'Medium sized terraced house', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0022', 'B0006', 320000, 
+  VALUES ('P0022', 'B0003', 320000, 
           'S', 'Semi-Detached', '30-JUN-2019', 
           'Large Detached house', 5000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0023', 'B0006', 300000, 
+  VALUES ('P0023', 'B0002', 300000, 
           'S', 'Semi-Detached', '30-JUN-2018', 
           'Large Semi-Detached house', 3000);
 

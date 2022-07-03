@@ -39,6 +39,19 @@ CREATE OR REPLACE FUNCTION calc_stamp_duty (sale_price IN NUMBER)
 END;
 /
 
+CREATE OR REPLACE FUNCTION calc_commision 
+  (branch_id_v IN CHAR, sale_price_v IN NUMBER) 
+    RETURN NUMBER IS
+      branch_rec_v BRANCH%ROWTYPE;
+      CALCULATED_COMMISSION NUMBER;  
+
+      BEGIN
+        SELECT * INTO branch_rec_v FROM BRANCH 
+        WHERE branch_id = branch_id_v; 
+        CALCULATED_COMMISSION := ROUND(sale_price_v * branch_rec_v.com_amt, 2);
+        RETURN CALCULATED_COMMISSION;
+      END;
+  /
 
 CREATE OR REPLACE PROCEDURE find_sold_properties
   (
@@ -52,17 +65,17 @@ CREATE OR REPLACE PROCEDURE find_sold_properties
   AS
 
   CURSOR sold_props IS 
-    SELECT sp.buyer, sp.sale_price,  a.addr_l1, 
-           sp.sale_date, p.list_price, p.list_date, 
-           c.cust_fname, c.cust_lname, c.cust_email, tc.tc_name, tca.tca_name
+    SELECT sp.buyer, sp.sale_price,  pa.addr_l1, 
+           sp.sale_date, p.list_price, p.list_date, p.branch_id,
+           c.cust_fname, c.cust_lname, c.cust_email, tc.tc_name, a.area_name
     FROM SOLD_PROPERTIES sp, PROPERTIES p, 
-         PORTAL_ADDRESSES a, CUSTOMER c, 
-         TOWN_CITY_AREA tca, TOWNS_AND_CITIES tc  
+         PROP_ADDR pa, CUSTOMER c, 
+         AREAS a, TOWNS_AND_CITIES tc  
     WHERE sp.buyer = c.cust_id
     AND sp.prop_id = p.prop_id
-    AND p.prop_addr = a.addr_id
-    AND a.tca_id = tca.tca_id
-    AND tca.tc_code = tc.tc_code 
+    AND p.prop_id = pa.prop_id
+    AND pa.area_id = a.area_id
+    AND a.tc_code = tc.tc_code 
     AND tc.tc_name IN (SELECT * FROM TABLE(TOWNS_OR_CITIES))
     AND sp.sale_date BETWEEN MIN_YEAR AND MAX_YEAR 
     AND sp.sale_price BETWEEN MIN_SOLD_PRICE AND MAX_SOLD_PRICE;
@@ -96,12 +109,13 @@ CREATE OR REPLACE PROCEDURE find_sold_properties
 
     FOR sold IN sold_props LOOP
         DBMS_OUTPUT.PUT_LINE('Property Address: ' || sold.addr_l1);
-        DBMS_OUTPUT.PUT_LINE('Property Area: ' || sold.tca_name);
+        DBMS_OUTPUT.PUT_LINE('Property Area: ' || sold.area_name);
         DBMS_OUTPUT.PUT_LINE('Property Sale Date: ' || sold.sale_date);
         DBMS_OUTPUT.PUT_LINE('Property Town or City: ' || sold.tc_name);
         DBMS_OUTPUT.PUT_LINE('Property Listed Price: £' || sold.list_price);
         DBMS_OUTPUT.PUT_LINE('Property Sold For: £' || sold.sale_price);
         DBMS_OUTPUT.PUT_LINE('Estimated Stamp Duty: £' || calc_stamp_duty(sold.sale_price));
+        DBMS_OUTPUT.PUT_LINE('Estimated Commission: £' || calc_commision(sold.branch_id, sold.sale_price));
         DBMS_OUTPUT.PUT_LINE('Buyer Name: ' || sold.cust_fname || ' ' || sold.cust_lname);
         DBMS_OUTPUT.PUT_LINE('Buyer Email: ' || sold.cust_email);
         DBMS_OUTPUT.PUT_LINE('=============================');

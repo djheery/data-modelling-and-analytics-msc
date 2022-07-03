@@ -33,12 +33,25 @@ CREATE OR REPLACE PROCEDURE print_cities_and_codes AS
   
   BEGIN 
     FOR T IN TC LOOP
-      DBMS_OUTPUT.PUT_LINE('--------------------------');
+      DBMS_OUTPUT.PUT_LINE('--------------------------------------------');
       DBMS_OUTPUT.PUT_LINE('Place Code: ' || T.tc_code);
       DBMS_OUTPUT.PUT_LINE('Place Name : ' || T.tc_name);
-      DBMS_OUTPUT.PUT_LINE('--------------------------');
+      DBMS_OUTPUT.PUT_LINE('--------------------------------------------');
     END LOOP;
 END;
+/
+
+CREATE OR REPLACE PROCEDURE allowed_list_types AS
+  BEGIN 
+    DBMS_OUTPUT.PUT_LINE('============================================'); 
+    DBMS_OUTPUT.PUT_LINE('Below is a list of the allowed list types  '); 
+    DBMS_OUTPUT.PUT_LINE('============================================'); 
+    DBMS_OUTPUT.PUT_LINE('"FS" => For Sale');
+    DBMS_OUTPUT.PUT_LINE('"FL" => For Let');
+    DBMS_OUTPUT.PUT_LINE('"S"  => Sold');
+    DBMS_OUTPUT.PUT_LINE('"L"  => Let');
+    DBMS_OUTPUT.PUT_LINE('============================================'); 
+  END;
 /
 
 
@@ -56,24 +69,24 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
   AS 
 
   CURSOR PROPS IS 
-    SELECT COUNT(PR.prop_id) AS room_count, 
+    SELECT COUNT(pr.prop_id) AS room_count, 
             pa.addr_l1 AS addr, 
-            a.tca_name, tc.tc_name, 
+            a.area_name, tc.tc_name, 
             p.prop_type, p.list_type, p.list_date, p.list_price   
     FROM PROP_ROOMS pr, PROP_ADDR pa, 
          PROPERTIES p, AREAS a, 
          TOWNS_AND_CITIES tc 
     WHERE pr.prop_id = p.prop_id
-    AND pa.tca_id = tca.tca_id
-    AND tca.tc_code = tc.tc_code
-    AND p.prop_addr = a.addr_id
+    AND p.prop_id = pa.prop_id
+    AND pa.area_id = a.area_id
+    AND a.tc_code = tc.tc_code
     AND pr.room_type = 'Bedroom'
     AND p.list_type = L_TYPE
     AND tc.tc_code = TOC_CODE
-    AND tca.tca_name IN (SELECT * FROM TABLE(LOC))
+    AND a.area_name IN (SELECT * FROM TABLE(LOC))
     AND p.prop_type IN (SELECT * FROM TABLE(PROP_TYPES))
     AND p.list_date >= (SYSDATE - DAYS_LISTED)
-    GROUP BY a.addr_l1, tca.tca_name, tc.tc_name, 
+    GROUP BY pa.addr_l1, a.area_name, tc.tc_name, 
     p.prop_type, p.list_type, p.list_date, p.list_price;
 
     v_counter INTEGER;
@@ -91,9 +104,10 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
     PRAGMA EXCEPTION_INIT(NO_RESULTS_FOUND, -20007);
 
   BEGIN
-    DBMS_OUTPUT.PUT_LINE('===================================');
+    
+    DBMS_OUTPUT.PUT_LINE('============================================'); 
     DBMS_OUTPUT.PUT_LINE( 'Searching for houses');
-    DBMS_OUTPUT.PUT_LINE('===================================');
+    DBMS_OUTPUT.PUT_LINE('============================================'); 
 
     IF NOT check_town_or_city_exists(TOC_CODE) THEN 
       RAISE TC_DOES_NOT_EXIST;
@@ -115,12 +129,12 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
             DBMS_OUTPUT.PUT_LINE('Prop Match: ' || prop.addr );
             DBMS_OUTPUT.PUT_LINE('Bedroom Count: ' || prop.room_count);
             DBMS_OUTPUT.PUT_LINE('Property Type: ' || prop.prop_type);
-            DBMS_OUTPUT.PUT_LINE('Location: ' || prop.tca_name);
+            DBMS_OUTPUT.PUT_LINE('Location: ' || prop.area_name);
             DBMS_OUTPUT.PUT_LINE('City: ' || prop.tc_name);
             DBMS_OUTPUT.PUT_LINE('List Type: ' || prop.list_type);
             DBMS_OUTPUT.PUT_LINE('List Price: ' || prop.list_price);
             DBMS_OUTPUT.PUT_LINE('List date: ' || prop.list_date);
-            DBMS_OUTPUT.PUT_LINE('===================================');
+            DBMS_OUTPUT.PUT_LINE('============================================'); 
             v_counter := v_counter + 1;
       END IF; 
   END LOOP;
@@ -141,13 +155,9 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
       ROLLBACK;
     WHEN LIST_TYPE_DOES_NOT_EXIST THEN 
       DBMS_OUTPUT.PUT_LINE('The list type you entered does not exist');
-      DBMS_OUTPUT.PUT_LINE('The following list types are allowed: ');
-      DBMS_OUTPUT.PUT_LINE('"FS" ::: For Sale');
-      DBMS_OUTPUT.PUT_LINE('"FL" ::: For Let');
-      DBMS_OUTPUT.PUT_LINE('"S" ::: Sold');
-      DBMS_OUTPUT.PUT_LINE('"L" ::: Let');
-      DBMS_OUTPUT.PUT_LINE('-----------------');
+      allowed_list_types();
       DBMS_OUTPUT.PUT_LINE('You entered: ' || L_TYPE);
+      DBMS_OUTPUT.PUT_LINE('============================================'); 
       ROLLBACK;
     WHEN TC_DOES_NOT_EXIST THEN
        DBMS_OUTPUT.PUT_LINE('The town or city code you entered does not exist');
