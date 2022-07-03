@@ -9,6 +9,7 @@ INSERT INTO COUNTIES
 INSERT INTO COUNTIES 
   VALUES ('CO04', 'West Yorkshire');
 
+
 REM City 
 
 INSERT INTO TOWNS_AND_CITIES 
@@ -28,456 +29,276 @@ INSERT INTO TOWNS_AND_CITIES
 
 REM Location
 
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0001', 'NE1', 'Jesmond');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0002', 'NE1', 'Fenham');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0003', 'NE1', 'Heaton');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0004', 'LS', 'Burley');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0005', 'BN', 'Kemptown');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0006', 'LU', 'Bushmead');
-INSERT INTO TOWN_CITY_AREA
-  VALUES('CL0007', 'LU', 'Warden Hill');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0008', 'LS', 'Meanwood');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0009', 'NE2', 'Felling');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0010', 'LS', 'Hyde Park');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0011', 'LS', 'City Centre');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0012', 'NE2', 'Dunston');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0013', 'SR', 'City Centre');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0014', 'SR', 'Seaburn');
-INSERT INTO TOWN_CITY_AREA
-  VALUES ('CL0015', 'NE3', 'Stannington Vale');
-
-REM Customer Address
-
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0001', '48 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0002', '21 Knowle Road', NULL, 'LS4 2PJ', 'CL0004');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0003', '60 Wychwood Avenue', NULL, 'LU2 7HU', 'CL0006');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0004', '28 Grosvenor Gardens', NULL, 'NE4 5HT', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0005', '77 Sunderland Road', NULL, 'NE15 4PS', 'CL0009');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0006', '37 Farmbrook close', NULL, 'LU2 7FS', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0007', '18 Alphabet Street', NULL, 'BN4 2FA', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0008', '21 Poltergeist Avenue', NULL, 'LS5 22F', 'CL0011');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0009', '30 Gordon Terrace', NULL, 'LS2 2FA', 'CL0008');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0010', '5 Smokehouse Street', NULL, 'BN42 5FS', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0011', '16 Pythagorus Close', NULL, 'LU3 3PJ', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0012', '18 Sunderland Street', NULL, 'SR22 2TT', 'CL0013');
+INSERT INTO AREAS
+  VALUES('AR001', 'NE1', 'Jesmond');
+INSERT INTO AREAS
+  VALUES('AR002', 'NE1', 'Fenham');
+INSERT INTO AREAS
+  VALUES('AR003', 'NE1', 'Heaton');
+INSERT INTO AREAS
+  VALUES('AR004', 'LS', 'Burley');
+INSERT INTO AREAS
+  VALUES('AR005', 'BN', 'Kemptown');
+INSERT INTO AREAS
+  VALUES('AR006', 'LU', 'Bushmead');
+INSERT INTO AREAS
+  VALUES('AR007', 'LU', 'Warden Hill');
+INSERT INTO AREAS
+  VALUES ('AR008', 'LS', 'Meanwood');
+INSERT INTO AREAS
+  VALUES ('AR009', 'NE2', 'Felling');
+INSERT INTO AREAS
+  VALUES ('AR010', 'LS', 'Hyde Park');
+INSERT INTO AREAS
+  VALUES ('AR011', 'LS', 'City Centre');
+INSERT INTO AREAS
+  VALUES ('AR012', 'NE2', 'Dunston');
+INSERT INTO AREAS
+  VALUES ('AR013', 'SR', 'City Centre');
+INSERT INTO AREAS
+  VALUES ('AR014', 'SR', 'Seaburn');
+INSERT INTO AREAS
+  VALUES ('AR015', 'NE3', 'Stannington Vale');
 
 
 REM Insert Customers 
 
 INSERT INTO CUSTOMER
-  VALUES ('C0001', 'Daniel', 'Heery', 'M', '06-APR-1994', 'heery@live.co.uk', '07437519714', 'A0001');
+  VALUES ('C0001', 'Daniel', 'Heery', 'M', '06-APR-1994', 'heery@live.co.uk', '07437519714', '48 Wolseley Gardens, NE2 1HR');
 INSERT INTO CUSTOMER
-  VALUES ('C0002', 'Anna', 'Heery', 'F', '26-JUN-1996', 'annaheery@live.co.uk', '07437419714', 'A0002');
+  VALUES ('C0002', 'Anna', 'Heery', 'F', '26-JUN-1996', 'annaheery@live.co.uk', '07437419714', '21 Knowle Road, LS4 2PJ,');
 INSERT INTO CUSTOMER
-  VALUES ('C0003', 'Conn', 'Heery', 'M', '03-DEC-1963',  'connheery@live.co.uk', '07217519714', 'A0003');
+  VALUES ('C0003', 'Conn', 'Heery', 'M', '03-DEC-1963',  'connheery@live.co.uk', '07217519714', '60 Wychwood Avenue, LU2 7HU');
 INSERT INTO CUSTOMER
-  VALUES ('C0004', 'Monique', 'Heery', 'F', '13-NOV-1966', 'moniqueheery@live.co.uk', '07431119714', 'A0003');
+  VALUES ('C0004', 'Monique', 'Heery', 'F', '13-NOV-1966', 'moniqueheery@live.co.uk', '07431119714', '28 Grosvenor Gardens, NE4 5HT');
 INSERT INTO CUSTOMER
-  VALUES ('C0005', 'Ryan', 'Barker', 'M', '16-DEC-1995', 'ryanbarker@live.co.uk', '07437519774', 'A0004');
+  VALUES ('C0005', 'Ryan', 'Barker', 'M', '16-DEC-1995', 'ryanbarker@live.co.uk', '07437519774', '77 Sunderland Road, NE15 4PS');
 INSERT INTO CUSTOMER
-  VALUES ('C0006', 'Vitoria', 'Savy', 'F', '10-MAY-1950', 'vitoriasavy@live.co.uk', '07437512774', 'A0005');
+  VALUES ('C0006', 'Vitoria', 'Savy', 'F', '10-MAY-1950', 'vitoriasavy@live.co.uk', '07437512774', '37 Farmbrook close, LU2 7FS');
 INSERT INTO CUSTOMER
-  VALUES ('C0007', 'Beatrice', 'Potter', 'F', '28-JUL-1966', 'beatriceporter@live.co.uk', '07421519774', 'A0006');
+  VALUES ('C0007', 'Beatrice', 'Potter', 'F', '28-JUL-1966', 'beatriceporter@live.co.uk', '07421519774', '18 Alphabet Street, BN4 2FA');
 INSERT INTO CUSTOMER
-  VALUES ('C0008', 'Rafa', 'Benitez', 'M', '16-APR-1960', 'rafabenitez@live.co.uk', '0743253777', 'A0007');
+  VALUES ('C0008', 'Rafa', 'Benitez', 'M', '16-APR-1960', 'rafabenitez@live.co.uk', '07743253777', '21 Poltergeist Avenue, LS5 22F');
 INSERT INTO CUSTOMER
-  VALUES ('C0009', 'Emily', 'Clarke', 'F', '20-DEC-1982', 'emilyclarke@live.co.uk', '07412519774', 'A0008');
+  VALUES ('C0009', 'Emily', 'Clarke', 'F', '20-DEC-1982', 'emilyclarke@live.co.uk', '07412519774', '30 Gordon Terrace, LS6 4HX');
 INSERT INTO CUSTOMER
-  VALUES ('C0010', 'Antonio', 'Banderas', 'M', '10-AUG-1960', 'abanderas@live.co.uk', '07437239774', 'A0009');
+  VALUES ('C0010', 'Antonio', 'Banderas', 'M', '10-AUG-1960', 'abanderas@live.co.uk', '07437239774', '5 Smokehouse Street, BN42 5FS');
 INSERT INTO CUSTOMER
-  VALUES ('C0011', 'Edmund', 'Dijkstra', 'M', '16-DEC-1995', 'edijkstra@live.co.uk', '07437436774', 'A0010');
+  VALUES ('C0011', 'Edmund', 'Dijkstra', 'M', '16-DEC-1995', 'edijkstra@live.co.uk', '07437436774', '16 Pythagorus Close, LU3 3PJ');
 INSERT INTO CUSTOMER
-  VALUES ('C0012', 'William', 'Shakespeare', 'O', '23-APR-1964',  'willshakespeare@live.co.uk', '07477779774', 'A0011');
-
-REM Staff Address
-
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0013', '17 Grosvenor Gardens', NULL, 'NE2 2HR', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0014', '20 Wrangthorn Place', NULL, 'LS2 1HB', 'CL0010');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0015', '20 Delph Lane', NULL, 'LS24 8HX', 'CL0010');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0016', '250 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'CL0011');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0017', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0018', '13 Osbourne Road', NULL, 'NE2 2TD', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0019', '10 Heaton Park Road', NULL, 'NE6 5PR', 'CL0003');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0020', '38 Sunderland Road', NULL, 'NE8 3HF', 'CL0009');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0021', '3 Gateway House', '15 North Lane', 'LS6 3HG', 'CL0008');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0022', '209 Marsh Road', NULL, 'LU3 2RT', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0023', '598 Hitchin Road', NULL, 'LU2 7UG', 'CL0006');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0024', '160 Hockwell Ring', NULL, 'LU4 9NL', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0025', '16 Hanover Street', NULL, 'BN2 9WD', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0026', '92 DitchlinG Road', NULL, 'BN1 4SE', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0027', '16 Market Street', NULL, 'BN1 1HH', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0028', '65 Church Road', NULL, 'BN3 2BD', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0029', '61 Wilson Avenue', NULL, 'BN2 5PA', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0030', '66 Bridge Street', NULL, 'LS27 0EZ', 'CL0011');
-
+  VALUES ('C0012', 'William', 'Shakespeare', 'O', '23-APR-1964',  'willshakespeare@live.co.uk', '07477779774', '18 Sunderland Street, SR22 2TT');
 
 REM Staff
 
 INSERT INTO STAFF 
-  VALUES ('S00001', 'B0002', 'Bob', 'Dylan', 'bdylan@aol.co.uk', '07437523714', 'A0013');
+  VALUES ('S0001', 'B0002', 'Bob', 'Dylan', 'bdylan@aol.co.uk', '07437523714', 
+  '17 Grosvenor Gardens NE2 2HR');
 INSERT INTO STAFF 
-  VALUES ('S00002', 'B0001', 'Ryan', 'Phillips', 'rphilips@live.co.uk', '07437321971', 'A0006');
+  VALUES ('S0002', 'B0001', 'Ryan', 'Phillips', 'rphilips@live.co.uk', '07437321971', '20 Wrangthorn Place, LS2 1HB');
 INSERT INTO STAFF 
-  VALUES ('S00003', 'B0003', 'Gretchen' ,'Parlato', 'gparlato@live.com', '07212319714', 'A0009');
+  VALUES ('S0003', 'B0003', 'Gretchen' ,'Parlato', 'gparlato@live.com', '07212319714', '20 Delph Lane, LS24 8HX');
 INSERT INTO STAFF 
-  VALUES ('S00004', 'B0008','Mark','Guiliana', 'mguiliana@gmail.com', '07931998714', 'A0014');
+  VALUES ('S0004', 'B0008','Mark','Guiliana', 'mguiliana@gmail.com', '07931998714', '250 Aspect 14, Elmwood Lane, LS2 8WG');
 INSERT INTO STAFF 
-  VALUES ('S00005', 'B0001', 'Will','Stead',  'williestead@gmail.com', '07897183374', 'A0015');
+  VALUES ('S0005', 'B0001', 'Will','Stead',  'williestead@gmail.com', '07897183374', '20 Wolseley Gardens, NE2 1HR');
 INSERT INTO STAFF 
-  VALUES ('S00006', 'B0012', 'Adam','Howard', 'ahoward@gmail.com', '07897119884', 'A0016');
+  VALUES ('S0006', 'B0012', 'Adam','Howard', 'ahoward@gmail.com', '07897119884', '13 Osbourne Road, NE2 2TD');
 INSERT INTO STAFF 
-  VALUES ('S00007', 'B0004', 'Ian','Rush', 'ianrush@gmail.com', '07897119114', 'A0017');
+  VALUES ('S0007', 'B0004', 'Ian','Rush', 'ianrush@gmail.com', '07897119114', '10 Heaton Park Road, NE6 5PR');
 INSERT INTO STAFF 
-  VALUES ('S00008', 'B0005', 'Chuck','Norris', 'cn@chucknorris.co.uk', '07897119334', 'A0018');
+  VALUES ('S0008', 'B0005', 'Chuck','Norris', 'cn@chucknorris.co.uk', '07897119334', 'A38 Sunderland Road, NE8 3HF');
 INSERT INTO STAFF 
-  VALUES ('S00009', 'B0007', 'Conor','Magi', 'cmagi@gmail.com', '07897119444', 'A0019');
+  VALUES ('S0009', 'B0007', 'Conor','Magi', 'cmagi@gmail.com', '07897119444', '3 Gateway House, 15 North Lane, LS6 3HG');
 INSERT INTO STAFF 
-  VALUES ('S00010', 'B0011', 'Avashi','Cohen', 'achoen@gmail.com', '07227119444', 'A0020');
+  VALUES ('S0010', 'B0011', 'Avashi','Cohen', 'achoen@gmail.com', '07227119444', '209 Marsh Road, LU3 2RT');
 INSERT INTO STAFF 
-  VALUES ('S00011', 'B0006', 'Tigran','Hamassyan', 'tha@gmail.com', '07897119144', 'A0021');
+  VALUES ('S0011', 'B0006', 'Tigran','Hamassyan', 'tha@gmail.com', '07897119144', '598 Hitchin Road, LU2 7UG');
 INSERT INTO STAFF 
-  VALUES ('S00012', 'B0009', 'John','Coltrane', 'jcoltrane@gmail.com', '07893129444', 'A0022');
+  VALUES ('S0012', 'B0009', 'John','Coltrane', 'jcoltrane@gmail.com', '07893129444', '160 Hockwell Ring, LU4 9NL');
 INSERT INTO STAFF 
-  VALUES ('S00013', 'B0010', 'Lauren','Woods', 'lwoods@gmail.com', '07897119555', 'A0023');
+  VALUES ('S0013', 'B0010', 'Lauren','Woods', 'lwoods@gmail.com', '07897119555', '16 Hanover Street, BN2 9WD');
 INSERT INTO STAFF 
-  VALUES ('S00014', 'B0002', 'Georgina','Stakes', 'gstakes@gmail.com', '07895669444', 'A0024');
+  VALUES ('S0014', 'B0002', 'Georgina','Stakes', 'gstakes@gmail.com', '07895669444', 'A0024');
 INSERT INTO STAFF 
-  VALUES ('S00015', 'B0003', 'Rebecca','Frodsham','rfrodsha@gmail.com', '07897239444', 'A0025');
+  VALUES ('S0015', 'B0003', 'Rebecca','Frodsham','rfrodsha@gmail.com', '07897239444', '92 DitchlinG Road, BN1 4SE');
 INSERT INTO STAFF 
-  VALUES ('S00016', 'B0004', 'Kieron','Dyer', 'kierondyer@gmail.com', '07907119444', 'A0026');
+  VALUES ('S0016', 'B0004', 'Kieron','Dyer', 'kierondyer@gmail.com', '07907119444', '16 Market Street, BN1 1HH');
 INSERT INTO STAFF 
-  VALUES ('S00017', 'B0005', 'David','Blane', 'davidblane@gmail.com', '07876681040', 'A0027');
+  VALUES ('S0017', 'B0005', 'David','Blane', 'davidblane@gmail.com', '07876681040', '65 Church Road, BN3 2BD');
 INSERT INTO STAFF 
-  VALUES ('S00018', 'B0006', 'Ciara','Miller', 'ciaramiller@gmail.com', '07897788844', 'A0028');
+  VALUES ('S0018', 'B0006', 'Ciara','Miller', 'ciaramiller@gmail.com', '07897788844', '61 Wilson Avenue, BN2 5PA');
 INSERT INTO STAFF 
-  VALUES ('S00019', 'B0007', 'Julie','Andrews', 'jandrews@gmail.com', '07896616444', 'A0029');
+  VALUES ('S0019', 'B0007', 'Julie','Andrews', 'jandrews@gmail.com', '07896616444', '66 Bridge Street, LS27 0EZ');
 INSERT INTO STAFF 
-  VALUES ('S00020', 'B0008', 'Manny','Gambureon', 'mgambur@gmail.com', '07899119444', 'A0030');
+  VALUES ('S0020', 'B0008', 'Manny','Gambureon', 'mgambur@gmail.com', '07899119444', '69 Bridge Street, LS27 0EZ');
 
 
 REM Payroll Details
 
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00001', 'HR512563B','018237', '45374893');
+  VALUES ('S0001', 'HR512563B','018237', '45374893');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00002', 'HR522563B','183721', '45787786');
+  VALUES ('S0002', 'HR522563B','183721', '45787786');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00003', 'HR122563B','283722', '65783783');
+  VALUES ('S0003', 'HR122563B','283722', '65783783');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00004', 'HR512522B','183723', '76783784');
+  VALUES ('S0004', 'HR512522B','183723', '76783784');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00005', 'HR521663B','683724', '78783782');
+  VALUES ('S0005', 'HR521663B','683724', '78783782');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00006', 'HR522222B','384725', '45783781');
+  VALUES ('S0006', 'HR522222B','384725', '45783781');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00007', 'HR512563C','281726', '21783781');
+  VALUES ('S0007', 'HR512563C','281726', '21783781');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00008', 'JR662563B','682327', '23783789');
+  VALUES ('S0008', 'JR662563B','682327', '23783789');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00009', 'LA512263B','283428', '12783732');
+  VALUES ('S0009', 'LA512263B','283428', '12783732');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00010', 'HO111563B','683729', '00783743');
+  VALUES ('S0010', 'HO111563B','683729', '00783743');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00011', 'PP512563B','789210', '05483721');
+  VALUES ('S0011', 'PP512563B','789210', '05483721');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00012', 'HR513333B','987311', '00683787');
+  VALUES ('S0012', 'HR513333B','987311', '00683787');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00013', 'RB511563B','986412', '58983712');
+  VALUES ('S0013', 'RB511563B','986412', '58983712');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00014', 'DP123563B','981214', '51483745');
+  VALUES ('S0014', 'DP123563B','981214', '51483745');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00015', 'CB112563B','482315', '12383744');
+  VALUES ('S0015', 'CB112563B','482315', '12383744');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00016', 'HR512588B','387616', '64383744');
+  VALUES ('S0016', 'HR512588B','387616', '64383744');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00017', 'JZ114563B','384517', '46483712');
+  VALUES ('S0017', 'JZ114563B','384517', '46483712');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00018', 'JZ442263B','681218', '34483723');
+  VALUES ('S0018', 'JZ442263B','681218', '34483723');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00019', 'JZ113567B','782319', '55683712');
+  VALUES ('S0019', 'JZ113567B','782319', '55683712');
 INSERT INTO PAYROLL_DETAILS
-  VALUES ('S00020', 'JZ122363B','283420', '12383711');
+  VALUES ('S0020', 'JZ122363B','283420', '12383711');
 
-
-
-REM Branch Address
-
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0031', '123 Heaton Road', NULL, 'NE6 2BB', 'CL0003');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0032', '28 Gordon Terrace', NULL, 'LS6 4HX', 'CL0008');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0033', '30 Elmwood Lane', NULL, 'LS8 2HJ', 'CL0011');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0034', '21 Dove Tail Road', NULL, 'BN5 6TT', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0035', '40 Warden Crescent', NULL, 'LU5 2P8', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0036', '20 Osbourne Road', NULL, 'NE4 5FR', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0037', '13 Sunderland Road', NULL, 'NE4 5FR', 'CL0012');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0038', '20 Hockwel Ring', NULL, 'LU23 4HR', 'CL0006');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0039', '12 Briggate Street', NULL, 'LS10 1FB', 'CL0011');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0040', '37 Wiseman Close', NULL, 'LU3 25S', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0041', '89 St Georges Terrace', NULL, 'NE7 2DN', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES ('A0042', '80 St James Boulevord', NULL, 'NE1 4BN', 'CL0003');
 
 REM Branch 
 
 INSERT INTO BRANCH 
-  VALUES ('B0001', 'S00005', 'EA001', 'info@propertynewcastle.co.uk', '07876671020', 'A0031');
+  VALUES ('B0001', 'S0005', 'EA001', 'info@propertynewcastle.co.uk', '07876671020', '123 Heaton Road, NE6 2BB', 0.03);
 INSERT INTO BRANCH 
-  VALUES ('B0002', 'S00001', 'EA004', 'info@mymoveleeds.co.uk', '07876671111', 'A0032');
+  VALUES ('B0002', 'S0001', 'EA004', 'info@mymoveleeds.co.uk', '07876671111', '28 Gordon Terrace, LS6 4HX', 0.05);
 INSERT INTO BRANCH 
-  VALUES ('B0003', 'S00003', 'EA001', 'info@propertyleeds.co.uk', '07777771020', 'A0033');
+  VALUES ('B0003', 'S0003', 'EA001', 'info@propertyleeds.co.uk', '07777771020', '30 Elmwood Lane, LS8 2HJ', 0.09);
 INSERT INTO BRANCH 
-  VALUES ('B0004', 'S00007', 'EA002', 'info@iliketomoveitbri.co.uk', '07876634563', 'A0034');
+  VALUES ('B0004', 'S0007', 'EA002', 'info@iliketomoveitbri.co.uk', '07876634563', '21 Dove Tail Road, BN5 6TT', 0.04);
 INSERT INTO BRANCH 
-  VALUES ('B0005', 'S00008', 'EA003', 'info@helloworldluton.co.uk', '07876667182', 'A0035');
+  VALUES ('B0005', 'S0008', 'EA003', 'info@helloworldluton.co.uk', '07876667182', '40 Warden Crescent, LU5 2P8', 0.1);
 INSERT INTO BRANCH 
-  VALUES ('B0006', 'S00011', 'EA003', 'info@helloworldnewcast.co.uk', '07876671634', 'A0036');
+  VALUES ('B0006', 'S0011', 'EA003', 'info@helloworldnewcast.co.uk', '07876671634', '20 Osbourne Road, NE4 5FR', 0.06);
 INSERT INTO BRANCH 
-  VALUES ('B0007', 'S00009', 'EA005', 'info@newcastlehomes.co.uk', '07876098220', 'A0037');
+  VALUES ('B0007', 'S0009', 'EA005', 'info@newcastlehomes.co.uk', '07876098220', '13 Sunderland Road, NE4 5FR', 0.04);
 INSERT INTO BRANCH
-  VALUES ('B0008', 'S00004', 'EA008', 'info@moveoutofmyway.co.uk', '07878877652', 'A0038');
+  VALUES ('B0008', 'S0004', 'EA008', 'info@moveoutofmyway.co.uk', '07878877652', '20 Hockwel Ring, LU23 4HR', 0.12);
 INSERT INTO BRANCH 
-  VALUES ('B0009', 'S00012', 'EA007', 'info@homelyhomesleeds.co.uk', '07832435643', 'A0039');
+  VALUES ('B0009', 'S0012', 'EA007', 'info@homelyhomesleeds.co.uk', '07832435643', '12 Briggate Street, LS10 1FB', 0.06);
 INSERT INTO BRANCH 
-  VALUES ('B0010', 'S00013', 'EA007', 'info@homelyhomesluton.co.uk', '07876887766', 'A0040');
+  VALUES ('B0010', 'S0013', 'EA007', 'info@homelyhomesluton.co.uk', '07876887766', '37 Wiseman Close, LU3 25S', 0.07);
 INSERT INTO BRANCH 
-  VALUES ('B0011', 'S00010', 'EA002', 'info@iliketomoveitnew.co.uk', '07876091823', 'A0041');
+  VALUES ('B0011', 'S0010', 'EA002', 'info@iliketomoveitnew.co.uk', '07876091823', '89 St Georges Terrace, NE7 2DN', 0.04);
 INSERT INTO BRANCH 
-  VALUES ('B0012', 'S00006', 'EA006', 'info@movemeplease.co.uk', '07876839201', 'A0042');
+  VALUES ('B0012', 'S0006', 'EA006', 'info@movemeplease.co.uk', '07876839201', '80 St James Boulevord, NE1 4BN', 0.17);
 
-REM Property Addresses
-
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0043', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'CL0001');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0044', '15 Knowle Road', 'Flat A', 'LS4 2PJ', 'CL0004');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0045', '20 Wiseman Close', NULL, 'LU3 12H', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0046', '1 Heaton Road', NULL, 'NE3 1HB', 'CL0003');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0047', '10 Felling Gate', NULL, ' NE10 0AA', 'CL0009');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0048', '15 Felling Gate', NULL, ' NE10 0AA', 'CL0009');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0049', '221 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'CL0012');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0050', '14 Knowle Mount', NULL, 'LS4 2PG', 'CL0004');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0051', '46 Gordon Terrace', NULL, 'LS6 4HX', 'CL0008');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0052', '16 College Road', NULL, 'BN6 4HR', 'CL0005');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0053', '26 Bexton Mount', NULL, 'LS6 2PQ', 'CL0010');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0054', '16 Stickwell Close', NULL, 'NE15 4FF', 'CL0002');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0055', '15 Heaton Road', NULL, 'NE3 1HB', 'CL0003');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0056', '12 Farmbrook', NULL, 'LU2 3FR', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0057', '10 Leagrave Road', NULL, 'LU24 4TT', 'CL0006');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0058', '21 Marsh Road', NULL, 'LU28 4FR', 'CL0007');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0059', '10 Stick Well Close', NULL, 'NE15 4FF', 'CL0002');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0060', '27 Heaton Road', NULL, 'NE15 4FF', 'CL0003');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0061', '27 Fenham Road', NULL, 'NE15 32P', 'CL0002');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0062', '15 Aldern Tower', 'Flat 4', 'SR3 3AT', 'CL0013');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0063', '10 Aldelaide Close', NULL, 'SR1 2JN', 'CL0014');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0064', '27 Stannington Vale', NULL, 'NE15 32P', 'CL0015');
-INSERT INTO PORTAL_ADDRESSES
-  VALUES('A0065', '28 Sunderland Road', NULL, 'NE15 32P', 'CL0009');
-
-
-REM Prop Owner
-
-INSERT INTO PROP_OWNER 
-  VALUES('PO001','C0004', 'B0009');
-INSERT INTO PROP_OWNER 
-  VALUES('PO002','C0008', 'B0009');
-INSERT INTO PROP_OWNER 
-  VALUES('PO003','C0011', 'B0009');
-INSERT INTO PROP_OWNER 
-  VALUES('PO004','C0009', 'B0009');
-INSERT INTO PROP_OWNER 
-  VALUES('PO005','C0002', 'B0009');
-INSERT INTO PROP_OWNER 
-  VALUES('PO006','C0005', 'B0009');
 
 REM Properties 
 
 INSERT INTO PROPERTIES 
-  VALUES ('P0001', 'B0001', 'PO001', 125000, 
+  VALUES ('P0001', 'B0001', 125000, 
           'FS', 'Semi-Detached', '01-APR-2022',
-          'Beautiful property with a nice seat', 3000,
-          'A0043');
+          'Beautiful property with a nice seat', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0002', 'B0002', 'PO001', 175000, 
+  VALUES ('P0002', 'B0002', 175000, 
           'S', 'Terraced', '30-JUN-2022',
-          'Nice house with friendly neighbours', 2000,
-          'A0044');
+          'Nice house with friendly neighbours', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0003', 'B0005', 'PO004', 225000, 
+  VALUES ('P0003', 'B0005', 225000, 
           'FS', 'Flat', '15-JUN-2022',
-          'Nice flat pet friendly', 3000,
-          'A0045');
+          'Nice flat pet friendly', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0004', 'B0007', 'PO001', 145000, 
+  VALUES ('P0004', 'B0007', 145000, 
           'FS', 'Semi-Detached', '02-JUN-2022',
-          'Beautiful semi-detached house with modern furnishings', 2000,
-          'A0046');
+          'Beautiful semi-detached house with modern furnishings', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0005', 'B0007', 'PO006', 600200, 
+  VALUES ('P0005', 'B0007', 600200, 
           'FS', 'Detached', '06-MAR-2022',
-          'Large detached house with amazing views and stables', 5500,
-          'A0047');
+          'Large detached house with amazing views and stables', 5500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0006', 'B0007', 'PO002', 1200, 
+  VALUES ('P0006', 'B0007', 1200, 
           'FL', 'Semi-Detached', '25-MAY-2022',
-          'Large property with 3 Bedrooms', 3000,
-          'A0048');
+          'Large property with 3 Bedrooms', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0007', 'B0002', 'PO002', 1800, 
+  VALUES ('P0007', 'B0002', 1800, 
           'L', 'Flat', '22-MAY-2022',
-          'Great property close to the centre', 2000,
-          'A0049');
+          'Great property close to the centre', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0008', 'B0002', 'PO003', 120000, 
+  VALUES ('P0008', 'B0002', 120000, 
           'FL', 'Semi-Detached', '05-MAY-2022',
-          'Lovely small semi-detatched house', 1500,
-          'A0050');
+          'Lovely small semi-detatched house', 1500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0009', 'B0002', 'PO003', 920500, 
+  VALUES ('P0009', 'B0002', 920500, 
           'FS', 'Detached', '20-JUN-2022', 
-          'Large house with plenty of land', 6000,
-          'A0051');
+          'Large house with plenty of land', 6000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0010', 'B0004', 'PO004', 850, 
+  VALUES ('P0010', 'B0004', 850, 
           'FL', 'Terraced', '20-JUN-2022', 
-          'Small terraced house to rent', 1500,
-          'A0052');
+          'Small terraced house to rent', 1500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0011', 'B0003', 'PO001', 500000, 
+  VALUES ('P0011', 'B0003', 500000, 
           'S', 'Semi-Detached', '10-JUN-2022', 
-          'Great property, will surely be sold fast', 4500,
-          'A0053');
+          'Great property, will surely be sold fast', 4500);
 INSERT INTO PROPERTIES 
-  VALUES ('P0012', 'B0006', 'PO005', 145000, 
+  VALUES ('P0012', 'B0006', 145000, 
           'S', 'Terraced', '30-MAY-2022', 
-          'Small terraced house in a good area', 2000,
-          'A0054');
+          'Small terraced house in a good area', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0013', 'B0007', 'PO002', 250000, 
+  VALUES ('P0013', 'B0007', 250000, 
           'FS', 'Detached', '30-JUN-2022',
-          'Medium size flat for rent, perfect for a couple or for multiple tennants',3000, 
-          'A0055');
+          'Medium size flat for rent, perfect for a couple or for multiple tennants',3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0014', 'B0008', 'PO002', 177500, 
+  VALUES ('P0014', 'B0008', 177500, 
           'FS', 'Terraced', '05-MAR-2022', 
-          'Terraced house for sale, complete with modern bathroom', 2000, 'A0056');
+          'Terraced house for sale, complete with modern bathroom', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0015', 'B0008', 'PO003', 3400, 
+  VALUES ('P0015', 'B0008', 3400, 
           'L', 'Detached', '13-JUN-2022',
-          'Detached house for sale, beautiful views', 4000, 'A0057');
+          'Detached house for sale, beautiful views', 4000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0016', 'B0010', 'PO003', 
+  VALUES ('P0016', 'B0010', 
           1400, 'L', 'Flat', '02-JUN-2022',
-          'Medium size flat for let', 2000, 'A0058');
+          'Medium size flat for let', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0017', 'B0006', 'PO005', 330000, 
+  VALUES ('P0017', 'B0006', 330000, 
           'FS', 'Semi-Detached', '01-JUL-2022', 
-          'Small terraced house in a good area', 2000,
-          'A0059');
+          'Small terraced house in a good area', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0018', 'B0006', 'PO001', 324000, 
+  VALUES ('P0018', 'B0006', 324000, 
           'FS', 'Detached', '01-JUL-2022', 
-          'Large Detached house in a good area', 3000,
-          'A0060');
+          'Large Detached house in a good area', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0019', 'B0006', 'PO002', 220000, 
+  VALUES ('P0019', 'B0006', 220000, 
           'FS', 'Semi-Detached', '30-JUN-2022', 
-          'Large Detached house in a good area', 3000,
-          'A0061');
+          'Large Detached house in a good area', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0020', 'B0006', 'PO004', 210000, 
+  VALUES ('P0020', 'B0006', 210000, 
           'S', 'Flat', '30-JUN-2022', 
-          'Large flat close to the centre', 2000,
-          'A0062');
+          'Large flat close to the centre', 2000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0021', 'B0006', 'PO004', 195000, 
+  VALUES ('P0021', 'B0006', 195000, 
           'S', 'Terraced', '30-JUN-2019', 
-          'Medium sized terraced house', 3000,
-          'A0063');
+          'Medium sized terraced house', 3000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0022', 'B0006', 'PO004', 320000, 
+  VALUES ('P0022', 'B0006', 320000, 
           'S', 'Semi-Detached', '30-JUN-2019', 
-          'Large Detached house', 5000,
-          'A0064');
+          'Large Detached house', 5000);
 INSERT INTO PROPERTIES 
-  VALUES ('P0023', 'B0006', 'PO002', 300000, 
+  VALUES ('P0023', 'B0006', 300000, 
           'S', 'Semi-Detached', '30-JUN-2018', 
-          'Large Semi-Detached house', 3000,
-          'A0065');
-
-
+          'Large Semi-Detached house', 3000);
 
 REM Prop Rooms 
 
@@ -709,6 +530,96 @@ INSERT INTO PROP_ROOMS
   VALUES('P0023', NULL, 'Bedroom');
 INSERT INTO PROP_ROOMS
   VALUES('P0023', 'A nice bedroom', 'Bedroom');
+
+REM PROP_ADDR 
+
+INSERT INTO PROP_ADDR
+  VALUES('P0001', '20 Wolseley Gardens', NULL, 'NE2 1HR', 'AR001');
+INSERT INTO PROP_ADDR
+  VALUES('P0002', '15 Knowle Road', 'Flat A', 'LS4 2PJ', 'AR004');
+INSERT INTO PROP_ADDR
+  VALUES('P0003', '20 Wiseman Close', NULL, 'LU3 12H', 'AR007');
+INSERT INTO PROP_ADDR
+  VALUES('P0004', '1 Heaton Road', NULL, 'NE3 1HB', 'AR003');
+INSERT INTO PROP_ADDR
+  VALUES('P0005', '10 Felling Gate', NULL, ' NE10 0AA', 'AR009');
+INSERT INTO PROP_ADDR
+  VALUES('P0006', '15 Felling Gate', NULL, ' NE10 0AA', 'AR009');
+INSERT INTO PROP_ADDR
+  VALUES('P0007', '221 Aspect 14', 'Elmwood Lane', 'LS2 8WG', 'AR012');
+INSERT INTO PROP_ADDR
+  VALUES('P0008', '14 Knowle Mount', NULL, 'LS4 2PG', 'AR004');
+INSERT INTO PROP_ADDR
+  VALUES('P0009', '46 Gordon Terrace', NULL, 'LS6 4HX', 'AR008');
+INSERT INTO PROP_ADDR
+  VALUES('P0010', '16 College Road', NULL, 'BN6 4HR', 'AR005');
+INSERT INTO PROP_ADDR
+  VALUES('P0011', '26 Bexton Mount', NULL, 'LS6 2PQ', 'AR010');
+INSERT INTO PROP_ADDR
+  VALUES('P0012', '16 Stickwell Close', NULL, 'NE15 4FF', 'AR002');
+INSERT INTO PROP_ADDR
+  VALUES('P0013', '15 Heaton Road', NULL, 'NE3 1HB', 'AR003');
+INSERT INTO PROP_ADDR
+  VALUES('P0014', '12 Farmbrook', NULL, 'LU2 3FR', 'AR007');
+INSERT INTO PROP_ADDR
+  VALUES('P0015', '10 Leagrave Road', NULL, 'LU24 4TT', 'AR006');
+INSERT INTO PROP_ADDR
+  VALUES('P0016', '21 Marsh Road', NULL, 'LU28 4FR', 'AR007');
+INSERT INTO PROP_ADDR
+  VALUES('P0017', '10 Stick Well Close', NULL, 'NE15 4FF', 'AR002');
+INSERT INTO PROP_ADDR
+  VALUES('P0018', '27 Heaton Road', NULL, 'NE15 4FF', 'AR003');
+INSERT INTO PROP_ADDR
+  VALUES('P0019', '27 Fenham Road', NULL, 'NE15 32P', 'AR002');
+INSERT INTO PROP_ADDR
+  VALUES('P0020', '15 Aldern Tower', 'Flat 4', 'SR3 3AT', 'AR013');
+INSERT INTO PROP_ADDR
+  VALUES('P0021', '10 Aldelaide Close', NULL, 'SR1 2JN', 'AR014');
+INSERT INTO PROP_ADDR
+  VALUES('P0022', '27 Stannington Vale', NULL, 'NE15 32P', 'AR015');
+INSERT INTO PROP_ADDR
+  VALUES('P0023', '28 Sunderland Road', NULL, 'NE15 32P', 'AR009');
+
+REM PROP_OWNERS 
+
+REM Prop Owner
+
+INSERT INTO PROP_OWNER 
+  VALUES('P0001','C0004', 'B0001');
+INSERT INTO PROP_OWNER 
+  VALUES('P0002','C0008', 'B0009');
+INSERT INTO PROP_OWNER 
+  VALUES('P0003','C0011', 'B0004');
+INSERT INTO PROP_OWNER 
+  VALUES('P0004','C0009', 'B0004');
+INSERT INTO PROP_OWNER 
+  VALUES('P0005','C0002', 'B0001');
+INSERT INTO PROP_OWNER 
+  VALUES('P0006','C0005', 'B0002');
+INSERT INTO PROP_OWNER 
+  VALUES('P0007','C0004', 'B0002');
+INSERT INTO PROP_OWNER 
+  VALUES('P0008','C0008', 'B0003');
+INSERT INTO PROP_OWNER 
+  VALUES('P0009','C0011', 'B0005');
+INSERT INTO PROP_OWNER 
+  VALUES('P0010','C0009', 'B0006');
+INSERT INTO PROP_OWNER 
+  VALUES('P0011','C0002', 'B0007');
+INSERT INTO PROP_OWNER 
+  VALUES('P0012','C0005', 'B0008');
+INSERT INTO PROP_OWNER 
+  VALUES('P0013','C0004', 'B0008');
+INSERT INTO PROP_OWNER 
+  VALUES('P0014','C0008', 'B0001');
+INSERT INTO PROP_OWNER 
+  VALUES('P0015','C0011', 'B0002');
+INSERT INTO PROP_OWNER 
+  VALUES('P0016','C0009', 'B0003');
+INSERT INTO PROP_OWNER 
+  VALUES('P0017','C0002', 'B0004');
+INSERT INTO PROP_OWNER 
+  VALUES('P0018','C0005', 'B0005');
 
 REM Sold Property
 

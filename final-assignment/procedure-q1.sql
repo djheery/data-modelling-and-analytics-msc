@@ -57,14 +57,14 @@ CREATE OR REPLACE PROCEDURE find_a_house (LOC IN STR_SEARCH,
 
   CURSOR PROPS IS 
     SELECT COUNT(PR.prop_id) AS room_count, 
-            a.addr_l1 AS addr, 
-            tca.tca_name, tc.tc_name, 
+            pa.addr_l1 AS addr, 
+            a.tca_name, tc.tc_name, 
             p.prop_type, p.list_type, p.list_date, p.list_price   
-    FROM PROP_ROOMS pr, PORTAL_ADDRESSES a, 
-         PROPERTIES p, TOWN_CITY_AREA tca, 
+    FROM PROP_ROOMS pr, PROP_ADDR pa, 
+         PROPERTIES p, AREAS a, 
          TOWNS_AND_CITIES tc 
     WHERE pr.prop_id = p.prop_id
-    AND a.tca_id = tca.tca_id
+    AND pa.tca_id = tca.tca_id
     AND tca.tc_code = tc.tc_code
     AND p.prop_addr = a.addr_id
     AND pr.room_type = 'Bedroom'

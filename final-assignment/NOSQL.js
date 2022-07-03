@@ -1,5 +1,8 @@
+
+db.Properties.drop();
+db.Customers.drop();
 db.createCollection("Properties");
-db.createCollection("Branches");
+db.createCollection("Customers");
 
 db.Properties.insertMany([
   {
@@ -360,7 +363,8 @@ db.Customers.insertMany([
       cust_town_city: 'Leeds',
       cust_location: 'Burley'
     }],
-    props_owned: []
+    props_owned: [],
+    props_let: 
   },
   {
     _id: 'C2',
@@ -378,7 +382,7 @@ db.Customers.insertMany([
       cust_town_city: 'Leeds',
       cust_location: 'Burley'
     }],
-    props_owned: [{prop_id: 'P1'}, {prop_id: 'P2'}]
+    props_owned: [{_id: 'P1'}, {_id: 'P2'}]
   },
   {
     _id: 'C3',
@@ -396,7 +400,7 @@ db.Customers.insertMany([
       cust_town_city: 'Leeds',
       cust_location: 'Burley'
     }],
-    props_owned: [{prop_id: 'P3'}, {prop_id: 'P7'}]
+    props_owned: [{_id: 'P3'}, {_id: 'P7'}]
   },
   {
     _id: 'C4',
@@ -415,7 +419,7 @@ db.Customers.insertMany([
       cust_town_city: 'Leeds',
       cust_location: 'Meanwood'
     }],
-    props_owned: [{prop_id: 'P4', prop_id: 'P6'}]
+    props_owned: [{_id: 'P4', _id: 'P6'}]
   },
   {
     _id: 'C5',
@@ -433,7 +437,7 @@ db.Customers.insertMany([
       cust_town_city: 'Gateshead',
       cust_location: 'Felling Gate'
     }],
-    props_owned: [{prop_id: 'P3'}]
+    props_owned: [{_id: 'P3'}]
   },
   {
     _id: 'C6',
@@ -451,7 +455,20 @@ db.Customers.insertMany([
       cust_town_city: 'Sunderland',
       cust_location: 'City Centre'
     }],
-    props_owned: [{prop_id: 'P8'}]
+    props_owned: [{_id: 'P8'}]
   },
 ])
 
+db.Properties.find({}).pretty();
+db.Customers.find({}).pretty();
+
+db.Properties.aggregate([
+  {
+    $lookup: {
+      from: "Customers",
+      localField: "_id",
+      foreignField: "props_owned._id",
+      as: "Props Owned"
+    }
+  }
+]).pretty();
